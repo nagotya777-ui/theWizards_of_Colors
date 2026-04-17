@@ -341,8 +341,8 @@ function rgbToHex(r, g, b) {
 // Get contrasting text color based on background color
 function getContrastTextColor(hexColor) {
     const hsl = hexToHSL(hexColor);
-    // If lightness is greater than 50, use dark text; otherwise use light text
-    return hsl.l > 50 ? '#2c2c2c' : '#ffffff';
+    // If lightness is greater than 75, use dark text; otherwise use light text
+    return hsl.l > 75 ? '#2c2c2c' : '#ffffff';
 }
 
 // Convert HSL to Hex
@@ -364,17 +364,17 @@ function hslToHex(h, s, l) {
 function getAdjustedButtonColor(backgroundColorCode) {
     const hsl = hexToHSL(backgroundColorCode);
     
-    // If background is light (lightness > 50), darken the button color
-    if (hsl.l > 50) {
+    // If background is light (lightness > 75), darken the button color
+    if (hsl.l > 75) {
         // Calculate appropriate button darkness based on background lightness
         let buttonLightness = 35;
         
-        // If background is very light (lightness > 70), darken button even more
-        if (hsl.l > 75) {
+        // If background is very light (lightness > 85), darken button even more
+        if (hsl.l > 85) {
             buttonLightness = 15; // Very dark for very light backgrounds
-        } else if (hsl.l > 65) {
+        } else if (hsl.l > 80) {
             buttonLightness = 20; // Darker for light backgrounds
-        } else if (hsl.l > 55) {
+        } else if (hsl.l > 75) {
             buttonLightness = 30; // Moderately dark for moderately light backgrounds
         }
         
@@ -382,7 +382,7 @@ function getAdjustedButtonColor(backgroundColorCode) {
     }
     
     // If background is dark, check if original button color is also light
-    if (hsl.l > 60) {
+    if (hsl.l > 80) {
         // Even on dark backgrounds, if the color itself is light, darken it
         return hslToHex(hsl.h, hsl.s, 40);
     }
