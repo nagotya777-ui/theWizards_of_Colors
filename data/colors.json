@@ -1,0 +1,34 @@
+{
+  "colors": [
+    {
+      "id": "Herbe",
+      "name": "エルブ",
+      "colorCode": "#79C288",
+      "dataPath": "data/エルブ"
+    },
+    {
+      "id": "Canard",
+      "name": "カナール",
+      "colorCode": "#007D8B",
+      "dataPath": "data/カナール"
+    },
+    {
+      "id": "Mimosa",
+      "name": "ミモザ",
+      "colorCode": "#FFF462",
+      "dataPath": "data/ミモザ"
+    },
+    {
+      "id": "Geppaku",
+      "name": "月白",
+      "colorCode": "#DCEBF5",
+      "dataPath": "data/月白"
+    },
+    {
+      "id": "Shion",
+      "name": "紫苑",
+      "colorCode": "#968ABD",
+      "dataPath": "data/紫苑"
+    }
+  ]
+ }
