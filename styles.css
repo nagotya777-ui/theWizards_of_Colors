@@ -331,16 +331,19 @@ header h1 {
 .profile-content {
     display: flex;
     gap: 40px;
+    min-height: 700px;
 }
 
 .profile-image-section {
-    flex: 0 0 450px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .character-full-image {
     width: 100%;
-    height: auto;
-    max-height: 600px;
+    height: 100%;
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
