@@ -6,9 +6,7 @@
 
 @font-face {
     font-family: 'UtukushiMincho';
-    src: url('data/fonts/utukushi-mincho.woff2') format('woff2'),
-         url('data/fonts/utukushi-mincho.woff') format('woff'),
-         url('data/fonts/utukushi-mincho.ttf') format('truetype');
+    src: url('data/fonts/utukushi-mincho.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
