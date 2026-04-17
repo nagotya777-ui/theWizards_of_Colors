@@ -4,8 +4,17 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'UtukushiMincho';
+    src: url('data/fonts/utukushi-mincho.woff2') format('woff2'),
+         url('data/fonts/utukushi-mincho.woff') format('woff'),
+         url('data/fonts/utukushi-mincho.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'UtukushiMincho', 'Hiragino Mincho ProN', 'HiraMinProN-W3', 'Noto Serif JP', serif;
     background: #f5f5f5;
     min-height: 100vh;
     color: #2c2c2c;
