@@ -366,11 +366,28 @@ function getAdjustedButtonColor(backgroundColorCode) {
     
     // If background is light (lightness > 50), darken the button color
     if (hsl.l > 50) {
-        // Darken by reducing lightness to about 35-40%
-        return hslToHex(hsl.h, hsl.s, 35);
+        // Calculate appropriate button darkness based on background lightness
+        let buttonLightness = 35;
+        
+        // If background is very light (lightness > 70), darken button even more
+        if (hsl.l > 75) {
+            buttonLightness = 15; // Very dark for very light backgrounds
+        } else if (hsl.l > 65) {
+            buttonLightness = 20; // Darker for light backgrounds
+        } else if (hsl.l > 55) {
+            buttonLightness = 30; // Moderately dark for moderately light backgrounds
+        }
+        
+        return hslToHex(hsl.h, hsl.s, buttonLightness);
     }
     
-    // If background is dark, return original color
+    // If background is dark, check if original button color is also light
+    if (hsl.l > 60) {
+        // Even on dark backgrounds, if the color itself is light, darken it
+        return hslToHex(hsl.h, hsl.s, 40);
+    }
+    
+    // Otherwise return original color
     return backgroundColorCode;
 }
 
