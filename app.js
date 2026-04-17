@@ -345,6 +345,35 @@ function getContrastTextColor(hexColor) {
     return hsl.l > 50 ? '#2c2c2c' : '#ffffff';
 }
 
+// Convert HSL to Hex
+function hslToHex(h, s, l) {
+    s /= 100;
+    l /= 100;
+    
+    const a = s * Math.min(l, 1 - l);
+    const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+    };
+    
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+// Adjust button color based on background lightness
+function getAdjustedButtonColor(backgroundColorCode) {
+    const hsl = hexToHSL(backgroundColorCode);
+    
+    // If background is light (lightness > 50), darken the button color
+    if (hsl.l > 50) {
+        // Darken by reducing lightness to about 35-40%
+        return hslToHex(hsl.h, hsl.s, 35);
+    }
+    
+    // If background is dark, return original color
+    return backgroundColorCode;
+}
+
 // Select a color and show character list
 async function selectColor(color) {
     state.selectedColor = color;
@@ -592,19 +621,20 @@ async function renderRelatedCharacters(character) {
 
 // Update button color to match selected color
 function updateButtonColor(colorCode) {
+    const adjustedColor = getAdjustedButtonColor(colorCode);
     const buttons = document.querySelectorAll('.back-button');
     buttons.forEach(button => {
-        button.style.borderColor = colorCode;
-        button.style.color = colorCode;
+        button.style.borderColor = adjustedColor;
+        button.style.color = adjustedColor;
         
         // Update hover effect
         button.onmouseenter = function() {
-            this.style.backgroundColor = colorCode;
+            this.style.backgroundColor = adjustedColor;
             this.style.color = 'white';
         };
         button.onmouseleave = function() {
             this.style.backgroundColor = 'transparent';
-            this.style.color = colorCode;
+            this.style.color = adjustedColor;
         };
     });
 }
