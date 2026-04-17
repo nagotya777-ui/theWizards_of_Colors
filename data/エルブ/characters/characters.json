@@ -1,0 +1,22 @@
+{
+  "characters": [
+    {
+      "id": "Sewin",
+      "name": "ゼヴィン",
+      "catchphrase": "Sewin",
+      "profilePath": "Sewin/profile.json"
+    },
+    {
+      "id": "Sano",
+      "name": "サーノ",
+      "catchphrase": "Sano",
+      "profilePath": "Sano/profile.json"
+    },
+    {
+      "id": "Serum",
+      "name": "セラム",
+      "catchphrase": "Serum",
+      "profilePath": "Serum/profile.json"
+    }
+  ]
+}

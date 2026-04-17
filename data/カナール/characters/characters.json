@@ -1,0 +1,22 @@
+{
+  "characters": [
+    {
+      "id": "Torrente",
+      "name": "トレンテ",
+      "catchphrase": "Torrente",
+      "profilePath": "Torrente/profile.json"
+    },
+    {
+      "id": "Sewin",
+      "name": "ゼウィン",
+      "catchphrase": "Sewin",
+      "profilePath": "Sewin/profile.json"
+    },
+    {
+      "id": "Wog",
+      "name": "ウォグ",
+      "catchphrase": "Wog",
+      "profilePath": "Wog/profile.json"
+    }
+  ]
+}

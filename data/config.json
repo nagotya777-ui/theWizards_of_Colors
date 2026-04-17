@@ -1,0 +1,317 @@
+{
+  "colors": [
+    {
+      "name": "緋色",
+      "colorCode": "#DC143C",
+      "description": "情熱と勇気を象徴する色。炎のように燃え上がる強い意志を持つ者たちが集う。",
+      "symbol": "data/緋色/symbol.png",
+      "characters": [
+        {
+          "id": "char1",
+          "name": "紅葉 アカネ",
+          "icon": "data/緋色/characters/akane/icon.png",
+          "fullImage": "data/緋色/characters/akane/full.png",
+          "expressions": [
+            "data/緋色/characters/akane/expression1.png",
+            "data/緋色/characters/akane/expression2.png",
+            "data/緋色/characters/akane/expression3.png"
+          ],
+          "relatedCharacters": ["char2", "char5"],
+          "profile": {
+            "gender": "女性",
+            "age": "17歳",
+            "height": "162cm",
+            "birthday": "10月15日"
+          },
+          "magic": "炎の舞：周囲に紅蓮の炎を纏い、敵を焼き尽くす。炎は使用者の感情に応じて強さが変化する。",
+          "bio": "情熱的で正義感が強い性格。幼い頃に村を襲った魔物から家族を守るため、炎の魔法を独学で習得した。常に仲間を守ることを第一に考えている。"
+        },
+        {
+          "id": "char2",
+          "name": "朱雀 レン",
+          "icon": "data/緋色/characters/ren/icon.png",
+          "fullImage": "data/緋色/characters/ren/full.png",
+          "expressions": [
+            "data/緋色/characters/ren/expression1.png",
+            "data/緋色/characters/ren/expression2.png"
+          ],
+          "relatedCharacters": ["char1", "char6"],
+          "profile": {
+            "gender": "男性",
+            "age": "19歳",
+            "height": "178cm",
+            "birthday": "7月3日"
+          },
+          "magic": "紅蓮剣：炎を纏った剣を生成し、高速で敵を斬り裂く。剣の温度は意志の力で調整可能。",
+          "bio": "冷静沈着な剣士。名門の出身だが、家の因習に縛られることを嫌い、自由を求めて旅に出た。戦闘では冷徹だが、仲間には優しい一面を持つ。"
+        }
+      ]
+    },
+    {
+      "name": "マリーゴールド",
+      "colorCode": "#FFA500",
+      "description": "希望と活力を表す色。太陽のように明るく、周囲を照らす温かな力を持つ。",
+      "symbol": "data/マリーゴールド/symbol.png",
+      "characters": [
+        {
+          "id": "char3",
+          "name": "陽向 ヒナタ",
+          "icon": "data/マリーゴールド/characters/hinata/icon.png",
+          "fullImage": "data/マリーゴールド/characters/hinata/full.png",
+          "expressions": [
+            "data/マリーゴールド/characters/hinata/expression1.png",
+            "data/マリーゴールド/characters/hinata/expression2.png"
+          ],
+          "relatedCharacters": ["char4", "char1"],
+          "profile": {
+            "gender": "女性",
+            "age": "16歳",
+            "height": "158cm",
+            "birthday": "5月20日"
+          },
+          "magic": "太陽の祝福：仲間の傷を癒し、活力を与える光の魔法。使用すると周囲が温かい光に包まれる。",
+          "bio": "明るく前向きな性格で、チームのムードメーカー。幼少期に重い病を患ったが、不思議な光に救われた経験から、人を癒す力を得た。"
+        },
+        {
+          "id": "char4",
+          "name": "金木 コウキ",
+          "icon": "data/マリーゴールド/characters/kouki/icon.png",
+          "fullImage": "data/マリーゴールド/characters/kouki/full.png",
+          "expressions": [
+            "data/マリーゴールド/characters/kouki/expression1.png"
+          ],
+          "relatedCharacters": ["char3", "char5"],
+          "profile": {
+            "gender": "男性",
+            "age": "18歳",
+            "height": "175cm",
+            "birthday": "8月12日"
+          },
+          "magic": "黄金の盾：強固な光の障壁を展開し、仲間を守る。障壁は物理攻撃だけでなく魔法攻撃も防ぐ。",
+          "bio": "責任感が強く、仲間を守ることに命を懸ける騎士。幼い頃に両親を失い、孤児院で育った。そこで出会った仲間たちが今の彼の全てである。"
+        }
+      ]
+    },
+    {
+      "name": "蒼穹",
+      "colorCode": "#4169E1",
+      "description": "知性と冷静さを象徴する色。空と水のように深く、静かな力を秘めている。",
+      "symbol": "data/蒼穹/symbol.png",
+      "characters": [
+        {
+          "id": "char5",
+          "name": "空野 ソラ",
+          "icon": "data/蒼穹/characters/sora/icon.png",
+          "fullImage": "data/蒼穹/characters/sora/full.png",
+          "expressions": [
+            "data/蒼穹/characters/sora/expression1.png",
+            "data/蒼穹/characters/sora/expression2.png"
+          ],
+          "relatedCharacters": ["char6", "char4"],
+          "profile": {
+            "gender": "男性",
+            "age": "17歳",
+            "height": "170cm",
+            "birthday": "3月8日"
+          },
+          "magic": "風神の翼：風を操り、自在に空を飛ぶことができる。風の刃で敵を切り裂くことも可能。",
+          "bio": "自由奔放で束縛を嫌う性格。高い場所が好きで、よく屋根の上で昼寝をしている。風の精霊と契約しており、その力を借りて戦う。"
+        },
+        {
+          "id": "char6",
+          "name": "水瀬 ミズキ",
+          "icon": "data/蒼穹/characters/mizuki/icon.png",
+          "fullImage": "data/蒼穹/characters/mizuki/full.png",
+          "expressions": [
+            "data/蒼穹/characters/mizuki/expression1.png",
+            "data/蒼穹/characters/mizuki/expression2.png",
+            "data/蒼穹/characters/mizuki/expression3.png"
+          ],
+          "relatedCharacters": ["char5", "char2"],
+          "profile": {
+            "gender": "女性",
+            "age": "18歳",
+            "height": "165cm",
+            "birthday": "12月1日"
+          },
+          "magic": "氷結の鎖：水を凍らせて鎖を作り出し、敵を拘束する。氷の純度が高く、簡単には溶けない。",
+          "bio": "クールで知的な魔法使い。感情を表に出すことは少ないが、内に秘めた情熱は誰よりも強い。古代魔法の研究に没頭している。"
+        }
+      ]
+    },
+    {
+      "name": "翠緑",
+      "colorCode": "#2E8B57",
+      "description": "生命力と成長を象徴する色。森のように豊かで、癒しの力を持つ。",
+      "symbol": "data/翠緑/symbol.png",
+      "characters": [
+        {
+          "id": "char7",
+          "name": "森川 ミドリ",
+          "icon": "data/翠緑/characters/midori/icon.png",
+          "fullImage": "data/翠緑/characters/midori/full.png",
+          "expressions": ["data/翠緑/characters/midori/expression1.png"],
+          "relatedCharacters": ["char3", "char8"],
+          "profile": {
+            "gender": "女性",
+            "age": "16歳",
+            "height": "160cm",
+            "birthday": "4月22日"
+          },
+          "magic": "森羅万象：植物を操り、生命力を与える魔法。傷ついた者を癒し、枯れた大地に緑を取り戻す。",
+          "bio": "優しく穏やかな性格で、自然を愛する。幼い頃から森で育ち、植物と会話できる特殊な能力を持つ。"
+        }
+      ]
+    },
+    {
+      "name": "紫苑",
+      "colorCode": "#9370DB",
+      "description": "神秘と高貴さを表す色。夜空のように深く、不思議な力を秘めている。",
+      "symbol": "data/紫苑/symbol.png",
+      "characters": [
+        {
+          "id": "char8",
+          "name": "紫藤 シオン",
+          "icon": "data/紫苑/characters/shion/icon.png",
+          "fullImage": "data/紫苑/characters/shion/full.png",
+          "expressions": [
+            "data/紫苑/characters/shion/expression1.png",
+            "data/紫苑/characters/shion/expression2.png"
+          ],
+          "relatedCharacters": ["char6", "char7"],
+          "profile": {
+            "gender": "女性",
+            "age": "19歳",
+            "height": "168cm",
+            "birthday": "11月11日"
+          },
+          "magic": "星詠み：星の力を借りて未来を予知し、運命を操る魔法。夜空の星々と対話できる。",
+          "bio": "神秘的で謎めいた性格。占星術の研究者で、古代の予言書を解読している。"
+        }
+      ]
+    },
+    {
+      "name": "桃色",
+      "colorCode": "#FF69B4",
+      "description": "愛と優しさを象徴する色。桜のように柔らかく、心を癒す温もりを持つ。",
+      "symbol": "data/桃色/symbol.png",
+      "characters": [
+        {
+          "id": "char9",
+          "name": "桜井 モモ",
+          "icon": "data/桃色/characters/momo/icon.png",
+          "fullImage": "data/桃色/characters/momo/full.png",
+          "expressions": ["data/桃色/characters/momo/expression1.png"],
+          "relatedCharacters": ["char3", "char10"],
+          "profile": {
+            "gender": "女性",
+            "age": "15歳",
+            "height": "155cm",
+            "birthday": "3月3日"
+          },
+          "magic": "桜吹雪：桜の花びらを操り、心を癒す魔法。見る者の心を穏やかにし、争いを鎮める。",
+          "bio": "明るく人懐っこい性格。誰とでもすぐに仲良くなれる天性の才能を持つ。"
+        }
+      ]
+    },
+    {
+      "name": "琥珀",
+      "colorCode": "#DAA520",
+      "description": "知恵と富を象徴する色。琥珀のように輝き、時を超えた価値を持つ。",
+      "symbol": "data/琥珀/symbol.png",
+      "characters": [
+        {
+          "id": "char10",
+          "name": "金城 コハク",
+          "icon": "data/琥珀/characters/kohaku/icon.png",
+          "fullImage": "data/琥珀/characters/kohaku/full.png",
+          "expressions": ["data/琥珀/characters/kohaku/expression1.png"],
+          "relatedCharacters": ["char4", "char9"],
+          "profile": {
+            "gender": "男性",
+            "age": "20歳",
+            "height": "180cm",
+            "birthday": "9月15日"
+          },
+          "magic": "時の琥珀：時間を操る魔法。一時的に時を止めたり、過去の記憶を見ることができる。",
+          "bio": "冷静で知的な性格。古代遺跡の研究者で、失われた魔法の復元に取り組んでいる。"
+        }
+      ]
+    },
+    {
+      "name": "銀白",
+      "colorCode": "#C0C0C0",
+      "description": "純粋と清浄を表す色。月光のように清らかで、邪気を払う力を持つ。",
+      "symbol": "data/銀白/symbol.png",
+      "characters": [
+        {
+          "id": "char11",
+          "name": "白銀 ギン",
+          "icon": "data/銀白/characters/gin/icon.png",
+          "fullImage": "data/銀白/characters/gin/full.png",
+          "expressions": ["data/銀白/characters/gin/expression1.png"],
+          "relatedCharacters": ["char6", "char12"],
+          "profile": {
+            "gender": "男性",
+            "age": "18歳",
+            "height": "175cm",
+            "birthday": "1月1日"
+          },
+          "magic": "月光の刃：月の光を剣に変え、闇を切り裂く魔法。邪悪な存在を浄化する力を持つ。",
+          "bio": "真面目で正義感が強い性格。幼い頃から剣術と魔法を修行してきた。"
+        }
+      ]
+    },
+    {
+      "name": "漆黒",
+      "colorCode": "#2C2C2C",
+      "description": "深淵と無限を象徴する色。闇のように深く、すべてを包み込む力を持つ。",
+      "symbol": "data/漆黒/symbol.png",
+      "characters": [
+        {
+          "id": "char12",
+          "name": "黒崎 クロ",
+          "icon": "data/漆黒/characters/kuro/icon.png",
+          "fullImage": "data/漆黒/characters/kuro/full.png",
+          "expressions": [
+            "data/漆黒/characters/kuro/expression1.png",
+            "data/漆黒/characters/kuro/expression2.png"
+          ],
+          "relatedCharacters": ["char11", "char2"],
+          "profile": {
+            "gender": "男性",
+            "age": "21歳",
+            "height": "185cm",
+            "birthday": "12月31日"
+          },
+          "magic": "闇の支配：影を操り、闇の中を自在に移動する魔法。敵の影を捕らえて動きを封じることもできる。",
+          "bio": "寡黙で謎めいた性格。過去に何かあったようだが、誰にも語ろうとしない。"
+        }
+      ]
+    },
+    {
+      "name": "若草",
+      "colorCode": "#90EE90",
+      "description": "新生と希望を表す色。若草のように瑞々しく、新しい始まりを告げる。",
+      "symbol": "data/若草/symbol.png",
+      "characters": [
+        {
+          "id": "char13",
+          "name": "若葉 ワカバ",
+          "icon": "data/若草/characters/wakaba/icon.png",
+          "fullImage": "data/若草/characters/wakaba/full.png",
+          "expressions": ["data/若草/characters/wakaba/expression1.png"],
+          "relatedCharacters": ["char7", "char3"],
+          "profile": {
+            "gender": "女性",
+            "age": "14歳",
+            "height": "152cm",
+            "birthday": "5月5日"
+          },
+          "magic": "新緑の息吹：新しい生命を芽吹かせる魔法。種から瞬時に植物を成長させることができる。",
+          "bio": "元気で好奇心旺盛な性格。魔法学校の新入生で、日々新しいことを学んでいる。"
+        }
+      ]
+    }
+  ]
+}

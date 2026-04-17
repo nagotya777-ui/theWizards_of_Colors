@@ -1,0 +1,64 @@
+{
+  "colors": [
+    {
+      "id": "緋色",
+      "name": "緋色",
+      "colorCode": "#DC143C",
+      "dataPath": "data/緋色"
+    },
+    {
+      "id": "マリーゴールド",
+      "name": "マリーゴールド",
+      "colorCode": "#FFA500",
+      "dataPath": "data/マリーゴールド"
+    },
+    {
+      "id": "蒼穹",
+      "name": "蒼穹",
+      "colorCode": "#4169E1",
+      "dataPath": "data/蒼穹"
+    },
+    {
+      "id": "翠緑",
+      "name": "翠緑",
+      "colorCode": "#2E8B57",
+      "dataPath": "data/翠緑"
+    },
+    {
+      "id": "紫苑",
+      "name": "紫苑",
+      "colorCode": "#9370DB",
+      "dataPath": "data/紫苑"
+    },
+    {
+      "id": "桃色",
+      "name": "桃色",
+      "colorCode": "#FF69B4",
+      "dataPath": "data/桃色"
+    },
+    {
+      "id": "琥珀",
+      "name": "琥珀",
+      "colorCode": "#DAA520",
+      "dataPath": "data/琥珀"
+    },
+    {
+      "id": "銀白",
+      "name": "銀白",
+      "colorCode": "#C0C0C0",
+      "dataPath": "data/銀白"
+    },
+    {
+      "id": "漆黒",
+      "name": "漆黒",
+      "colorCode": "#2C2C2C",
+      "dataPath": "data/漆黒"
+    },
+    {
+      "id": "若草",
+      "name": "若草",
+      "colorCode": "#90EE90",
+      "dataPath": "data/若草"
+    }
+  ]
+}

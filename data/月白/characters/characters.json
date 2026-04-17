@@ -1,0 +1,10 @@
+{
+  "characters": [
+    {
+      "id": "Shukka",
+      "name": "シュカ",
+      "catchphrase": "Shukka",
+      "profilePath": "Shukka/profile.json"
+    }
+  ]
+}

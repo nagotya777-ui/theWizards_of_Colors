@@ -1,0 +1,10 @@
+{
+  "characters": [
+    {
+      "id": "Geno",
+      "name": "ジーノ",
+      "catchphrase": "Geno",
+      "profilePath": "Geno/profile.json"
+    }
+  ]
+}
