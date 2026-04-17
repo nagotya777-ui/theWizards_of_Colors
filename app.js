@@ -565,15 +565,27 @@ function renderExpressionVariations(character) {
             };
             
             img.addEventListener('click', () => {
-                characterFullImage.src = expressionPath;
-                expressionVariations.querySelectorAll('.expression-img').forEach(e => e.classList.remove('active'));
-                img.classList.add('active');
+                showExpressionModal(expressionPath);
             });
             
             fragment.appendChild(img);
         });
         expressionVariations.appendChild(fragment);
     }
+}
+
+// Show expression modal
+function showExpressionModal(imagePath) {
+    const modal = document.getElementById('expressionModal');
+    const modalImage = document.getElementById('expressionModalImage');
+    modalImage.src = imagePath;
+    modal.classList.add('active');
+}
+
+// Close expression modal
+function closeExpressionModal() {
+    const modal = document.getElementById('expressionModal');
+    modal.classList.remove('active');
 }
 
 // Render related characters
@@ -702,6 +714,28 @@ function setupEventListeners() {
     document.getElementById('backToCharacters').addEventListener('click', () => {
         document.getElementById('characterProfileScreen').classList.remove('active');
         document.getElementById('characterListScreen').classList.add('active');
+    });
+    
+    // Setup expression modal close button
+    const modal = document.getElementById('expressionModal');
+    const closeBtn = document.querySelector('.expression-modal-close');
+    
+    closeBtn.addEventListener('click', () => {
+        closeExpressionModal();
+    });
+    
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeExpressionModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeExpressionModal();
+        }
     });
     
     // Setup drag-to-scroll for gradient container
