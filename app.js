@@ -341,8 +341,15 @@ function rgbToHex(r, g, b) {
 // Get contrasting text color based on background color
 function getContrastTextColor(hexColor) {
     const hsl = hexToHSL(hexColor);
-    // If lightness is greater than 63, use dark text; otherwise use light text
-    return hsl.l > 63 ? '#2c2c2c' : '#ffffff';
+    
+    // Check if the color is in the yellow range (30° to 90°)
+    const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
+    
+    // Use lower threshold for yellow colors (they appear lighter)
+    const threshold = isYellowish ? 50 : 63;
+    
+    // If lightness is greater than threshold, use dark text; otherwise use light text
+    return hsl.l > threshold ? '#2c2c2c' : '#ffffff';
 }
 
 // Convert HSL to Hex
