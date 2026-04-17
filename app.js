@@ -520,27 +520,42 @@ function renderExpressionVariations(character) {
 }
 
 // Render related characters
-function renderRelatedCharacters(character) {
+async function renderRelatedCharacters(character) {
     const { relatedCharacters, relatedCharactersGrid } = state.dom;
     relatedCharactersGrid.innerHTML = '';
     
     if (character.relatedCharacters?.length > 0) {
         // Find all characters from all colors
         const allCharacters = [];
-        state.colors.forEach(color => {
+        
+        // Load characters for each color
+        for (const color of state.colors) {
+            // Check if we have full data from old config
             if (color._fullData && color._fullData.characters) {
                 color._fullData.characters.forEach(char => {
                     allCharacters.push({ character: char, color: color });
                 });
+            } else {
+                // Load from new split structure
+                try {
+                    const response = await fetch(`${color.dataPath}/characters/characters.json?v=${Date.now()}`);
+                    const data = await response.json();
+                    data.characters.forEach(char => {
+                        allCharacters.push({ character: char, color: color });
+                    });
+                } catch (error) {
+                    console.error(`Error loading characters for ${color.id}:`, error);
+                }
             }
-        });
+        }
         
         character.relatedCharacters.forEach(relatedId => {
             const related = allCharacters.find(item => item.character.id === relatedId);
             if (related) {
                 const icon = document.createElement('img');
                 icon.className = 'related-character-icon';
-                icon.src = related.character.icon;
+                icon.src = related.character._fullProfile?.icon ||
+                          `${related.color.dataPath}/characters/${related.character.id}/icon.png`;
                 icon.alt = related.character.name;
                 icon.title = related.character.name;
                 icon.style.borderColor = related.color.colorCode;
@@ -592,7 +607,7 @@ function getProfileLabel(key) {
         birthday: '誕生日',
         bloodType: '血液型',
         hobby: '趣味',
-        first_person: '一人称',
+        First_person: '一人称',
         Second_person: '二人称',
         Third_person: '三人称'
     };
