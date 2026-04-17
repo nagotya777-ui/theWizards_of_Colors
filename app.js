@@ -338,6 +338,13 @@ function rgbToHex(r, g, b) {
     }).join('');
 }
 
+// Get contrasting text color based on background color
+function getContrastTextColor(hexColor) {
+    const hsl = hexToHSL(hexColor);
+    // If lightness is greater than 50, use dark text; otherwise use light text
+    return hsl.l > 50 ? '#2c2c2c' : '#ffffff';
+}
+
 // Select a color and show character list
 async function selectColor(color) {
     state.selectedColor = color;
@@ -367,7 +374,9 @@ async function selectColor(color) {
     // Set background color
     colorBackground.style.backgroundColor = color.colorCode;
     selectedColorName.textContent = color.name;
+    selectedColorName.style.color = getContrastTextColor(color.colorCode);
     colorDescription.textContent = details?.description || '';
+    colorDescription.style.color = getContrastTextColor(color.colorCode);
     
     // Update back button color
     updateButtonColor(color.colorCode);
@@ -446,7 +455,9 @@ async function selectCharacter(characterInfo, color) {
     // Set color description on profile page
     const details = await loadColorDetails(color.id);
     profileColorName.textContent = color.name;
+    profileColorName.style.color = getContrastTextColor(color.colorCode);
     profileColorDescription.textContent = details?.description || '';
+    profileColorDescription.style.color = getContrastTextColor(color.colorCode);
     
     // Update back button color
     updateButtonColor(color.colorCode);
