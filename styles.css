@@ -504,8 +504,55 @@ header h1 {
         font-size: 2rem;
     }
     
+    .gradient-wrapper {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .scroll-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .gradient-container {
+        overflow-x: visible;
+        overflow-y: auto;
+        max-height: 400px;
+        padding-right: 20px;
+    }
+    
     .gradient-bar {
-        height: 30px;
+        height: auto;
+        width: 60px;
+        min-width: 60px;
+        min-height: 300px;
+        border-radius: 30px;
+        margin: 0 auto;
+    }
+    
+    .color-pointers {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin: 20px 0;
+        min-width: auto;
+    }
+    
+    .color-pointer {
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .pointer-line {
+        width: 60px;
+        height: 1px;
+        margin: 0;
+    }
+    
+    .pointer-label {
+        margin: 0;
+        white-space: normal;
     }
     
     .character-grid {
