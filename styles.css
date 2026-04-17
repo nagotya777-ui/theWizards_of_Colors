@@ -55,6 +55,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
+    min-height: auto;
+    height: auto;
 }
 
 header {
