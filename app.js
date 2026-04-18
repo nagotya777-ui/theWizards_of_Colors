@@ -513,7 +513,10 @@ function renderCharacterGrid(characters, color) {
             <img src="${iconPath}" alt="${character.name}" class="character-icon"
                  onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22%3E%3Crect width=%22120%22 height=%22120%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23999%22%3E${character.name}%3C/text%3E%3C/svg%3E'">
             <div class="character-info">
-                <h3>${character.name}</h3>
+                <h3>
+                    <span>${character.name}</span>
+                    <small class="character-eng-name">${character.id}</small>
+                </h3>
                 ${catchphraseHTML}
             </div>
         `;
