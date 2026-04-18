@@ -63,25 +63,25 @@
     {
       "id": "Taupe",
       "name": "トープ",
-      "colorCode": “#5d5966",
+      "colorCode": "#5d5966",
       "dataPath": "data/トープ"
     },
     {
       "id": "Peony",
       "name": "ピアニー",
-      "colorCode": “#A03b79",
+      "colorCode": "#A03b79",
       "dataPath": "data/ピアニー"
     },
     {
       "id": "Shinonome",
       "name": "東雲",
-      "colorCode": “#f4ac92",
+      "colorCode": "#f4ac92",
       "dataPath": "data/トープ"
     },
     {
       "id": "LampBlack",
       "name": "ランプブラック",
-      "colorCode": “#2414０E",
+      "colorCode": "#2414０E",
       "dataPath": "data/ランプブラック"
     }
   ]
