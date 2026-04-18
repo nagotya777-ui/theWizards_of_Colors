@@ -542,55 +542,85 @@ header h1 {
         font-size: 2rem;
     }
     
+    /* Gradient wrapper - vertical bar with horizontal labels like the image */
     .gradient-wrapper {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        gap: 0;
+        align-items: stretch;
+        justify-content: center;
     }
     
     .scroll-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+        display: none; /* Hide arrows on mobile */
     }
     
     .gradient-container {
-        overflow-x: visible;
-        overflow-y: auto;
-        max-height: 400px;
-        padding-right: 20px;
+        width: auto;
+        flex: 0 0 auto;
+        max-height: none;
+        padding: 0;
+        overflow: visible;
+        -webkit-overflow-scrolling: touch;
     }
     
     .gradient-bar {
-        height: auto;
         width: 60px;
+        height: auto;
+        min-height: 400px;
+        max-height: 70vh;
         min-width: 60px;
-        min-height: 300px;
         border-radius: 30px;
-        margin: 0 auto;
+        margin: 0;
     }
     
     .color-pointers {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        margin: 20px 0;
+        position: relative;
+        width: auto;
         min-width: auto;
+        margin: 0;
+        margin-left: 20px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex: 1;
+        max-width: 300px;
     }
     
     .color-pointer {
+        flex: 0 0 auto;
         flex-direction: row;
-        gap: 10px;
+        align-items: center;
+        gap: 15px;
+        padding: 8px 0;
+        width: 100%;
     }
     
     .pointer-line {
-        width: 60px;
-        height: 1px;
+        width: 40px;
+        height: 2px;
+        background: #999;
         margin: 0;
+        flex-shrink: 0;
     }
     
     .pointer-label {
+        font-size: 1rem;
+        gap: 10px;
         margin: 0;
-        white-space: normal;
+        white-space: nowrap;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .color-symbol {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
     }
     
     .character-grid {
@@ -727,13 +757,13 @@ body {
     
     /* Color Selection Screen - Mobile */
     #colorSelectionScreen {
-        padding: 20px 10px;
+        padding: 20px 15px;
         min-height: 100vh;
         height: auto;
     }
     
     header {
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
     
     header h1 {
@@ -745,58 +775,6 @@ body {
         font-size: 1rem;
     }
     
-    /* Gradient wrapper - vertical layout for mobile */
-    .gradient-wrapper {
-        flex-direction: column;
-        width: 100%;
-        gap: 15px;
-        padding: 0 10px;
-    }
-    
-    .scroll-arrow {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-    }
-    
-    .gradient-container {
-        width: 100%;
-        max-height: none;
-        padding-bottom: 20px;
-        overflow-x: auto;
-        overflow-y: visible;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .gradient-bar {
-        height: 40px;
-        min-width: 800px;
-        border-radius: 8px;
-    }
-    
-    .color-pointers {
-        min-width: 800px;
-        margin-top: 40px;
-        gap: 0;
-    }
-    
-    .color-pointer {
-        padding: 10px 5px;
-    }
-    
-    .pointer-line {
-        height: 50px;
-    }
-    
-    .pointer-label {
-        font-size: 0.9rem;
-        gap: 8px;
-    }
-    
-    .color-symbol {
-        width: 20px;
-        height: 20px;
-    }
     
     /* Split Layout - Stack vertically on mobile */
     .split-layout {

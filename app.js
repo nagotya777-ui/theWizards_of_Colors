@@ -44,6 +44,15 @@ async function init() {
     sortColorsByHue(); // Sort colors by hue for smooth gradient
     renderGradientBar();
     setupEventListeners();
+    
+    // Re-render gradient bar on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            renderGradientBar();
+        }, 250);
+    });
 }
 
 // Convert hex color to HSL
@@ -243,17 +252,29 @@ async function loadCharacterProfile(colorId, characterId) {
 function renderGradientBar() {
     const { gradientBar, colorPointers, gradientContainer, colorSelectionScreen } = state.dom;
     
+    // Detect if mobile
+    const isMobile = window.innerWidth <= 768;
+    
     // Create gradient from all colors with proper spacing
     const totalColors = state.colors.length;
     const gradientStops = state.colors.map((c, i) =>
         `${adjustGradientBarColor(c.colorCode)} ${(i / (totalColors - 1)) * 100}%`
     ).join(', ');
-    gradientBar.style.background = `linear-gradient(to right, ${gradientStops})`;
     
-    // Adjust minimum width based on number of colors (1.2x multiplier)
-    const minWidth = `${Math.max(1000, totalColors * 150) * 1.2}px`;
-    gradientBar.style.minWidth = minWidth;
-    colorPointers.style.minWidth = minWidth;
+    // Set gradient direction based on device
+    if (isMobile) {
+        gradientBar.style.background = `linear-gradient(to bottom, ${gradientStops})`;
+        // Reset width/height for mobile
+        gradientBar.style.minWidth = '60px';
+        gradientBar.style.minHeight = '400px';
+        colorPointers.style.minWidth = 'auto';
+    } else {
+        gradientBar.style.background = `linear-gradient(to right, ${gradientStops})`;
+        // Adjust minimum width based on number of colors (1.2x multiplier)
+        const minWidth = `${Math.max(1000, totalColors * 150) * 1.2}px`;
+        gradientBar.style.minWidth = minWidth;
+        colorPointers.style.minWidth = minWidth;
+    }
     
     // Create pointers for each color using DocumentFragment for better performance
     const fragment = document.createDocumentFragment();
