@@ -2,5 +2,6 @@
   "name": "カナール",
   "colorCode": "#007D8B",
   "description": "船上で生活を営む海の民たち。波に乗り風を操り、魚たちと戯れながら気ままに海での暮らしを送っています。",
-  "symbol": "symbol.png"
+  "symbol": "symbol.png",
+  "mapHighlight": "30,10 70,10 80,25 75,40 55,45 35,40 20,25"
 }

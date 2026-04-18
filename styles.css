@@ -245,6 +245,71 @@ header h1 {
     padding: 40px;
 }
 
+/* Wider background for character list screen with map */
+#characterListScreen .color-background {
+    width: 50%;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px 20px;
+}
+
+/* Map container */
+.map-container {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
+}
+
+/* SVG highlight overlay */
+.map-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.map-highlight polygon {
+    fill: currentColor;
+    opacity: 0.4;
+    stroke: currentColor;
+    stroke-width: 0.5;
+    stroke-opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.map-highlight polygon:hover {
+    opacity: 0.6;
+}
+
+/* Placeholder for map when image is not loaded */
+.map-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+}
+
 .color-description {
     text-align: left;
     color: white;
@@ -785,6 +850,18 @@ body {
         width: 100%;
         min-height: 150px;
         padding: 20px;
+    }
+    
+    /* Character list screen with map on mobile */
+    #characterListScreen .color-background {
+        width: 100%;
+        min-height: 50vh;
+        padding: 20px 15px;
+    }
+    
+    .map-container {
+        max-width: 100%;
+        margin-top: 20px;
     }
     
     .color-name {

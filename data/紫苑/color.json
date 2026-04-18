@@ -2,5 +2,6 @@
   "name": "紫苑",
   "colorCode": "#968ABD",
   "description": "死者と交信することができるまほうつかい達。\n遺された者から依頼を受け、読み取った記憶や聞き取った死者の言葉を伝えている。",
-  "symbol": "symbol.png"
+  "symbol": "symbol.png",
+  "mapHighlight": "55,35 75,40 80,55 70,70 50,75 35,65 40,50"
 }

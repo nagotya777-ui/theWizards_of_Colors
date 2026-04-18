@@ -33,7 +33,9 @@ function cacheDOMElements() {
         characterBio: document.getElementById('characterBio'),
         expressionVariations: document.getElementById('expressionVariations'),
         relatedCharacters: document.getElementById('relatedCharacters'),
-        relatedCharactersGrid: document.getElementById('relatedCharactersGrid')
+        relatedCharactersGrid: document.getElementById('relatedCharactersGrid'),
+        territoryMap: document.getElementById('territoryMap'),
+        mapPlaceholder: document.getElementById('mapPlaceholder')
     };
 }
 
@@ -178,6 +180,72 @@ async function loadColorDetails(colorId) {
             symbol: ''
         };
     }
+
+// Load territory map for selected color
+function loadTerritoryMap(colorId) {
+    const { territoryMap, mapPlaceholder } = state.dom;
+    const mapHighlight = document.getElementById('mapHighlight');
+    const highlightPolygon = document.getElementById('highlightPolygon');
+    
+    // Try to load map image from color's data folder
+    const color = state.colors.find(c => c.id === colorId);
+    if (!color) return;
+    
+    // First, try to load common map from data folder
+    const commonMapPath = 'data/common-map.png';
+    const img = new Image();
+    
+    img.onload = () => {
+        territoryMap.src = commonMapPath;
+        territoryMap.style.display = 'block';
+        mapPlaceholder.style.display = 'none';
+        
+        // Apply highlight if coordinates are defined
+        if (color._fullData && color._fullData.mapHighlight) {
+            const coords = color._fullData.mapHighlight;
+            highlightPolygon.setAttribute('points', coords);
+            mapHighlight.style.display = 'block';
+            mapHighlight.style.color = color.colorCode;
+        } else {
+            mapHighlight.style.display = 'none';
+        }
+    };
+    
+    img.onerror = () => {
+        // Fallback: try to load individual map from color's folder
+        const mapFilenames = ['map.png', 'territory.png', 'region.png', 'map.jpg', 'territory.jpg'];
+        
+        const tryLoadMap = (index) => {
+            if (index >= mapFilenames.length) {
+                // No map found, show placeholder
+                territoryMap.style.display = 'none';
+                mapPlaceholder.style.display = 'flex';
+                mapHighlight.style.display = 'none';
+                return;
+            }
+            
+            const mapPath = `${color.dataPath}/${mapFilenames[index]}`;
+            const fallbackImg = new Image();
+            
+            fallbackImg.onload = () => {
+                territoryMap.src = mapPath;
+                territoryMap.style.display = 'block';
+                mapPlaceholder.style.display = 'none';
+                mapHighlight.style.display = 'none'; // Don't show highlight for individual maps
+            };
+            
+            fallbackImg.onerror = () => {
+                tryLoadMap(index + 1);
+            };
+            
+            fallbackImg.src = mapPath;
+        };
+        
+        tryLoadMap(0);
+    };
+    
+    img.src = commonMapPath;
+}
 }
 
 // Load characters for a specific color (lazy loading)
@@ -486,7 +554,7 @@ async function selectColor(color) {
     
     // Hide all screens first
     const { colorSelectionScreen, characterListScreen, characterProfileScreen,
-            colorBackground, selectedColorName, colorDescription } = state.dom;
+            colorBackground, selectedColorName, colorDescription, territoryMap, mapPlaceholder } = state.dom;
     
     colorSelectionScreen.classList.remove('active');
     characterListScreen.classList.remove('active');
@@ -501,6 +569,9 @@ async function selectColor(color) {
     selectedColorName.style.color = getContrastTextColor(color.colorCode);
     colorDescription.textContent = details?.description || '';
     colorDescription.style.color = getContrastTextColor(color.colorCode);
+    
+    // Load territory map
+    loadTerritoryMap(color.id);
     
     // Update back button color
     updateButtonColor(color.colorCode);
