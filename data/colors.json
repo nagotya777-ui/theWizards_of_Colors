@@ -83,6 +83,12 @@
       "name": "ランプブラック",
       "colorCode": "#2414０E",
       "dataPath": "data/ランプブラック"
+    },
+    {
+      "id": "HunterGreen",
+      "name": "ハンターグリーン",
+      "colorCode": "#006336",
+      "dataPath": "data/ハンターグリーン"
     }
   ]
  }
