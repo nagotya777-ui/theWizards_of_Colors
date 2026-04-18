@@ -287,8 +287,6 @@ function renderGradientBar() {
 
 // Setup hover effect to show color on background
 function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
-    const container = gradientBar.parentElement; // gradientContainer
-    
     gradientBar.addEventListener('mousemove', (e) => {
         const rect = gradientBar.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -296,13 +294,6 @@ function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
         
         // Scroll based on pointer position (pointer movement controls full scroll range)
         const maxScroll = container.scrollWidth - container.clientWidth;
-        if (maxScroll > 0) {
-            const scrollPercentage = Math.max(0, Math.min(100, percentage));
-            container.scrollLeft = (scrollPercentage / 100) * maxScroll;
-        }
-        
-        // Calculate which color to show based on position
-        const totalColors = state.colors.length;
         const colorIndex = Math.floor((percentage / 100) * (totalColors - 1));
         const nextColorIndex = Math.min(colorIndex + 1, totalColors - 1);
         
