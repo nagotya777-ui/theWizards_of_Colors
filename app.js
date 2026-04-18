@@ -245,7 +245,7 @@ function renderGradientBar() {
     // Create gradient from all colors with proper spacing
     const totalColors = state.colors.length;
     const gradientStops = state.colors.map((c, i) =>
-        `${c.colorCode} ${(i / (totalColors - 1)) * 100}%`
+        `${adjustGradientBarColor(c.colorCode)} ${(i / (totalColors - 1)) * 100}%`
     ).join(', ');
     gradientBar.style.background = `linear-gradient(to right, ${gradientStops})`;
     
@@ -308,6 +308,18 @@ function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
     gradientBar.addEventListener('mouseleave', () => {
         colorSelectionScreen.style.backgroundColor = '#f5f5f5';
     });
+}
+
+function adjustGradientBarColor(hexColor) {
+    const hsl = hexToHSL(hexColor);
+
+    if (hsl.l >= 90) {
+        hsl.l = 88;
+    } else if (hsl.l > 80) {
+        hsl.l -= 4;
+    }
+
+    return hslToHex(hsl.h, hsl.s, hsl.l);
 }
 
 // Interpolate between two hex colors
