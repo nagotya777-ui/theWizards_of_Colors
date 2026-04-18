@@ -96,10 +96,11 @@ header h1 {
     cursor: grab;
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+    padding-bottom: 10px;
 }
 
 .gradient-container::-webkit-scrollbar {
-    height: 6px;
+    height: 5px;
 }
 
 .gradient-container::-webkit-scrollbar-track {
