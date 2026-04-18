@@ -1256,5 +1256,5 @@ html {
 .character-list-container,
 .profile-container {
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
+    overscroll-behavior: auto;
 }
