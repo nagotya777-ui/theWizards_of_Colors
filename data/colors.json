@@ -81,7 +81,7 @@
     {
       "id": "LampBlack",
       "name": "ランプブラック",
-      "colorCode": "#24140E",
+      "colorCode": "#1C1C1C",
       "dataPath": "data/ランプブラック"
     },
     {
@@ -123,7 +123,7 @@
     {
       "id": "Kuchinashi",
       "name": "梔子",
-      "colorCode": "#FFB11B",
+      "colorCode": "#FFE365",
       "dataPath": "data/梔子"
     },
     {
@@ -177,19 +177,19 @@
     {
       "id": "Limelight",
       "name": "ライムライト",
-      "colorCode": "#BFFF00",
+      "colorCode": "#fff799",
       "dataPath": "data/ライムライト"
     },
     {
       "id": "Benimidori",
       "name": "紅碧",
-      "colorCode": "#2A7F62",
+      "colorCode": "#8A99CF",
       "dataPath": "data/紅碧"
     },
     {
       "id": "Ouryoku",
       "name": "鴨緑",
-      "colorCode": "#00695B",
+      "colorCode": "#9FBB00",
       "dataPath": "data/鴨緑"
     },
     {
