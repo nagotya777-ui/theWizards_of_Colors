@@ -788,7 +788,6 @@ header h1 {
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
-    touch-action: manipulation;
 }
 
 body {
@@ -1236,6 +1235,16 @@ body {
         -webkit-user-select: none;
         user-select: none;
     }
+}
+
+/* Prevent double-tap zoom on interactive elements only */
+.color-pointer,
+.character-card,
+.back-button,
+.scroll-arrow,
+.expression-img,
+.related-character-icon {
+    touch-action: manipulation;
 }
 
 /* Smooth scrolling for all devices */
