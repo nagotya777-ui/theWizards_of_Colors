@@ -762,67 +762,7 @@ function setupDragToScroll() {
     let isDown = false;
     let startX;
     let scrollLeft;
-    
-    // Mouse position tracking for auto-scroll
-    let lastMouseX = null;
-    let mouseTrackingActive = false;
-    
-    // Touch tracking for mobile devices
     let lastTouchX = null;
-    let touchTrackingActive = false;
-    
-    // Only activate tracking when mouse is over the gradient bar itself
-    gradientBar.addEventListener('mouseenter', () => {
-        mouseTrackingActive = true;
-        lastMouseX = null;
-    });
-    
-    gradientBar.addEventListener('mouseleave', () => {
-        mouseTrackingActive = false;
-        lastMouseX = null;
-    });
-    
-    gradientBar.addEventListener('mousemove', (e) => {
-        // Track mouse movement for auto-scroll (only on gradient bar)
-        if (mouseTrackingActive && !isDown) {
-            const currentMouseX = e.clientX;
-            
-            if (lastMouseX !== null) {
-                // Calculate mouse movement delta
-                const deltaX = currentMouseX - lastMouseX;
-                
-                // Scroll based on mouse movement with amplification
-                const scrollMultiplier = 2; // Amplify the scroll effect (reduced from 3 to 2)
-                container.scrollLeft -= deltaX * scrollMultiplier;
-            }
-            
-            lastMouseX = currentMouseX;
-        }
-    });
-    
-    // Touch support for mobile devices (iPad, etc.)
-    gradientBar.addEventListener('touchstart', (e) => {
-        touchTrackingActive = true;
-        lastTouchX = e.touches[0].clientX;
-    }, { passive: true });
-    
-    gradientBar.addEventListener('touchmove', (e) => {
-        if (touchTrackingActive && lastTouchX !== null) {
-            const currentTouchX = e.touches[0].clientX;
-            const deltaX = currentTouchX - lastTouchX;
-            
-            // Scroll based on touch movement
-            const scrollMultiplier = 2;
-            container.scrollLeft -= deltaX * scrollMultiplier;
-            
-            lastTouchX = currentTouchX;
-        }
-    }, { passive: true });
-    
-    gradientBar.addEventListener('touchend', () => {
-        touchTrackingActive = false;
-        lastTouchX = null;
-    }, { passive: true });
     
     container.addEventListener('mousemove', (e) => {
         // If dragging, use drag scroll
@@ -834,11 +774,31 @@ function setupDragToScroll() {
         }
     });
     
+    container.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        isDown = true;
+        lastTouchX = e.touches[0].clientX;
+        scrollLeft = container.scrollLeft;
+        container.style.cursor = 'grabbing';
+    }, { passive: true });
+    
+    container.addEventListener('touchmove', (e) => {
+        if (!isDown || lastTouchX === null) return;
+        const currentTouchX = e.touches[0].clientX;
+        const deltaX = currentTouchX - lastTouchX;
+        container.scrollLeft = scrollLeft - deltaX * 2;
+        e.preventDefault();
+    }, { passive: false });
+    
+    container.addEventListener('touchend', () => {
+        isDown = false;
+        lastTouchX = null;
+        container.style.cursor = 'grab';
+    });
+    
     container.addEventListener('mouseleave', () => {
         isDown = false;
         container.style.cursor = 'grab';
-        mouseTrackingActive = false;
-        lastMouseX = null;
     });
     
     container.addEventListener('mousedown', (e) => {
@@ -851,13 +811,11 @@ function setupDragToScroll() {
         container.style.cursor = 'grabbing';
         startX = e.pageX - container.offsetLeft;
         scrollLeft = container.scrollLeft;
-        mouseTrackingActive = false; // Disable tracking while dragging
     });
     
     container.addEventListener('mouseup', () => {
         isDown = false;
         container.style.cursor = 'grab';
-        lastMouseX = null;
     });
     
     // Arrow button navigation
