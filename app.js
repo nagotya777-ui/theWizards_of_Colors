@@ -284,7 +284,6 @@ function renderGradientBar() {
         }
     });
 }
-}
 
 // Setup hover effect to show color on background
 function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
