@@ -1,0 +1,21 @@
+{
+  "id": "Dusha",
+  "name": "ドゥーシャ",
+  "icon": "icon.png",
+  "fullImage": "full.png",
+  "expressions": [
+    "expression1.png"
+  ],
+  "relatedCharacters": [],
+  "profile": {
+    "gender": "男性",
+    "age": "26歳",
+    "height": "181cm",
+    "First_person": "私",
+    "Second_person": "貴方",
+    "Third_person": "○○さん、彼、彼女"
+  },
+  "bio": "家畜の不審死の調査や、死んだペットの言葉を聞く仕事をしています。動物や自然を常から大切に思っており、休日は森の作業場にこもって",
+  "magicTitle": "人間以外の動物の霊と交信する魔法",
+  "magicDescription": "自分の周りにさまざまな光や音の幻覚を映し出させる魔法です。この魔法を駆使することで、人々を飽きさせない愉快な歌を演出しています。\n聞くも見るも楽しいシュカの歌は各地で評判を呼んでいるようです。"
+}
