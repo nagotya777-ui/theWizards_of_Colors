@@ -578,7 +578,7 @@ function renderCharacterProfile(character) {
     }
     
     characterName.textContent = character.name;
-    characterEngName.textContent = character.id || '';
+    characterEngName.textContent = character.id;
     characterFullImage.src = character.fullImage;
     characterFullImage.onerror = function() {
         this.src = `data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22400%22%3E%3Crect width=%22300%22 height=%22400%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2218%22 fill=%22%23999%22%3E${character.name}%3C/text%3E%3C/svg%3E`;
