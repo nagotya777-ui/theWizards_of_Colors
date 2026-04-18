@@ -1,10 +1,10 @@
 {
   "characters": [
     {
-      "id": "Palel",
-      "name": "パレル",
-      "catchphrase": "Palel",
-      "profilePath": "Palel/profile.json"
+      "id": "Dusha",
+      "name": "ドゥーシャ",
+      "catchphrase": "Dusha",
+      "profilePath": "Dusha/profile.json"
     },
     {
       "id": "Shukka",
