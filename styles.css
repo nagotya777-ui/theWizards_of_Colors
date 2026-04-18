@@ -652,11 +652,7 @@ header h1 {
     }
     
     .pointer-line {
-        width: 40px;
-        height: 2px;
-        background: #999;
-        margin: 0;
-        flex-shrink: 0;
+        display: none; /* Hide line on mobile for cleaner look */
     }
     
     .pointer-label {
@@ -887,11 +883,7 @@ body {
     }
     
     .pointer-line {
-        width: 30px;
-        height: 1px;
-        background: #999;
-        margin: 0;
-        margin-right: 10px;
+        display: none; /* Hide line on mobile for cleaner look */
     }
     
     .pointer-label {
@@ -1120,7 +1112,7 @@ body {
     }
     
     .pointer-line {
-        height: 40px;
+        display: none; /* Hide line on mobile */
     }
     
     .pointer-label {
