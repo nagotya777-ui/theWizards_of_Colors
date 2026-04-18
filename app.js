@@ -228,7 +228,7 @@ async function loadTerritoryMap(colorId) {
                 const regionColorName = region.getAttribute('data-color');
                 const regionColor = state.colors.find(c => c.name === regionColorName);
                 if (regionColor) {
-                    selectColor(regionColor.id);
+                    selectColor(regionColor);
                 }
             });
         });
