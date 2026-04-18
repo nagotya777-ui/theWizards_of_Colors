@@ -367,16 +367,22 @@ function renderGradientBar() {
     // Set gradient direction based on device
     if (isMobile) {
         gradientBar.style.background = `linear-gradient(to bottom, ${gradientStops})`;
-        // Reset width/height for mobile
-        gradientBar.style.minWidth = '60px';
-        gradientBar.style.minHeight = '400px';
+        // Reset width/height for mobile - vertical layout
+        gradientBar.style.minWidth = '40px';
+        gradientBar.style.width = '40px';
+        gradientBar.style.minHeight = '100%';
+        gradientBar.style.height = '100%';
         colorPointers.style.minWidth = 'auto';
+        colorPointers.style.width = 'auto';
     } else {
         gradientBar.style.background = `linear-gradient(to right, ${gradientStops})`;
         // Adjust minimum width based on number of colors (1.2x multiplier)
         const minWidth = `${Math.max(1000, totalColors * 150) * 1.2}px`;
         gradientBar.style.minWidth = minWidth;
+        gradientBar.style.width = '';
+        gradientBar.style.height = '';
         colorPointers.style.minWidth = minWidth;
+        colorPointers.style.width = '';
     }
     
     // Create pointers for each color using DocumentFragment for better performance
@@ -403,9 +409,18 @@ function renderGradientBar() {
     
     // Set random initial scroll position after rendering
     requestAnimationFrame(() => {
-        const maxScroll = gradientContainer.scrollWidth - gradientContainer.clientWidth;
-        if (maxScroll > 0) {
-            gradientContainer.scrollLeft = Math.random() * maxScroll;
+        if (isMobile) {
+            // For mobile vertical layout, scroll to a random position vertically
+            const maxScroll = gradientContainer.scrollHeight - gradientContainer.clientHeight;
+            if (maxScroll > 0) {
+                gradientContainer.scrollTop = Math.random() * maxScroll;
+            }
+        } else {
+            // For desktop horizontal layout
+            const maxScroll = gradientContainer.scrollWidth - gradientContainer.clientWidth;
+            if (maxScroll > 0) {
+                gradientContainer.scrollLeft = Math.random() * maxScroll;
+            }
         }
     });
 }
