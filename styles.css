@@ -137,9 +137,9 @@ header h1 {
 
 .gradient-bar {
     height: 45px;
-    border-radius: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    min-width: 800px;
+    border-radius: 10px;
+    /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
+    min-width: 1000px;
     transition: all 0.3s ease;
     /* Pastel color adjustment: increase saturation, reduce contrast for vibrant but soft appearance */
     filter: brightness(1.05) saturate(1.2) contrast(0.9);

@@ -277,9 +277,13 @@ function renderGradientBar() {
     setupGradientHoverEffect(gradientBar, colorSelectionScreen);
     
     // Set random initial scroll position after rendering
-    setTimeout(() => {
-        gradientContainer.scrollLeft = Math.random() * (gradientContainer.scrollWidth - gradientContainer.clientWidth);
-    }, 100);
+    requestAnimationFrame(() => {
+        const maxScroll = gradientContainer.scrollWidth - gradientContainer.clientWidth;
+        if (maxScroll > 0) {
+            gradientContainer.scrollLeft = Math.random() * maxScroll;
+        }
+    });
+}
 }
 
 // Setup hover effect to show color on background
