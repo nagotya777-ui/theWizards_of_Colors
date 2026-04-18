@@ -287,28 +287,56 @@ function renderGradientBar() {
 
 // Setup hover effect to show color on background
 function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
-    gradientBar.addEventListener('mousemove', (e) => {
+    const container = state.dom.gradientContainer;
+    let trackingActive = false;
+
+    const updateScrollAndBackground = (clientX) => {
         const rect = gradientBar.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const percentage = (x / rect.width) * 100;
-        
-        // Scroll based on pointer position (pointer movement controls full scroll range)
+        const x = clientX - rect.left;
+        const percentage = x / rect.width;
+        const scrollPercentage = Math.max(0, Math.min(1, percentage));
         const maxScroll = container.scrollWidth - container.clientWidth;
-        const colorIndex = Math.floor((percentage / 100) * (totalColors - 1));
+
+        if (maxScroll > 0) {
+            container.scrollLeft = scrollPercentage * maxScroll;
+        }
+
+        const totalColors = state.colors.length;
+        const colorIndex = Math.min(totalColors - 1, Math.max(0, Math.floor(scrollPercentage * totalColors)));
         const nextColorIndex = Math.min(colorIndex + 1, totalColors - 1);
-        
-        // Interpolate between colors
-        const localPercentage = ((percentage / 100) * (totalColors - 1)) - colorIndex;
+        const localPercentage = (scrollPercentage * (totalColors - 1)) - colorIndex;
         const color1 = state.colors[colorIndex].colorCode;
         const color2 = state.colors[nextColorIndex].colorCode;
-        
         const interpolatedColor = interpolateColor(color1, color2, localPercentage);
-        
-        // Apply very subtle background color (10% opacity)
-        colorSelectionScreen.style.backgroundColor = `${interpolatedColor}1A`; // 1A = 10% opacity in hex
+
+        colorSelectionScreen.style.backgroundColor = `${interpolatedColor}1A`;
+    };
+
+    const isWithinBarVerticalZone = (clientY) => {
+        const rect = gradientBar.getBoundingClientRect();
+        return clientY >= rect.top - 20 && clientY <= rect.bottom + 20;
+    };
+
+    gradientBar.addEventListener('pointerenter', () => {
+        trackingActive = true;
     });
-    
-    gradientBar.addEventListener('mouseleave', () => {
+
+    gradientBar.addEventListener('pointerleave', (e) => {
+        if (isWithinBarVerticalZone(e.clientY)) {
+            return;
+        }
+        trackingActive = false;
+        colorSelectionScreen.style.backgroundColor = '#f5f5f5';
+    });
+
+    container.addEventListener('pointermove', (e) => {
+        if (!trackingActive) return;
+        if (!isWithinBarVerticalZone(e.clientY)) return;
+        updateScrollAndBackground(e.clientX);
+    });
+
+    container.addEventListener('pointerleave', () => {
+        trackingActive = false;
         colorSelectionScreen.style.backgroundColor = '#f5f5f5';
     });
 }
