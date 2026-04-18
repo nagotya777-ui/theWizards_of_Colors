@@ -404,20 +404,23 @@ header h1 {
     flex: 1;
 }
 
-.character-name {
-    font-size: 2.5rem;
-    color: #2c2c2c;
+.character-title {
     margin-bottom: 30px;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 15px;
+}
+
+.character-name {
+    font-size: 2.5rem;
+    color: #2c2c2c;
     font-weight: 300;
 }
 
 .character-eng-name {
-    font-size: 0.6em;
+    font-size: 0.8em;
     font-weight: normal;
     color: #888;   
-    margin-left: 0.5em;
+    margin-left: 0.7em;
 }
 
 .profile-section {
