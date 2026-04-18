@@ -180,6 +180,7 @@ async function loadColorDetails(colorId) {
             symbol: ''
         };
     }
+}
 
 // Load territory map for selected color
 async function loadTerritoryMap(colorId) {
@@ -237,7 +238,6 @@ async function loadTerritoryMap(colorId) {
         console.error('Failed to load SVG map:', error);
         mapContainer.innerHTML = '<div class="map-placeholder">地図の読み込みに失敗しました</div>';
     }
-}
 }
 
 // Load characters for a specific color (lazy loading)
