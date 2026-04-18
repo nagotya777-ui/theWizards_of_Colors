@@ -75,17 +75,19 @@ function hexToHSL(hex) {
     return { h: h * 360, s: s * 100, l: l * 100 };
 }
 
-// Sort colors by hue for smooth gradient
+// Sort colors by hue for smooth gradient, with low saturation colors on the right
 function sortColorsByHue() {
     state.colors.sort((a, b) => {
         const hslA = hexToHSL(a.colorCode);
         const hslB = hexToHSL(b.colorCode);
         
-        // Sort by hue, then by lightness for achromatic colors
-        if (Math.abs(hslA.h - hslB.h) < 1) {
-            return hslB.l - hslA.l; // Reverse lightness order
+        // Sort by hue first to maintain gradient order
+        if (Math.abs(hslA.h - hslB.h) >= 1) {
+            return hslB.h - hslA.h; // Reverse hue order
         }
-        return hslB.h - hslA.h; // Reverse hue order
+        
+        // For similar hues, sort by saturation (low saturation colors go to the right/end)
+        return hslB.s - hslA.s; // High saturation first (low saturation goes to the end)
     });
 }
 
