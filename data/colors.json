@@ -143,6 +143,60 @@
       "name": "サマーシャワー",
       "colorCode": "#A7D3E0",
       "dataPath": "data/サマーシャワー"
+    },
+    {
+      "id": "ShellPink",
+      "name": "シェルピンク",
+      "colorCode": "#FBDAC8",
+      "dataPath": "data/シェルピンク"
+    },
+    {
+      "id": "Tokiwa",
+      "name": "常盤",
+      "colorCode": "#007B43",
+      "dataPath": "data/常盤"
+    },
+    {
+      "id": "Sanguigna",
+      "name": "サングイニャ",
+      "colorCode": "#B33B2E",
+      "dataPath": "data/サングイニャ"
+    },
+    {
+      "id": "Shirafuji",
+      "name": "白藤",
+      "colorCode": "#E6E6FA",
+      "dataPath": "data/白藤"
+    },
+    {
+      "id": "Minium",
+      "name": "ミニウム",
+      "colorCode": "#E34234",
+      "dataPath": "data/ミニウム"
+    },
+    {
+      "id": "Limelight",
+      "name": "ライムライト",
+      "colorCode": "#BFFF00",
+      "dataPath": "data/ライムライト"
+    },
+    {
+      "id": "Benimidori",
+      "name": "紅碧",
+      "colorCode": "#2A7F62",
+      "dataPath": "data/紅碧"
+    },
+    {
+      "id": "Ouryoku",
+      "name": "鴨緑",
+      "colorCode": "#00695B",
+      "dataPath": "data/鴨緑"
+    },
+    {
+      "id": "RoseMadder",
+      "name": "ローズマダー",
+      "colorCode": "#A52A2A",
+      "dataPath": "data/ローズマダー"
     }
   ]
  }
