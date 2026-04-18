@@ -235,7 +235,7 @@ header h1 {
 }
 
 .color-background {
-    width: 30%;
+    width: 25%;
     min-height: 100vh;
     position: relative;
     transition: background-color 0.5s ease;
