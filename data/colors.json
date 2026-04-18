@@ -81,7 +81,7 @@
     {
       "id": "LampBlack",
       "name": "ランプブラック",
-      "colorCode": "#2414０E",
+      "colorCode": "#24140E",
       "dataPath": "data/ランプブラック"
     },
     {
@@ -89,6 +89,60 @@
       "name": "ハンターグリーン",
       "colorCode": "#006336",
       "dataPath": "data/ハンターグリーン"
+    },
+    {
+      "id": "Suzuiro",
+      "name": "錫色",
+      "colorCode": "#7D7D7D",
+      "dataPath": "data/錫色"
+    },
+    {
+      "id": "Enji",
+      "name": "臙脂",
+      "colorCode": "#9A1F40",
+      "dataPath": "data/臙脂"
+    },
+    {
+      "id": "Beige",
+      "name": "ベージュ",
+      "colorCode": "#F5F5DC",
+      "dataPath": "data/ベージュ"
+    },
+    {
+      "id": "Konparu",
+      "name": "金春",
+      "colorCode": "#5AC2D9",
+      "dataPath": "data/金春"
+    },
+    {
+      "id": "Katiiro",
+      "name": "勝色",
+      "colorCode": "#181B39",
+      "dataPath": "data/勝色"
+    },
+    {
+      "id": "Kuchinashi",
+      "name": "梔子",
+      "colorCode": "#FFB11B",
+      "dataPath": "data/梔子"
+    },
+    {
+      "id": "Mauve",
+      "name": "モーブ",
+      "colorCode": "#915F6D",
+      "dataPath": "data/モーブ"
+    },
+    {
+      "id": "Marigold",
+      "name": "マリーゴールド",
+      "colorCode": "#F39800",
+      "dataPath": "data/マリーゴールド"
+    },
+    {
+      "id": "SummerShower",
+      "name": "サマーシャワー",
+      "colorCode": "#A7D3E0",
+      "dataPath": "data/サマーシャワー"
     }
   ]
  }
