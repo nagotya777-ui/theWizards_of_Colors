@@ -29,6 +29,60 @@
       "name": "紫苑",
       "colorCode": "#968ABD",
       "dataPath": "data/紫苑"
+    },
+    {
+      "id": "Camellia",
+      "name": カメリア",
+      "colorCode": "#DA536E",
+      "dataPath": "data/カメリア"
+    },
+    {
+      "id": "Smalt",
+      "name": スマルト",
+      "colorCode": "#28598f",
+      "dataPath": "data/スマルト"
+    },
+    {
+      "id": "Hiiro",
+      "name": “緋色",
+      "colorCode": "#C9171E",
+      "dataPath": "data/緋色"
+    },
+    {
+      "id": "Baikoutya",
+      "name": “梅幸茶",
+      "colorCode": "#B2953F",
+      "dataPath": "data/梅幸茶"
+    },
+    {
+      "id": "Russet",
+      "name": “ラセット",
+      "colorCode": "#974407",
+      "dataPath": "data/ラセット"
+    },
+    {
+      "id": "Taupe",
+      "name": “トープ",
+      "colorCode": “#5d5966",
+      "dataPath": "data/トープ"
+    },
+    {
+      "id": "Peony",
+      "name": “ピアニー",
+      "colorCode": “#A03b79",
+      "dataPath": "data/ピアニー"
+    },
+    {
+      "id": ”Shinonome",
+      "name": “東雲",
+      "colorCode": “#f4ac92",
+      "dataPath": "data/トープ"
+    },
+    {
+      "id": "LampBlack",
+      "name": “ランプブラック",
+      "colorCode": “#2414０E",
+      "dataPath": "data/ランプブラック"
     }
   ]
  }
