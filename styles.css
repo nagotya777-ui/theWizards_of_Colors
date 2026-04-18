@@ -413,6 +413,13 @@ header h1 {
     font-weight: 300;
 }
 
+.character-eng-name {
+    font-size: 0.6em;
+    font-weight: normal;
+    color: #888;   
+    margin-left: 0.5em;
+}
+
 .profile-section {
     margin-bottom: 30px;
 }
