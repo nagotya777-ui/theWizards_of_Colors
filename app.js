@@ -290,6 +290,7 @@ function renderGradientBar() {
 function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
     const container = state.dom.gradientContainer;
     let trackingActive = false;
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
     const updateScrollAndBackground = (clientX) => {
         const rect = gradientBar.getBoundingClientRect();
@@ -298,7 +299,7 @@ function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
         const scrollPercentage = Math.max(0, Math.min(1, percentage));
         const maxScroll = container.scrollWidth - container.clientWidth;
 
-        if (maxScroll > 0) {
+        if (maxScroll > 0 && !isTouchDevice) {
             container.scrollLeft = scrollPercentage * maxScroll;
         }
 
@@ -318,28 +319,31 @@ function setupGradientHoverEffect(gradientBar, colorSelectionScreen) {
         return clientY >= rect.top - 20 && clientY <= rect.bottom + 20;
     };
 
-    gradientBar.addEventListener('pointerenter', () => {
-        trackingActive = true;
-    });
+    // Only enable hover effect on non-touch devices
+    if (!isTouchDevice) {
+        gradientBar.addEventListener('pointerenter', () => {
+            trackingActive = true;
+        });
 
-    gradientBar.addEventListener('pointerleave', (e) => {
-        if (isWithinBarVerticalZone(e.clientY)) {
-            return;
-        }
-        trackingActive = false;
-        colorSelectionScreen.style.backgroundColor = '#f5f5f5';
-    });
+        gradientBar.addEventListener('pointerleave', (e) => {
+            if (isWithinBarVerticalZone(e.clientY)) {
+                return;
+            }
+            trackingActive = false;
+            colorSelectionScreen.style.backgroundColor = '#f5f5f5';
+        });
 
-    container.addEventListener('pointermove', (e) => {
-        if (!trackingActive) return;
-        if (!isWithinBarVerticalZone(e.clientY)) return;
-        updateScrollAndBackground(e.clientX);
-    });
+        container.addEventListener('pointermove', (e) => {
+            if (!trackingActive) return;
+            if (!isWithinBarVerticalZone(e.clientY)) return;
+            updateScrollAndBackground(e.clientX);
+        });
 
-    container.addEventListener('pointerleave', () => {
-        trackingActive = false;
-        colorSelectionScreen.style.backgroundColor = '#f5f5f5';
-    });
+        container.addEventListener('pointerleave', () => {
+            trackingActive = false;
+            colorSelectionScreen.style.backgroundColor = '#f5f5f5';
+        });
+    }
 }
 
 function adjustGradientBarColor(hexColor) {
@@ -483,11 +487,17 @@ async function selectColor(color) {
     // Render character grid
     renderCharacterGrid(characters, color);
     
-    // Auto-scroll to character list
+    // Auto-scroll to character list (with mobile optimization)
     setTimeout(() => {
         const characterListContainer = document.querySelector('.character-list-container');
         if (characterListContainer) {
-            characterListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // On mobile, scroll to top of character list
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                characterListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     }, 100);
 }
@@ -831,10 +841,17 @@ function setupDragToScroll() {
     let startX;
     let scrollLeft;
     let lastTouchX = null;
+    let touchStartTime = 0;
+    let touchStartX = 0;
+    let velocity = 0;
+    let momentumAnimation = null;
     
+    // Detect if device is touch-enabled
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    
+    // Mouse drag for desktop
     container.addEventListener('mousemove', (e) => {
-        // If dragging, use drag scroll
-        if (isDown) {
+        if (isDown && !isTouchDevice) {
             e.preventDefault();
             const x = e.pageX - container.offsetLeft;
             const walk = (x - startX) * 2;
@@ -842,36 +859,9 @@ function setupDragToScroll() {
         }
     });
     
-    container.addEventListener('touchstart', (e) => {
-        if (e.touches.length !== 1) return;
-        isDown = true;
-        lastTouchX = e.touches[0].clientX;
-        scrollLeft = container.scrollLeft;
-        container.style.cursor = 'grabbing';
-    }, { passive: true });
-    
-    container.addEventListener('touchmove', (e) => {
-        if (!isDown || lastTouchX === null) return;
-        const currentTouchX = e.touches[0].clientX;
-        const deltaX = currentTouchX - lastTouchX;
-        container.scrollLeft = scrollLeft - deltaX * 2;
-        e.preventDefault();
-    }, { passive: false });
-    
-    container.addEventListener('touchend', () => {
-        isDown = false;
-        lastTouchX = null;
-        container.style.cursor = 'grab';
-    });
-    
-    container.addEventListener('mouseleave', () => {
-        isDown = false;
-        container.style.cursor = 'grab';
-    });
-    
     container.addEventListener('mousedown', (e) => {
         // Don't interfere with color pointer clicks
-        if (e.target.closest('.color-pointer')) {
+        if (e.target.closest('.color-pointer') || isTouchDevice) {
             return;
         }
         
@@ -882,9 +872,84 @@ function setupDragToScroll() {
     });
     
     container.addEventListener('mouseup', () => {
-        isDown = false;
-        container.style.cursor = 'grab';
+        if (!isTouchDevice) {
+            isDown = false;
+            container.style.cursor = 'grab';
+        }
     });
+    
+    container.addEventListener('mouseleave', () => {
+        if (!isTouchDevice) {
+            isDown = false;
+            container.style.cursor = 'grab';
+        }
+    });
+    
+    // Touch handling for mobile with momentum scrolling
+    container.addEventListener('touchstart', (e) => {
+        if (e.touches.length !== 1) return;
+        
+        // Cancel any ongoing momentum
+        if (momentumAnimation) {
+            cancelAnimationFrame(momentumAnimation);
+            momentumAnimation = null;
+        }
+        
+        isDown = true;
+        touchStartTime = Date.now();
+        lastTouchX = e.touches[0].clientX;
+        touchStartX = lastTouchX;
+        scrollLeft = container.scrollLeft;
+        velocity = 0;
+    }, { passive: true });
+    
+    container.addEventListener('touchmove', (e) => {
+        if (!isDown || lastTouchX === null) return;
+        
+        const currentTouchX = e.touches[0].clientX;
+        const deltaX = lastTouchX - currentTouchX;
+        const currentTime = Date.now();
+        const deltaTime = currentTime - touchStartTime;
+        
+        // Calculate velocity for momentum
+        if (deltaTime > 0) {
+            velocity = deltaX / deltaTime;
+        }
+        
+        container.scrollLeft = scrollLeft + (currentTouchX - touchStartX) * -1;
+        lastTouchX = currentTouchX;
+        touchStartTime = currentTime;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', (e) => {
+        isDown = false;
+        lastTouchX = null;
+        
+        // Apply momentum scrolling
+        if (Math.abs(velocity) > 0.5) {
+            applyMomentum();
+        }
+    }, { passive: true });
+    
+    // Momentum scrolling function
+    function applyMomentum() {
+        const friction = 0.95;
+        const minVelocity = 0.1;
+        
+        function animate() {
+            velocity *= friction;
+            
+            if (Math.abs(velocity) < minVelocity) {
+                momentumAnimation = null;
+                return;
+            }
+            
+            container.scrollLeft += velocity * 16; // 16ms frame time
+            momentumAnimation = requestAnimationFrame(animate);
+        }
+        
+        animate();
+    }
     
     // Arrow button navigation
     scrollLeftBtn.addEventListener('click', () => {
