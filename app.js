@@ -182,69 +182,61 @@ async function loadColorDetails(colorId) {
     }
 
 // Load territory map for selected color
-function loadTerritoryMap(colorId) {
-    const { territoryMap, mapPlaceholder } = state.dom;
-    const mapHighlight = document.getElementById('mapHighlight');
-    const highlightPolygon = document.getElementById('highlightPolygon');
+async function loadTerritoryMap(colorId) {
+    const mapContainer = document.getElementById('mapContainer');
+    if (!mapContainer) return;
     
-    // Try to load map image from color's data folder
     const color = state.colors.find(c => c.id === colorId);
     if (!color) return;
     
-    // First, try to load common map from data folder
-    const commonMapPath = 'data/common-map.png';
-    const img = new Image();
-    
-    img.onload = () => {
-        territoryMap.src = commonMapPath;
-        territoryMap.style.display = 'block';
-        mapPlaceholder.style.display = 'none';
+    try {
+        // Load SVG map
+        const response = await fetch('map.svg');
+        const svgText = await response.text();
+        mapContainer.innerHTML = svgText;
         
-        // Apply highlight if coordinates are defined
-        if (color._fullData && color._fullData.mapHighlight) {
-            const coords = color._fullData.mapHighlight;
-            highlightPolygon.setAttribute('points', coords);
-            mapHighlight.style.display = 'block';
-            mapHighlight.style.color = color.colorCode;
-        } else {
-            mapHighlight.style.display = 'none';
+        // Get the SVG element
+        const svg = mapContainer.querySelector('svg');
+        if (!svg) return;
+        
+        // Get all region elements
+        const regions = svg.querySelectorAll('.region');
+        
+        // Reset all regions
+        regions.forEach(region => {
+            region.classList.remove('active', 'inactive');
+            region.style.fill = '#e0e0e0';
+        });
+        
+        // Highlight the selected color's region
+        const selectedRegion = svg.querySelector(`[data-color="${color.name}"]`);
+        if (selectedRegion) {
+            selectedRegion.classList.add('active');
+            selectedRegion.style.fill = color.colorCode;
+            
+            // Make other regions inactive
+            regions.forEach(region => {
+                if (region !== selectedRegion) {
+                    region.classList.add('inactive');
+                }
+            });
         }
-    };
-    
-    img.onerror = () => {
-        // Fallback: try to load individual map from color's folder
-        const mapFilenames = ['map.png', 'territory.png', 'region.png', 'map.jpg', 'territory.jpg'];
         
-        const tryLoadMap = (index) => {
-            if (index >= mapFilenames.length) {
-                // No map found, show placeholder
-                territoryMap.style.display = 'none';
-                mapPlaceholder.style.display = 'flex';
-                mapHighlight.style.display = 'none';
-                return;
-            }
-            
-            const mapPath = `${color.dataPath}/${mapFilenames[index]}`;
-            const fallbackImg = new Image();
-            
-            fallbackImg.onload = () => {
-                territoryMap.src = mapPath;
-                territoryMap.style.display = 'block';
-                mapPlaceholder.style.display = 'none';
-                mapHighlight.style.display = 'none'; // Don't show highlight for individual maps
-            };
-            
-            fallbackImg.onerror = () => {
-                tryLoadMap(index + 1);
-            };
-            
-            fallbackImg.src = mapPath;
-        };
+        // Add click handlers to regions
+        regions.forEach(region => {
+            region.addEventListener('click', () => {
+                const regionColorName = region.getAttribute('data-color');
+                const regionColor = state.colors.find(c => c.name === regionColorName);
+                if (regionColor) {
+                    selectColor(regionColor.id);
+                }
+            });
+        });
         
-        tryLoadMap(0);
-    };
-    
-    img.src = commonMapPath;
+    } catch (error) {
+        console.error('Failed to load SVG map:', error);
+        mapContainer.innerHTML = '<div class="map-placeholder">地図の読み込みに失敗しました</div>';
+    }
 }
 }
 
