@@ -182,6 +182,54 @@ async function loadColorDetails(colorId) {
     }
 }
 
+// Cache for SVG map to avoid repeated fetches
+let cachedSVG = null;
+
+// Helper: Reset all region styles to default
+function resetRegionStyles(regions) {
+    regions.forEach(region => {
+        region.classList.remove('active', 'inactive');
+        region.style.fill = '#e0e0e0';
+    });
+}
+
+// Helper: Highlight a specific region with color
+function highlightRegion(region, colorCode) {
+    region.classList.add('active');
+    region.style.fill = colorCode;
+}
+
+// Helper: Mark all regions except the active one as inactive
+function setInactiveRegions(regions, activeRegion) {
+    regions.forEach(region => {
+        if (region !== activeRegion) {
+            region.classList.add('inactive');
+        }
+    });
+}
+
+// Helper: Attach click handler using event delegation
+function attachRegionClickHandler(svg) {
+    // Remove existing handler if present to prevent duplicates
+    if (svg._territoryClickHandler) {
+        svg.removeEventListener('click', svg._territoryClickHandler);
+    }
+    
+    // Create and store handler
+    svg._territoryClickHandler = (event) => {
+        const region = event.target.closest('.region');
+        if (region) {
+            const regionColorName = region.getAttribute('data-color');
+            const regionColor = state.colors.find(c => c.name === regionColorName);
+            if (regionColor) {
+                selectColor(regionColor);
+            }
+        }
+    };
+    
+    svg.addEventListener('click', svg._territoryClickHandler);
+}
+
 // Load territory map for selected color
 async function loadTerritoryMap(colorId) {
     const mapContainer = document.getElementById('mapContainer');
@@ -191,48 +239,32 @@ async function loadTerritoryMap(colorId) {
     if (!color) return;
     
     try {
-        // Load SVG map
-        const response = await fetch('map.svg');
-        const svgText = await response.text();
-        mapContainer.innerHTML = svgText;
+        // Load SVG map (cached after first load)
+        if (!cachedSVG) {
+            const response = await fetch('map.svg');
+            cachedSVG = await response.text();
+        }
+        mapContainer.innerHTML = cachedSVG;
         
         // Get the SVG element
         const svg = mapContainer.querySelector('svg');
         if (!svg) return;
         
-        // Get all region elements
-        const regions = svg.querySelectorAll('.region');
+        // Get all region elements as array for easier manipulation
+        const regions = Array.from(svg.querySelectorAll('.region'));
         
-        // Reset all regions
-        regions.forEach(region => {
-            region.classList.remove('active', 'inactive');
-            region.style.fill = '#e0e0e0';
-        });
+        // Reset all regions to default state
+        resetRegionStyles(regions);
         
-        // Highlight the selected color's region
-        const selectedRegion = svg.querySelector(`[data-color="${color.name}"]`);
+        // Find and highlight the selected color's region
+        const selectedRegion = regions.find(r => r.getAttribute('data-color') === color.name);
         if (selectedRegion) {
-            selectedRegion.classList.add('active');
-            selectedRegion.style.fill = color.colorCode;
-            
-            // Make other regions inactive
-            regions.forEach(region => {
-                if (region !== selectedRegion) {
-                    region.classList.add('inactive');
-                }
-            });
+            highlightRegion(selectedRegion, color.colorCode);
+            setInactiveRegions(regions, selectedRegion);
         }
         
-        // Add click handlers to regions
-        regions.forEach(region => {
-            region.addEventListener('click', () => {
-                const regionColorName = region.getAttribute('data-color');
-                const regionColor = state.colors.find(c => c.name === regionColorName);
-                if (regionColor) {
-                    selectColor(regionColor);
-                }
-            });
-        });
+        // Attach click handler using event delegation
+        attachRegionClickHandler(svg);
         
     } catch (error) {
         console.error('Failed to load SVG map:', error);
