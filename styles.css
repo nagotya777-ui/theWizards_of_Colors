@@ -432,7 +432,23 @@ header h1 {
     border-radius: 4px;
     line-height: 1.8;
     font-size: 1rem;
+    font-family: 'Hiragino Mincho ProN', 'HiraMinProN-W3', 'Noto Serif JP', serif;
+    font-weight: 400;
+    font-style: normal;
     border: 1px solid #e0e0e0;
+}
+
+.magic-details .magic-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.magic-details .magic-text,
+.bio-details {
+    white-space: pre-line;
 }
 
 .profile-item {

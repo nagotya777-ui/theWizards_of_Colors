@@ -15,9 +15,10 @@
     "age": "23歳",
     "height": "150",
     "First_person": "私",
-    "Second_person":"君、貴方",
-    "Third_person":"○○、○○さん、あの人"
+    "Second_person": "君、貴方",
+    "Third_person": "○○、○○さん、あの人"
   },
-  "magic": "傷を癒す魔法。\nあああ",
-  "bio": "あああ"
+  "bio": "あああ",
+  "magicTitle": "傷を癒す魔法。",
+  "magicDescription": "あああ"
 }

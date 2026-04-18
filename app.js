@@ -568,6 +568,13 @@ async function selectCharacter(characterInfo, color) {
 function renderCharacterProfile(character) {
     const { characterName, characterFullImage, characterProfile,
             characterMagic, characterBio } = state.dom;
+
+    function parseMagicSection(character) {
+        return {
+            title: character.magicTitle ? String(character.magicTitle).trim() : '',
+            description: character.magicDescription ? String(character.magicDescription).trim() : ''
+        };
+    }
     
     characterName.textContent = character.name;
     characterFullImage.src = character.fullImage;
@@ -592,8 +599,21 @@ function renderCharacterProfile(character) {
     characterProfile.innerHTML = '';
     characterProfile.appendChild(fragment);
     
-    // Render magic and bio
-    characterMagic.textContent = character.magic;
+    // Render magic section with separate title and description
+    const magicSection = parseMagicSection(character);
+    characterMagic.innerHTML = '';
+    if (magicSection.title) {
+        const titleEl = document.createElement('div');
+        titleEl.className = 'magic-title';
+        titleEl.textContent = magicSection.title;
+        characterMagic.appendChild(titleEl);
+    }
+    const textEl = document.createElement('div');
+    textEl.className = 'magic-text';
+    textEl.textContent = magicSection.description;
+    characterMagic.appendChild(textEl);
+    
+    // Render bio
     characterBio.textContent = character.bio;
     
     // Render related characters
