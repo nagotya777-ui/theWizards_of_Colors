@@ -453,6 +453,7 @@ header h1 {
 
 .profile-info-section {
     flex: 1;
+    padding-right: 15px;
 }
 
 .character-title {
