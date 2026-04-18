@@ -210,14 +210,23 @@ function setInactiveRegions(regions, activeRegion) {
 
 // Helper: Attach click handler using event delegation
 function attachRegionClickHandler(svg) {
-    // Remove existing handler if present to prevent duplicates
+    // Remove existing handlers if present to prevent duplicates
     if (svg._territoryClickHandler) {
         svg.removeEventListener('click', svg._territoryClickHandler);
+        svg.removeEventListener('touchend', svg._territoryClickHandler);
     }
     
     // Create and store handler
     svg._territoryClickHandler = (event) => {
-        const region = event.target.closest('.region');
+        // Prevent default for touch events to avoid double-firing
+        if (event.type === 'touchend') {
+            event.preventDefault();
+        }
+        
+        // Get the target element (handle both click and touch events)
+        const target = event.target;
+        const region = target.closest('.region') || (target.classList && target.classList.contains('region') ? target : null);
+        
         if (region) {
             const regionColorName = region.getAttribute('data-color');
             const regionColor = state.colors.find(c => c.name === regionColorName);
@@ -227,7 +236,9 @@ function attachRegionClickHandler(svg) {
         }
     };
     
+    // Add both click and touch event listeners for mobile compatibility
     svg.addEventListener('click', svg._territoryClickHandler);
+    svg.addEventListener('touchend', svg._territoryClickHandler);
 }
 
 // Load territory map for selected color
