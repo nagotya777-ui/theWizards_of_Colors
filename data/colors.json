@@ -159,7 +159,7 @@
     {
       "id": "Sanguigna",
       "name": "サングイニャ",
-      "colorCode": "#B33B2E",
+      "colorCode": "#422D33",
       "dataPath": "data/サングイニャ"
     },
     {
@@ -171,7 +171,7 @@
     {
       "id": "Minium",
       "name": "ミニウム",
-      "colorCode": "#E34234",
+      "colorCode": "#E75E32",
       "dataPath": "data/ミニウム"
     },
     {
