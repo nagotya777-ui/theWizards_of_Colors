@@ -32,13 +32,13 @@
     },
     {
       "id": "Camellia",
-      "name": カメリア",
+      "name": “カメリア",
       "colorCode": "#DA536E",
       "dataPath": "data/カメリア"
     },
     {
       "id": "Smalt",
-      "name": スマルト",
+      "name": "スマルト",
       "colorCode": "#28598f",
       "dataPath": "data/スマルト"
     },
