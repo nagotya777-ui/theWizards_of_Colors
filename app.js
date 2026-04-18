@@ -250,7 +250,7 @@ function renderGradientBar() {
     gradientBar.style.background = `linear-gradient(to right, ${gradientStops})`;
     
     // Adjust minimum width based on number of colors (1.2x multiplier)
-    const minWidth = `${Math.max(800, totalColors * 150) * 1.2}px`;
+    const minWidth = `${Math.max(800, totalColors * 170) * 1.4}px`;
     gradientBar.style.minWidth = minWidth;
     colorPointers.style.minWidth = minWidth;
     

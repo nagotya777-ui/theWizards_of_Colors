@@ -107,7 +107,7 @@ header h1 {
 
 .scroll-arrow {
     width: 60px;
-    height: 60px;
+    height: 45px;
     border: none;
     background: transparent;
     color: #666;
@@ -118,7 +118,7 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 25%;
 }
 
 .scroll-arrow:hover {
