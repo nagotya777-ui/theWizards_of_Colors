@@ -191,8 +191,41 @@ async function loadColorDetails(colorId) {
 // Cache for SVG map to avoid repeated fetches
 let cachedSVG = null;
 
+// Helper: Load SVG map with caching
+async function loadSVGMap() {
+    if (!cachedSVG) {
+        const response = await fetch('map.svg');
+        cachedSVG = await response.text();
+    }
+    return cachedSVG;
+}
+
+// Helper: Setup map elements and apply initial styling
+function setupMapElements(svg, colorCode) {
+    const regions = Array.from(svg.querySelectorAll('.area-region'));
+    const unnamedAreas = Array.from(svg.querySelectorAll('.unnamed-area'));
+    const labels = Array.from(svg.querySelectorAll('.area-label'));
+    
+    resetRegionStyles(regions, colorCode);
+    styleUnnamedAreas(unnamedAreas, colorCode);
+    
+    return { regions, labels };
+}
+
+// Helper: Highlight the area associated with a color
+function highlightColorArea(regions, labels, colorDetails, colorCode) {
+    if (!colorDetails.area) return;
+    
+    const selectedRegion = regions.find(r => r.getAttribute('data-area') === colorDetails.area);
+    if (!selectedRegion) return;
+    
+    const selectedLabel = labels.find(l => l.textContent.trim() === colorDetails.area);
+    highlightRegion(selectedRegion, selectedLabel, colorCode);
+    setInactiveRegions(regions, selectedRegion);
+}
+
 // Helper: Reset all region styles to default
-function resetRegionStyles(regions, backgroundColor = null) {
+function resetRegionStyles(regions, labels, backgroundColor = null) {
     regions.forEach(region => {
         region.classList.remove('active', 'inactive');
         
@@ -292,7 +325,7 @@ function lightenColor(hex, percent = 30) {
 }
 
 // Helper: Highlight a specific region with color
-function highlightRegion(region, colorCode) {
+function highlightRegion(region, label, colorCode) {
     region.classList.add('active');
     
     // Use the same logic as getContrastTextColor to determine if background is light or dark
@@ -311,16 +344,12 @@ function highlightRegion(region, colorCode) {
         // For light backgrounds, use a very heavily darkened version of the color
         region.style.fill = darkenColor(colorCode, 85);
         region.style.stroke = darkenColor(colorCode, 85);
-        labels.forEach(label => {
-            label.style.fill = darkenColor(backgroundColor, 0);
-        });
+        label.style.fill = darkenColor(colorCode, 0);
     } else {
         // For dark backgrounds, use white
         region.style.fill = lightenColor(colorCode, 95);
         region.style.stroke = lightenColor(colorCode, 95);
-        labels.forEach(label => {
-            label.style.fill = lightenColor(backgroundColor, 0);
-        });
+        label.style.fill = lightenColor(colorCode, 0);
     }
 }
 
@@ -366,52 +395,42 @@ function attachRegionClickHandler(svg) {
 
 // Load territory map for selected color
 async function loadTerritoryMap(colorId) {
+    // Consolidated validation
     const mapContainer = document.getElementById('mapContainer');
-    if (!mapContainer) return;
-    
     const color = state.colors.find(c => c.id === colorId);
-    if (!color) return;
-    
-    // Get color details to access area information
     const colorDetails = state.colorDetails[colorId];
-    if (!colorDetails) return;
+    
+    if (!mapContainer || !color || !colorDetails) {
+        console.warn('Missing required elements for territory map:', {
+            mapContainer: !!mapContainer,
+            color: !!color,
+            colorDetails: !!colorDetails
+        });
+        return;
+    }
     
     try {
-        // Load SVG map (cached after first load)
-        if (!cachedSVG) {
-            const response = await fetch('map.svg');
-            cachedSVG = await response.text();
-        }
-        mapContainer.innerHTML = cachedSVG;
+        // Load and inject SVG
+        mapContainer.innerHTML = await loadSVGMap();
         
-        // Get the SVG element
         const svg = mapContainer.querySelector('svg');
         if (!svg) return;
         
-        // Get all area region elements as array for easier manipulation
-        const regions = Array.from(svg.querySelectorAll('.area-region'));
-        const unnamedAreas = Array.from(svg.querySelectorAll('.unnamed-area'));
+        // Setup map elements with initial styling
+        const { regions, labels } = setupMapElements(svg, color.colorCode);
         
-        // Reset all regions to default state with background color context
-        resetRegionStyles(regions, color.colorCode);
-        
-        // Style unnamed areas (slightly darker than inactive regions)
-        styleUnnamedAreas(unnamedAreas, color.colorCode);
-        
-        // Find and highlight the area associated with this color
-        if (colorDetails.area) {
-            const selectedRegion = regions.find(r => r.getAttribute('data-area') === colorDetails.area);
-            if (selectedRegion) {
-                highlightRegion(selectedRegion, color.colorCode);
-                setInactiveRegions(regions, selectedRegion);
-            }
-        }
+        // Highlight the area associated with this color
+        highlightColorArea(regions, labels, colorDetails, color.colorCode);
         
         // Attach click handler using event delegation
         attachRegionClickHandler(svg);
         
     } catch (error) {
-        console.error('Failed to load SVG map:', error);
+        console.error('Failed to load territory map:', {
+            colorId,
+            error: error.message,
+            stack: error.stack
+        });
         mapContainer.innerHTML = '<div class="map-placeholder">地図の読み込みに失敗しました</div>';
     }
 }
@@ -763,12 +782,8 @@ async function loadAreaMap(areaName) {
     if (!mapContainer) return;
     
     try {
-        // Load SVG map (cached after first load)
-        if (!cachedSVG) {
-            const response = await fetch('map.svg');
-            cachedSVG = await response.text();
-        }
-        mapContainer.innerHTML = cachedSVG;
+        // Load and inject SVG
+        mapContainer.innerHTML = await loadSVGMap();
         
         // Get the SVG element
         const svg = mapContainer.querySelector('svg');
@@ -779,7 +794,7 @@ async function loadAreaMap(areaName) {
         const labels = Array.from(svg.querySelectorAll('.area-label'));
         
         // Reset all regions to default state
-        resetRegionStyles(regions);
+        resetRegionStyles(regions,labels);
         
         // Highlight the selected area
         const selectedRegion = regions.find(r => r.getAttribute('data-area') === areaName);
