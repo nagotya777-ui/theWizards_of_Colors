@@ -192,11 +192,31 @@ async function loadColorDetails(colorId) {
 let cachedSVG = null;
 
 // Helper: Reset all region styles to default
-function resetRegionStyles(regions) {
+function resetRegionStyles(regions, backgroundColor = null) {
     regions.forEach(region => {
         region.classList.remove('active', 'inactive');
-        region.style.fill = '#999999';
-        region.style.stroke = '#666666';
+        
+        if (backgroundColor) {
+            // Use the same logic as getContrastTextColor to determine if background is light or dark
+            const hsl = hexToHSL(backgroundColor);
+            const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
+            const threshold = isYellowish ? 50 : 70;
+            const isLightBackground = hsl.l > threshold;
+            
+            if (isLightBackground) {
+                // For light backgrounds, use darker default regions
+                region.style.fill = '#999999';
+                region.style.stroke = '#666666';
+            } else {
+                // For dark backgrounds, use lighter default regions (like original)
+                region.style.fill = lightenColor(backgroundColor, 20);
+                region.style.stroke = lightenColor(backgroundColor, 30);
+            }
+        } else {
+            // Fallback to medium gray
+            region.style.fill = '#999999';
+            region.style.stroke = '#666666';
+        }
     });
 }
 
@@ -257,9 +277,9 @@ function highlightRegion(region, colorCode) {
     const isLightBackground = hsl.l > threshold;
     
     if (isLightBackground) {
-        // For light backgrounds, use a heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 85);
-        region.style.stroke = darkenColor(colorCode, 90);
+        // For light backgrounds, use a very heavily darkened version of the color
+        region.style.fill = darkenColor(colorCode, 90);
+        region.style.stroke = darkenColor(colorCode, 95);
     } else {
         // For dark backgrounds, use white
         region.style.fill = '#ffffff';
@@ -334,8 +354,8 @@ async function loadTerritoryMap(colorId) {
         // Get all area region elements as array for easier manipulation
         const regions = Array.from(svg.querySelectorAll('.area-region'));
         
-        // Reset all regions to default state
-        resetRegionStyles(regions);
+        // Reset all regions to default state with background color context
+        resetRegionStyles(regions, color.colorCode);
         
         // Find and highlight the area associated with this color
         if (colorDetails.area) {
