@@ -5,6 +5,7 @@ const state = {
     characters: {},
     selectedColor: null,
     selectedCharacter: null,
+    selectedArea: null,
     // Cache DOM elements
     dom: {}
 };
@@ -13,11 +14,16 @@ const state = {
 function cacheDOMElements() {
     state.dom = {
         colorSelectionScreen: document.getElementById('colorSelectionScreen'),
+        areaColorListScreen: document.getElementById('areaColorListScreen'),
         characterListScreen: document.getElementById('characterListScreen'),
         characterProfileScreen: document.getElementById('characterProfileScreen'),
         gradientBar: document.getElementById('gradientBar'),
         colorPointers: document.getElementById('colorPointers'),
         gradientContainer: document.querySelector('.gradient-container'),
+        areaColorBackground: document.getElementById('areaColorBackground'),
+        areaName: document.getElementById('areaName'),
+        areaDescription: document.getElementById('areaDescription'),
+        colorGrid: document.getElementById('colorGrid'),
         colorBackground: document.getElementById('colorBackground'),
         selectedColorName: document.getElementById('selectedColorName'),
         colorDescription: document.getElementById('colorDescription'),
@@ -272,14 +278,8 @@ function attachRegionClickHandler(svg) {
         
         if (region) {
             const areaName = region.getAttribute('data-area');
-            // Find color that has this area
-            const regionColor = state.colors.find(c => {
-                const details = state.colorDetails[c.id];
-                return details && details.area === areaName;
-            });
-            if (regionColor) {
-                selectColor(regionColor);
-            }
+            // Navigate to area color list screen
+            selectArea(areaName);
         }
     };
     
@@ -640,6 +640,175 @@ function getAdjustedButtonColor(backgroundColorCode) {
     return backgroundColorCode;
 }
 
+// Select area and show colors in that area
+async function selectArea(areaName) {
+    state.selectedArea = areaName;
+    
+    // Find all colors in this area
+    const colorsInArea = state.colors.filter(c => {
+        const details = state.colorDetails[c.id];
+        return details && details.area === areaName;
+    });
+    
+    if (colorsInArea.length === 0) {
+        console.warn('No colors found for area:', areaName);
+        return;
+    }
+    
+    // Use the first color's details to get area description (if available)
+    const firstColor = colorsInArea[0];
+    
+    // Update area info
+    state.dom.areaName.textContent = areaName;
+    state.dom.areaDescription.textContent = `${areaName}に拠点を置く色の魔法使いたち`;
+    
+    // Set background color (use a neutral color or blend of colors in area)
+    const avgColor = colorsInArea.length > 0 ? colorsInArea[0].colorCode : '#888888';
+    state.dom.areaColorBackground.style.background = `linear-gradient(135deg, ${avgColor} 0%, ${lightenColor(avgColor, 20)} 100%)`;
+    
+    // Load and display the map
+    await loadAreaMap(areaName);
+    
+    // Render color grid
+    renderColorGrid(colorsInArea);
+    
+    // Switch to area color list screen
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    state.dom.areaColorListScreen.classList.add('active');
+}
+
+// Load territory map for area screen
+async function loadAreaMap(areaName) {
+    const mapContainer = document.getElementById('areaMapContainer');
+    if (!mapContainer) return;
+    
+    try {
+        // Load SVG map (cached after first load)
+        if (!cachedSVG) {
+            const response = await fetch('map.svg');
+            cachedSVG = await response.text();
+        }
+        mapContainer.innerHTML = cachedSVG;
+        
+        // Get the SVG element
+        const svg = mapContainer.querySelector('svg');
+        if (!svg) return;
+        
+        // Get all area region elements
+        const regions = Array.from(svg.querySelectorAll('.area-region'));
+        
+        // Reset all regions to default state
+        resetRegionStyles(regions);
+        
+        // Highlight the selected area
+        const selectedRegion = regions.find(r => r.getAttribute('data-area') === areaName);
+        if (selectedRegion) {
+            // Use a neutral highlight color
+            highlightRegion(selectedRegion, '#4A90E2');
+            setInactiveRegions(regions, selectedRegion);
+        }
+        
+        // Attach click handler for navigation
+        attachRegionClickHandler(svg);
+        
+    } catch (error) {
+        console.error('Failed to load SVG map:', error);
+        mapContainer.innerHTML = '<div class="map-placeholder">地図の読み込みに失敗しました</div>';
+    }
+}
+
+// Render color grid for area screen
+function renderColorGrid(colors) {
+    const grid = state.dom.colorGrid;
+    grid.innerHTML = '';
+    
+    colors.forEach(color => {
+        const details = state.colorDetails[color.id];
+        if (!details) return;
+        
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        
+        // Create color header with symbol
+        const header = document.createElement('div');
+        header.className = 'color-card-header';
+        header.style.backgroundColor = color.colorCode;
+        
+        const symbolDiv = document.createElement('div');
+        symbolDiv.className = 'color-symbol-large';
+        
+        if (details.symbol && details.symbol !== 'symbol.png') {
+            const symbolImg = document.createElement('img');
+            symbolImg.src = `data/${details.name}/${details.symbol}`;
+            symbolImg.alt = details.name;
+            symbolImg.onerror = () => {
+                symbolDiv.classList.add('default-circle');
+                symbolDiv.style.backgroundColor = color.colorCode;
+                symbolImg.remove();
+            };
+            symbolDiv.appendChild(symbolImg);
+        } else {
+            symbolDiv.classList.add('default-circle');
+            symbolDiv.style.backgroundColor = color.colorCode;
+        }
+        
+        header.appendChild(symbolDiv);
+        
+        // Create card body
+        const body = document.createElement('div');
+        body.className = 'color-card-body';
+        
+        const title = document.createElement('h3');
+        title.textContent = details.name;
+        
+        const description = document.createElement('p');
+        description.className = 'color-card-description';
+        description.textContent = details.description;
+        
+        body.appendChild(title);
+        body.appendChild(description);
+        
+        card.appendChild(header);
+        card.appendChild(body);
+        
+        // Add click handler to navigate to character list
+        card.addEventListener('click', () => {
+            selectColorFromArea(color);
+        });
+        
+        grid.appendChild(card);
+    });
+}
+
+// Select color from area screen and navigate to character list
+async function selectColorFromArea(color) {
+    state.selectedColor = color;
+    
+    const details = state.colorDetails[color.id];
+    if (!details) return;
+    
+    // Update character list screen
+    state.dom.selectedColorName.textContent = details.name;
+    state.dom.colorDescription.textContent = details.description;
+    state.dom.colorBackground.style.background = `linear-gradient(135deg, ${color.colorCode} 0%, ${lightenColor(color.colorCode, 20)} 100%)`;
+    state.dom.selectedColorName.style.color = getContrastTextColor(color.colorCode);
+    state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
+    
+    // Load territory map
+    await loadTerritoryMap(color.id);
+    
+    // Load and render characters
+    await loadCharactersForColor(color);
+    renderCharacterGrid(state.characters[color.id] || [], color);
+    
+    // Update button colors
+    updateButtonColor(color.colorCode);
+    
+    // Switch to character list screen
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    state.dom.characterListScreen.classList.add('active');
+}
+
 // Select a color and show character list
 async function selectColor(color) {
     state.selectedColor = color;
@@ -988,9 +1157,19 @@ function hideLoading() {
 
 // Setup event listeners
 function setupEventListeners() {
+    document.getElementById('backToColorSelection').addEventListener('click', () => {
+        document.getElementById('areaColorListScreen').classList.remove('active');
+        document.getElementById('colorSelectionScreen').classList.add('active');
+    });
+    
     document.getElementById('backToColors').addEventListener('click', () => {
         document.getElementById('characterListScreen').classList.remove('active');
-        document.getElementById('colorSelectionScreen').classList.add('active');
+        // Go back to area screen if we came from there, otherwise to color selection
+        if (state.selectedArea) {
+            document.getElementById('areaColorListScreen').classList.add('active');
+        } else {
+            document.getElementById('colorSelectionScreen').classList.add('active');
+        }
     });
     
     document.getElementById('backToCharacters').addEventListener('click', () => {

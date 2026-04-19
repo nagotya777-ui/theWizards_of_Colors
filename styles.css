@@ -402,6 +402,92 @@ header h1 {
     font-style: italic;
 }
 
+/* Area Color List Screen Styles */
+.area-info {
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
+
+.area-name {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.area-description-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    white-space: pre-line;
+}
+
+.color-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.color-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.color-card-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.color-symbol-large {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.color-symbol-large img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.color-symbol-large.default-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.color-card-body {
+    padding: 1rem;
+    text-align: center;
+}
+
+.color-card h3 {
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.color-card-description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 /* Character Profile */
 .profile-content {
     display: flex;
