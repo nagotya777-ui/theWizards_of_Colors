@@ -300,6 +300,7 @@ header h1 {
     text-align: left;
     color: white;
     max-width: 400px;
+    margin-top: 10px;
 }
 
 .color-name {
