@@ -239,17 +239,17 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
             if (isLightBackground) {
                 // For light backgrounds, use darker default regions
                 region.style.fill = darkenColor(backgroundColor, 0);
-                region.style.stroke = darkenColor(backgroundColor,85);
+                region.style.stroke = darkenColor(backgroundColor,100);
                 labels.forEach(label => {
-                    label.style.fill = darkenColor(backgroundColor,85);
+                    label.style.fill = darkenColor(backgroundColor,100);
                 });
             } else {
                 // For dark backgrounds, use semi-transparent white (60-70% opacity)
                 // Simulate by blending white with background color
                 region.style.fill = lightenColor(backgroundColor, 0);
-                region.style.stroke = lightenColor(backgroundColor, 95);
+                region.style.stroke = lightenColor(backgroundColor, 100);
                 labels.forEach(label => {
-                    label.style.fill = lightenColor(backgroundColor, 95);
+                    label.style.fill = lightenColor(backgroundColor, 100);
                 });
             }
         } else {
@@ -342,13 +342,13 @@ function highlightRegion(region, label, colorCode) {
     
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 85);
-        region.style.stroke = darkenColor(colorCode, 85);
+        region.style.fill = darkenColor(colorCode, 100);
+        region.style.stroke = darkenColor(colorCode, 100);
         label.style.fill = darkenColor(colorCode, 0);
     } else {
         // For dark backgrounds, use white
-        region.style.fill = lightenColor(colorCode, 95);
-        region.style.stroke = lightenColor(colorCode, 95);
+        region.style.fill = lightenColor(colorCode, 100);
+        region.style.stroke = lightenColor(colorCode, 100);
         label.style.fill = lightenColor(colorCode, 0);
     }
 }
