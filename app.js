@@ -237,19 +237,18 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
             const isLightBackground = hsl.l > threshold;
             
             if (isLightBackground) {
-                // For light backgrounds, use darker default regions
-                region.style.fill = darkenColor(backgroundColor, 0);
-                region.style.stroke = darkenColor(backgroundColor,100);
+                // For light backgrounds: fill with selected color, stroke/text almost black
+                region.style.fill = backgroundColor;
+                region.style.stroke = '#1a1a1a';
                 labels.forEach(label => {
-                    label.style.fill = darkenColor(backgroundColor,100);
+                    label.style.fill = '#1a1a1a';
                 });
             } else {
-                // For dark backgrounds, use semi-transparent white (60-70% opacity)
-                // Simulate by blending white with background color
-                region.style.fill = lightenColor(backgroundColor, 0);
-                region.style.stroke = lightenColor(backgroundColor, 100);
+                // For dark backgrounds: fill with selected color, stroke/text almost white
+                region.style.fill = backgroundColor;
+                region.style.stroke = '#f0f0f0';
                 labels.forEach(label => {
-                    label.style.fill = lightenColor(backgroundColor, 100);
+                    label.style.fill = '#f0f0f0';
                 });
             }
         } else {
