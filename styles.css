@@ -265,9 +265,9 @@ header h1 {
 }
 
 .map-container svg {
-    width: 100%;
+    width: 80%;
     height: auto;
-    max-height: 80vh;
+    max-height: 70vh;
 }
 
 /* SVG Map Regions */
