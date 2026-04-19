@@ -8,9 +8,9 @@
 <defs>
   <style>
     .area-region {
-      fill: #363636;
+      fill: #BBBBBB;
       stroke: #ffffff;
-      stroke-width: 90;
+      stroke-width: 50;
       transition: all 0.3s ease;
     }
     .area-region:hover {
