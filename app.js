@@ -206,7 +206,7 @@ function setupMapElements(svg, colorCode) {
     const unnamedAreas = Array.from(svg.querySelectorAll('.unnamed-area'));
     const labels = Array.from(svg.querySelectorAll('.area-label'));
     
-    resetRegionStyles(regions, colorCode);
+    resetRegionStyles(regions, labels, colorCode);
     styleUnnamedAreas(unnamedAreas, colorCode);
     
     return { regions, labels };
