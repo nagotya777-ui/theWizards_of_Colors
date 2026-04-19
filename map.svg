@@ -10,9 +10,8 @@
     .area-region {
       fill: #363636;
       stroke: #ffffff;
-      stroke-width: 15;
+      stroke-width: 20;
       transition: all 0.3s ease;
-      cursor: pointer;
     }
     .area-region:hover {
       opacity: 0.8;
