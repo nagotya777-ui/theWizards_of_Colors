@@ -31,7 +31,7 @@
     .area-label {
       fill: #ffffff;
       font-family: 'UtukushiMincho', serif;
-      font-size: 370px;
+      font-size: 340px;
       font-weight: normal;
       text-anchor: middle;
       pointer-events: none;

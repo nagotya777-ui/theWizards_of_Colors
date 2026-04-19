@@ -205,13 +205,19 @@ function resetRegionStyles(regions, backgroundColor = null) {
             
             if (isLightBackground) {
                 // For light backgrounds, use darker default regions
-                region.style.fill = darkenColor(backgroundColor, 45);
-                region.style.stroke = darkenColor(backgroundColor,46);
+                region.style.fill = darkenColor(backgroundColor, 0);
+                region.style.stroke = darkenColor(backgroundColor,85);
+                labels.forEach(label => {
+                    label.style.fill = darkenColor(backgroundColor,85);
+                });
             } else {
                 // For dark backgrounds, use semi-transparent white (60-70% opacity)
                 // Simulate by blending white with background color
-                region.style.fill = lightenColor(backgroundColor, 65);
-                region.style.stroke = lightenColor(backgroundColor, 70);
+                region.style.fill = lightenColor(backgroundColor, 0);
+                region.style.stroke = lightenColor(backgroundColor, 95);
+                labels.forEach(label => {
+                    label.style.fill = lightenColor(backgroundColor, 95);
+                });
             }
         } else {
             // Fallback to medium gray
@@ -235,18 +241,18 @@ function styleUnnamedAreas(unnamedAreas, backgroundColor) {
         if (isLightBackground) {
             // For light backgrounds, make unnamed areas darker than inactive regions
             area.style.fill = '#666666';
-            area.style.stroke = '#666666';
+            area.style.stroke = '#444444';
         } else {
             // For dark backgrounds, make unnamed areas slightly darker than inactive regions
             // Inactive regions are 65-70% lightened, so use 50-55% for unnamed
-            area.style.fill = lightenColor(backgroundColor, 40);
-            area.style.stroke = lightenColor(backgroundColor, 40);
+            area.style.fill = lightenColor(backgroundColor, 50);
+            area.style.stroke = lightenColor(backgroundColor, 55);
         }
     });
 }
 
 // Helper: Darken a hex color by a percentage
-function darkenColor(hex, percent = 20) {
+function darkenColor(hex, percent = 15) {
     // Remove # if present
     hex = hex.replace('#', '');
     
@@ -303,12 +309,18 @@ function highlightRegion(region, colorCode) {
     
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 80);
+        region.style.fill = darkenColor(colorCode, 85);
         region.style.stroke = darkenColor(colorCode, 85);
+        labels.forEach(label => {
+            label.style.fill = darkenColor(backgroundColor, 0);
+        });
     } else {
         // For dark backgrounds, use white
-        region.style.fill = lightenColor(colorCode, 80);
-        region.style.stroke = lightenColor(colorCode, 85);
+        region.style.fill = lightenColor(colorCode, 95);
+        region.style.stroke = lightenColor(colorCode, 95);]
+        labels.forEach(label => {
+            label.style.fill = lightenColor(backgroundColor, 0);
+        });
     }
 }
 
@@ -764,6 +776,7 @@ async function loadAreaMap(areaName) {
         
         // Get all area region elements
         const regions = Array.from(svg.querySelectorAll('.area-region'));
+        const labels = Array.from(svg.querySelectorAll('.area-label'));
         
         // Reset all regions to default state
         resetRegionStyles(regions);
