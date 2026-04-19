@@ -242,10 +242,20 @@ function lightenColor(hex, percent = 30) {
 // Helper: Highlight a specific region with color
 function highlightRegion(region, colorCode) {
     region.classList.add('active');
-    // Use a slightly darkened version of the color for highlighting
-    region.style.fill = darkenColor(colorCode, 15);
-    // Set border to a lightened version of the selected color
-    region.style.stroke = lightenColor(colorCode, 40);
+    
+    // Check if background is light or dark
+    const hsl = hexToHSL(colorCode);
+    const isLightBackground = hsl.l > 60;
+    
+    if (isLightBackground) {
+        // For light backgrounds, use a darkened version of the color
+        region.style.fill = darkenColor(colorCode, 50);
+        region.style.stroke = darkenColor(colorCode, 60);
+    } else {
+        // For dark backgrounds, use white
+        region.style.fill = '#ffffff';
+        region.style.stroke = '#f0f0f0';
+    }
 }
 
 // Helper: Mark all regions except the active one as inactive
@@ -443,9 +453,10 @@ function renderGradientBar() {
     state.colors.forEach(color => {
         const pointer = document.createElement('div');
         pointer.className = 'color-pointer';
+        const textColor = getContrastTextColor(color.colorCode);
         pointer.innerHTML = `
             <div class="pointer-line"></div>
-            <div class="pointer-label" style="color: #2c2c2c">
+            <div class="pointer-label" style="color: ${textColor}">
                 <div class="color-symbol default-circle" style="background: ${color.colorCode}"></div>
                 <span>${color.name}</span>
             </div>
