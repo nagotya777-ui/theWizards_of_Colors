@@ -248,9 +248,9 @@ function highlightRegion(region, colorCode) {
     const isLightBackground = hsl.l > 60;
     
     if (isLightBackground) {
-        // For light backgrounds, use a darkened version of the color
-        region.style.fill = darkenColor(colorCode, 90);
-        region.style.stroke = darkenColor(colorCode, 100);
+        // For light backgrounds, use a heavily darkened version of the color
+        region.style.fill = darkenColor(colorCode, 85);
+        region.style.stroke = darkenColor(colorCode, 90);
     } else {
         // For dark backgrounds, use white
         region.style.fill = '#ffffff';
