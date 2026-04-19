@@ -257,7 +257,6 @@ header h1 {
 .map-container {
     width: 100%;
     max-width: 900px;
-    margin-top: 18px;
     position: relative;
     display: flex;
     align-items: center;
