@@ -205,8 +205,8 @@ function resetRegionStyles(regions, backgroundColor = null) {
             
             if (isLightBackground) {
                 // For light backgrounds, use darker default regions
-                region.style.fill = '#999999';
-                region.style.stroke = '#666666';
+                region.style.fill = darkenColor(backgroundColor, 30);
+                region.style.stroke = darkenColor(backgroundColor,35);
             } else {
                 // For dark backgrounds, use semi-transparent white (60-70% opacity)
                 // Simulate by blending white with background color
@@ -307,8 +307,8 @@ function highlightRegion(region, colorCode) {
         region.style.stroke = darkenColor(colorCode, 75);
     } else {
         // For dark backgrounds, use white
-        region.style.fill = darkenColor(colorCode, -50);
-        region.style.stroke = darkenColor(colorCode, -40);
+        region.style.fill = lightenColor(colorCode, 80);
+        region.style.stroke = lightenColor(colorCode, 85);
     }
 }
 
