@@ -205,8 +205,8 @@ function resetRegionStyles(regions, backgroundColor = null) {
             
             if (isLightBackground) {
                 // For light backgrounds, use darker default regions
-                region.style.fill = darkenColor(backgroundColor, 40);
-                region.style.stroke = darkenColor(backgroundColor,45);
+                region.style.fill = darkenColor(backgroundColor, 45);
+                region.style.stroke = darkenColor(backgroundColor,46);
             } else {
                 // For dark backgrounds, use semi-transparent white (60-70% opacity)
                 // Simulate by blending white with background color
