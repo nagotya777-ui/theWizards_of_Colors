@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="3360.000000pt" height="3472.000000pt" viewBox="360 235 1010 1220"
+ width="3390.000000pt" height="3472.000000pt" viewBox="370 235 1010 1220"
  preserveAspectRatio="xMidYMid meet" id="territoryMapSVG">
 
 <defs>
@@ -10,7 +10,7 @@
     .area-region {
       fill: #BBBBBB;
       stroke: #ffffff;
-      stroke-width: 70;
+      stroke-width: 60;
       transition: all 0.3s ease;
     }
     .area-region:hover {
