@@ -242,10 +242,20 @@ function lightenColor(hex, percent = 30) {
 // Helper: Highlight a specific region with color
 function highlightRegion(region, colorCode) {
     region.classList.add('active');
-    // Use a slightly darkened version of the color for highlighting
-    region.style.fill = darkenColor(colorCode, 15);
-    // Set border to a lightened version of the selected color
-    region.style.stroke = lightenColor(colorCode, 40);
+    
+    // Determine if background is light or dark
+    const hsl = hexToHSL(colorCode);
+    const isLightBackground = hsl.l > 60;
+    
+    if (isLightBackground) {
+        // For light backgrounds, use a darkened version of the color
+        region.style.fill = darkenColor(colorCode, 90);
+        region.style.stroke = darkenColor(colorCode, 100);
+    } else {
+        // For dark backgrounds, use white
+        region.style.fill = '#ffffff';
+        region.style.stroke = '#ffffff';
+    }
 }
 
 // Helper: Mark all regions except the active one as inactive
