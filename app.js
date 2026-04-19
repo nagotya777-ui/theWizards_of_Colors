@@ -225,11 +225,15 @@ function attachRegionClickHandler(svg) {
         
         // Get the target element (handle both click and touch events)
         const target = event.target;
-        const region = target.closest('.region') || (target.classList && target.classList.contains('region') ? target : null);
+        const region = target.closest('.area-region') || (target.classList && target.classList.contains('area-region') ? target : null);
         
         if (region) {
-            const regionColorName = region.getAttribute('data-color');
-            const regionColor = state.colors.find(c => c.name === regionColorName);
+            const areaName = region.getAttribute('data-area');
+            // Find color that has this area
+            const regionColor = state.colors.find(c => {
+                const details = state.colorDetails[c.id];
+                return details && details.area === areaName;
+            });
             if (regionColor) {
                 selectColor(regionColor);
             }
@@ -249,6 +253,10 @@ async function loadTerritoryMap(colorId) {
     const color = state.colors.find(c => c.id === colorId);
     if (!color) return;
     
+    // Get color details to access area information
+    const colorDetails = state.colorDetails[colorId];
+    if (!colorDetails) return;
+    
     try {
         // Load SVG map (cached after first load)
         if (!cachedSVG) {
@@ -261,17 +269,19 @@ async function loadTerritoryMap(colorId) {
         const svg = mapContainer.querySelector('svg');
         if (!svg) return;
         
-        // Get all region elements as array for easier manipulation
-        const regions = Array.from(svg.querySelectorAll('.region'));
+        // Get all area region elements as array for easier manipulation
+        const regions = Array.from(svg.querySelectorAll('.area-region'));
         
         // Reset all regions to default state
         resetRegionStyles(regions);
         
-        // Find and highlight the selected color's region
-        const selectedRegion = regions.find(r => r.getAttribute('data-color') === color.name);
-        if (selectedRegion) {
-            highlightRegion(selectedRegion, color.colorCode);
-            setInactiveRegions(regions, selectedRegion);
+        // Find and highlight the area associated with this color
+        if (colorDetails.area) {
+            const selectedRegion = regions.find(r => r.getAttribute('data-area') === colorDetails.area);
+            if (selectedRegion) {
+                highlightRegion(selectedRegion, color.colorCode);
+                setInactiveRegions(regions, selectedRegion);
+            }
         }
         
         // Attach click handler using event delegation

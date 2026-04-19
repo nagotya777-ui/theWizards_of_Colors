@@ -1,31 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" id="territoryMapSVG">
   <defs>
     <style>
-      .region {
+      .area-region {
         fill: #e0e0e0;
         stroke: #ffffff;
         stroke-width: 4;
         transition: all 0.3s ease;
         cursor: pointer;
       }
-      .region:hover {
+      .area-region:hover {
         opacity: 0.8;
       }
-      .region.active {
+      .area-region.active {
         stroke-width: 6;
       }
-      .region-label {
-        fill: #333333;
-        font-family: 'UtukushiMincho', serif;
-        font-size: 28px;
-        text-anchor: middle;
-        pointer-events: none;
-        user-select: none;
+      .area-region.inactive {
+        opacity: 0.4;
       }
       .area-label {
-        fill: #666666;
+        fill: #333333;
         font-family: 'UtukushiMincho', serif;
-        font-size: 20px;
+        font-size: 32px;
+        font-weight: bold;
         text-anchor: middle;
         pointer-events: none;
         user-select: none;
@@ -33,94 +29,51 @@
     </style>
   </defs>
 
-  <!-- 緋色 (Top area) -->
-  <path id="region-緋色" class="region" data-color="緋色" 
-        d="M 500,50 L 600,100 L 650,180 L 620,250 L 550,280 L 480,250 L 450,180 L 500,100 Z"/>
-  <text class="region-label" x="550" y="180">緋色</text>
+  <!-- 雪国 (Top right - Snow Country) -->
+  <path id="area-雪国" class="area-region" data-area="雪国"
+        d="M 620,170 L 750,140 L 880,180 L 920,260 L 900,340 L 820,380 L 720,360 L 650,300 L 620,220 Z"/>
+  <text class="area-label" x="770" y="270">雪国</text>
 
-  <!-- 月白 (Top right) -->
-  <path id="region-月白" class="region" data-color="月白"
-        d="M 650,180 L 750,150 L 850,200 L 880,280 L 850,350 L 750,380 L 680,340 L 650,280 L 620,250 Z"/>
-  <text class="region-label" x="760" y="270">月白</text>
-  <text class="area-label" x="760" y="295">雪国</text>
+  <!-- 農村 (Left upper - Farm Village) -->
+  <path id="area-農村" class="area-region" data-area="農村"
+        d="M 220,240 L 320,200 L 400,220 L 450,280 L 430,360 L 360,400 L 280,380 L 220,320 L 200,280 Z"/>
+  <text class="area-label" x="320" y="300">農村</text>
 
-  <!-- 燈苑 (Right side, upper) -->
-  <path id="region-燈苑" class="region" data-color="燈苑"
-        d="M 850,350 L 920,400 L 950,480 L 920,560 L 850,600 L 780,570 L 750,500 L 750,430 L 780,380 Z"/>
-  <text class="region-label" x="850" y="490">燈苑</text>
-  <text class="area-label" x="850" y="515">森林</text>
+  <!-- 山岳 (Top center - Mountains) -->
+  <path id="area-山岳" class="area-region" data-area="山岳"
+        d="M 450,180 L 560,140 L 650,160 L 680,220 L 660,300 L 580,340 L 500,320 L 450,260 L 440,220 Z"/>
+  <text class="area-label" x="560" y="250">山岳</text>
 
-  <!-- スマルト (Right side, lower) -->
-  <path id="region-スマルト" class="region" data-color="スマルト"
-        d="M 850,600 L 900,650 L 920,720 L 880,780 L 800,800 L 720,770 L 700,700 L 730,640 L 780,610 Z"/>
-  <text class="region-label" x="810" y="710">スマルト</text>
+  <!-- 中央 (Center - Central) -->
+  <path id="area-中央" class="area-region" data-area="中央"
+        d="M 430,360 L 500,320 L 580,340 L 620,400 L 600,480 L 540,520 L 460,520 L 400,480 L 390,420 Z"/>
+  <text class="area-label" x="500" y="440">中央</text>
 
-  <!-- トープ (Bottom right) -->
-  <path id="region-トープ" class="region" data-color="トープ"
-        d="M 720,770 L 650,820 L 580,850 L 520,840 L 480,800 L 500,740 L 560,710 L 630,720 L 680,750 Z"/>
-  <text class="region-label" x="590" y="790">トープ</text>
+  <!-- 森林 (Right - Forest) -->
+  <path id="area-森林" class="area-region" data-area="森林"
+        d="M 720,360 L 820,380 L 900,420 L 940,500 L 920,600 L 840,660 L 740,640 L 680,580 L 660,500 L 680,420 Z"/>
+  <text class="area-label" x="780" y="520">森林</text>
 
-  <!-- カナール (Bottom center) -->
-  <path id="region-カナール" class="region" data-color="カナール"
-        d="M 480,800 L 420,850 L 340,880 L 260,870 L 200,830 L 220,770 L 280,740 L 360,750 L 420,780 Z"/>
-  <text class="region-label" x="340" y="820">カナール</text>
-  <text class="area-label" x="340" y="845">港町</text>
+  <!-- 学術都市 (Left center - Academic City) -->
+  <path id="area-学術都市" class="area-region" data-area="学術都市"
+        d="M 220,420 L 300,380 L 380,400 L 420,460 L 400,540 L 340,580 L 260,560 L 200,500 L 190,460 Z"/>
+  <text class="area-label" x="300" y="480">学術都市</text>
 
-  <!-- ラセット (Bottom left) -->
-  <path id="region-ラセット" class="region" data-color="ラセット"
-        d="M 220,770 L 150,720 L 100,650 L 120,580 L 180,540 L 250,550 L 300,590 L 280,660 Z"/>
-  <text class="region-label" x="200" y="650">ラセット</text>
+  <!-- 商業都市 (Bottom center left - Commercial City) -->
+  <path id="area-商業都市" class="area-region" data-area="商業都市"
+        d="M 340,580 L 420,560 L 480,580 L 520,640 L 500,720 L 440,760 L 360,740 L 300,680 L 290,620 Z"/>
+  <text class="area-label" x="400" y="670">商業都市</text>
 
-  <!-- 梅幸茶 (Left side, lower) -->
-  <path id="region-梅幸茶" class="region" data-color="梅幸茶"
-        d="M 180,540 L 120,480 L 100,400 L 130,330 L 200,300 L 270,320 L 300,380 L 280,450 L 250,500 Z"/>
-  <text class="region-label" x="200" y="410">梅幸茶</text>
+  <!-- 工業都市 (Bottom center right - Industrial City) -->
+  <path id="area-工業都市" class="area-region" data-area="工業都市"
+        d="M 520,580 L 600,560 L 680,580 L 740,640 L 720,720 L 660,760 L 580,740 L 520,680 L 510,620 Z"/>
+  <text class="area-label" x="620" y="670">工業都市</text>
 
-  <!-- カメリア (Left side, upper) -->
-  <path id="region-カメリア" class="region" data-color="カメリア"
-        d="M 200,300 L 150,240 L 150,170 L 200,120 L 280,110 L 340,140 L 360,200 L 330,260 L 270,280 Z"/>
-  <text class="region-label" x="250" y="200">カメリア</text>
+  <!-- 港町 (Bottom - Port Town) -->
+  <path id="area-港町" class="area-region" data-area="港町"
+        d="M 360,740 L 440,760 L 520,780 L 600,800 L 680,820 L 720,860 L 640,900 L 480,920 L 320,900 L 240,860 L 280,820 L 320,780 Z"/>
+  <text class="area-label" x="480" y="850">港町</text>
 
-  <!-- 学術都市 (Left center) -->
-  <path id="region-学術都市" class="region" data-color="学術都市"
-        d="M 270,320 L 330,300 L 380,320 L 420,370 L 420,430 L 380,480 L 320,500 L 270,470 L 250,420 L 250,370 Z"/>
-  <text class="region-label" x="340" y="400">学術都市</text>
-
-  <!-- 商業都市 (Center bottom) -->
-  <path id="region-商業都市" class="region" data-color="商業都市"
-        d="M 320,500 L 380,480 L 440,500 L 480,550 L 480,610 L 440,660 L 380,680 L 320,660 L 280,610 L 280,550 Z"/>
-  <text class="region-label" x="380" y="590">商業都市</text>
-
-  <!-- 工業都市 (Center right bottom) -->
-  <path id="region-工業都市" class="region" data-color="工業都市"
-        d="M 480,550 L 540,530 L 600,550 L 640,600 L 630,660 L 580,700 L 520,710 L 480,680 L 460,630 L 480,580 Z"/>
-  <text class="region-label" x="560" y="630">工業都市</text>
-
-  <!-- 中央部 (Center) -->
-  <path id="region-中央部" class="region" data-color="中央部"
-        d="M 420,370 L 480,350 L 540,370 L 580,420 L 580,480 L 540,530 L 480,550 L 420,530 L 380,480 L 380,420 Z"/>
-  <text class="region-label" x="480" y="460">中央部</text>
-
-  <!-- ピアニー (Upper left center) -->
-  <path id="region-ピアニー" class="region" data-color="ピアニー"
-        d="M 360,200 L 420,180 L 480,200 L 520,250 L 520,310 L 480,350 L 420,370 L 360,350 L 330,300 L 330,250 Z"/>
-  <text class="region-label" x="420" y="280">ピアニー</text>
-
-  <!-- 山岳 (Upper center) -->
-  <path id="region-山岳" class="region" data-color="山岳"
-        d="M 480,200 L 550,180 L 620,200 L 650,250 L 650,310 L 600,350 L 540,370 L 480,350 L 450,300 L 450,250 Z"/>
-  <text class="region-label" x="550" y="280">山岳</text>
-
-  <!-- エルブ (Left upper) -->
-  <path id="region-エルブ" class="region" data-color="エルブ"
-        d="M 280,110 L 340,90 L 400,100 L 450,140 L 450,200 L 420,250 L 360,270 L 300,250 L 270,200 L 270,150 Z"/>
-  <text class="region-label" x="360" y="180">エルブ</text>
-  <text class="area-label" x="360" y="205">農村</text>
-
-  <!-- ミモザ (Upper left) -->
-  <path id="region-ミモザ" class="region" data-color="ミモザ"
-        d="M 200,120 L 260,100 L 320,110 L 360,150 L 360,210 L 320,250 L 260,260 L 210,230 L 180,180 L 180,150 Z"/>
-  <text class="region-label" x="270" y="180">ミモザ</text>
 </svg>
 
 <!-- Made with Bob -->
