@@ -25,14 +25,14 @@
     .unnamed-area {
       fill: #363636;
       stroke-width: 15;
-      opacity: 0.85;
+      opacity: 0.3;
       transition: all 0.3s ease;
     }
     .area-label {
       fill: #ffffff;
       font-family: 'UtukushiMincho', serif;
-      font-size: 380px;
-      font-weight: bold;
+      font-size: 340px;
+      font-weight: normal;
       text-anchor: middle;
       pointer-events: none;
       user-select: none;
