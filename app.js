@@ -226,36 +226,32 @@ function highlightColorArea(regions, labels, colorDetails, colorCode) {
 
 // Helper: Reset all region styles to default
 function resetRegionStyles(regions, labels, backgroundColor = null) {
+    // Determine background brightness once
+    let strokeColor, fillColor;
+    
+    if (backgroundColor) {
+        const hsl = hexToHSL(backgroundColor);
+        const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
+        const threshold = isYellowish ? 50 : 70;
+        const isLightBackground = hsl.l > threshold;
+        
+        fillColor = backgroundColor;
+        strokeColor = isLightBackground ? '#1a1a1a' : '#f0f0f0';
+    } else {
+        fillColor = '#999999';
+        strokeColor = '#666666';
+    }
+    
+    // Apply styles to all regions
     regions.forEach(region => {
         region.classList.remove('active', 'inactive');
-        
-        if (backgroundColor) {
-            // Use the same logic as getContrastTextColor to determine if background is light or dark
-            const hsl = hexToHSL(backgroundColor);
-            const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
-            const threshold = isYellowish ? 50 : 70;
-            const isLightBackground = hsl.l > threshold;
-            
-            if (isLightBackground) {
-                // For light backgrounds: fill with selected color, stroke/text almost black
-                region.style.fill = backgroundColor;
-                region.style.stroke = '#1a1a1a';
-                labels.forEach(label => {
-                    label.style.fill = '#1a1a1a';
-                });
-            } else {
-                // For dark backgrounds: fill with selected color, stroke/text almost white
-                region.style.fill = backgroundColor;
-                region.style.stroke = '#f0f0f0';
-                labels.forEach(label => {
-                    label.style.fill = '#f0f0f0';
-                });
-            }
-        } else {
-            // Fallback to medium gray
-            region.style.fill = '#999999';
-            region.style.stroke = '#666666';
-        }
+        region.style.fill = fillColor;
+        region.style.stroke = strokeColor;
+    });
+    
+    // Apply label color once for all labels
+    labels.forEach(label => {
+        label.style.fill = strokeColor;
     });
 }
 
