@@ -213,11 +213,33 @@ function darkenColor(hex, percent = 20) {
     return `#${toHex(darkenedR)}${toHex(darkenedG)}${toHex(darkenedB)}`;
 }
 
+// Helper: Lighten a hex color by a percentage (for border effects)
+function lightenColor(hex, percent = 30) {
+    // Remove # if present
+    hex = hex.replace('#', '');
+    
+    // Convert to RGB
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    // Lighten by moving towards white
+    const lightenedR = Math.min(255, Math.floor(r + (255 - r) * (percent / 100)));
+    const lightenedG = Math.min(255, Math.floor(g + (255 - g) * (percent / 100)));
+    const lightenedB = Math.min(255, Math.floor(b + (255 - b) * (percent / 100)));
+    
+    // Convert back to hex
+    const toHex = (n) => n.toString(16).padStart(2, '0');
+    return `#${toHex(lightenedR)}${toHex(lightenedG)}${toHex(lightenedB)}`;
+}
+
 // Helper: Highlight a specific region with color
 function highlightRegion(region, colorCode) {
     region.classList.add('active');
     // Use a slightly darkened version of the color for highlighting
     region.style.fill = darkenColor(colorCode, 15);
+    // Set border to a lightened version of the selected color
+    region.style.stroke = lightenColor(colorCode, 40);
 }
 
 // Helper: Mark all regions except the active one as inactive

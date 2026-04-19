@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="3390.000000pt" height="3472.000000pt" viewBox="370 235 1010 1220"
+ width="3460.000000pt" height="3472.000000pt" viewBox="385 235 1010 1220"
  preserveAspectRatio="xMidYMid meet" id="territoryMapSVG">
 
 <defs>
@@ -55,7 +55,7 @@
 162 50 327 156 416 267 133 165 139 247 61 756 -66 429 -106 578 -215 800 -92
 187 -185 321 -459 660 -307 378 -539 574 -891 749 -229 114 -463 190 -727 237
 -133 24 -469 34 -583 19z"/>
-<text class="area-label" x="11500" y="13500" transform="scale(1,-1) translate(0,-27000)">雪国</text>
+<text class="area-label" x="12000" y="13900" transform="scale(1,-1) translate(0,-27000)">雪国</text>
 
 <!-- 山岳 (Top center - Mountains) -->
 <path id="area-山岳" class="area-region" data-area="山岳" transform="translate(8550, 12000) scale(0.98) translate(-8550, -12000)"
@@ -89,7 +89,7 @@ l71 -22 13 25 c30 54 140 140 252 197 187 93 326 108 459 47 74 -34 149 -97
 414 236 49 39 57 51 133 220 83 184 165 374 226 526 l35 86 -23 57 c-33 81
 -68 129 -152 211 -169 164 -406 300 -618 356 -116 30 -128 31 -360 34 -132 1
 -274 -2 -315 -7z"/>
-<text class="area-label" x="5000" y="12000" transform="scale(1,-1) translate(0,-24000)">農村</text>
+<text class="area-label" x="5000" y="12500" transform="scale(1,-1) translate(0,-24000)">農村</text>
 
 <!-- 森林 (Forest) -->
 <path id="area-森林" class="area-region" data-area="森林" transform="translate(12000, 10500) scale(0.98) translate(-12000, -10500)"
