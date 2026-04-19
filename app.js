@@ -309,8 +309,11 @@ function darkenColor(hex, percent = 15) {
         actualPercent = percent * 0.2; // 50% of the original darkening
     }
     
-    // Reduce lightness while preserving saturation
+    // Reduce lightness
     hsl.l = Math.max(0, hsl.l - actualPercent);
+    
+    // Slightly reduce saturation for more natural darkened colors
+    hsl.s = Math.max(0, hsl.s - (actualPercent * 0.15));
     
     // Convert back to hex
     return hslToHex(hsl.h, hsl.s, hsl.l);
