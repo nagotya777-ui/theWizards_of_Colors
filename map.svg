@@ -10,7 +10,7 @@
     .area-region {
       fill: #363636;
       stroke: #ffffff;
-      stroke-width: 50;
+      stroke-width: 90;
       transition: all 0.3s ease;
     }
     .area-region:hover {
