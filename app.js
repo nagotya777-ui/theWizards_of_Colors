@@ -236,7 +236,7 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
         const isLightBackground = hsl.l > threshold;
         
         fillColor = backgroundColor;
-        strokeColor = isLightBackground ? darkenColor(backgroundColor, 99) : lightenColor(backgroundColor, 99);
+        strokeColor = isLightBackground ? darkenColor(backgroundColor, 90) : lightenColor(backgroundColor, 90);
     } else {
         fillColor = '#999999';
         strokeColor = '#666666';
@@ -337,13 +337,13 @@ function highlightRegion(region, label, colorCode) {
     
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 100);
-        region.style.stroke = darkenColor(colorCode, 100);
+        region.style.fill = darkenColor(colorCode, 90);
+        region.style.stroke = darkenColor(colorCode, 90);
         label.style.fill = darkenColor(colorCode, 0);
     } else {
         // For dark backgrounds, use white
-        region.style.fill = lightenColor(colorCode, 100);
-        region.style.stroke = lightenColor(colorCode, 100);
+        region.style.fill = lightenColor(colorCode, 90);
+        region.style.stroke = lightenColor(colorCode, 90);
         label.style.fill = lightenColor(colorCode, 0);
     }
 }
