@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="3340.000000pt" height="3472.000000pt" viewBox="0 0 1670.000000 1736.000000"
+ width="3340.000000pt" height="3472.000000pt" viewBox="350 235 1010 1220"
  preserveAspectRatio="xMidYMid meet" id="territoryMapSVG">
 
 <defs>
@@ -31,7 +31,7 @@
     .area-label {
       fill: #ffffff;
       font-family: 'UtukushiMincho', serif;
-      font-size: 240px;
+      font-size: 380px;
       font-weight: bold;
       text-anchor: middle;
       pointer-events: none;
