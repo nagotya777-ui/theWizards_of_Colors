@@ -221,6 +221,30 @@ function resetRegionStyles(regions, backgroundColor = null) {
     });
 }
 
+// Helper: Style unnamed areas (slightly darker than inactive regions)
+function styleUnnamedAreas(unnamedAreas, backgroundColor) {
+    if (!unnamedAreas || unnamedAreas.length === 0) return;
+    
+    // Use the same logic as getContrastTextColor to determine if background is light or dark
+    const hsl = hexToHSL(backgroundColor);
+    const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
+    const threshold = isYellowish ? 50 : 70;
+    const isLightBackground = hsl.l > threshold;
+    
+    unnamedAreas.forEach(area => {
+        if (isLightBackground) {
+            // For light backgrounds, make unnamed areas darker than inactive regions
+            area.style.fill = '#666666';
+            area.style.stroke = '#444444';
+        } else {
+            // For dark backgrounds, make unnamed areas slightly darker than inactive regions
+            // Inactive regions are 65-70% lightened, so use 50-55% for unnamed
+            area.style.fill = lightenColor(backgroundColor, 50);
+            area.style.stroke = lightenColor(backgroundColor, 55);
+        }
+    });
+}
+
 // Helper: Darken a hex color by a percentage
 function darkenColor(hex, percent = 20) {
     // Remove # if present
@@ -354,9 +378,13 @@ async function loadTerritoryMap(colorId) {
         
         // Get all area region elements as array for easier manipulation
         const regions = Array.from(svg.querySelectorAll('.area-region'));
+        const unnamedAreas = Array.from(svg.querySelectorAll('.unnamed-area'));
         
         // Reset all regions to default state with background color context
         resetRegionStyles(regions, color.colorCode);
+        
+        // Style unnamed areas (slightly darker than inactive regions)
+        styleUnnamedAreas(unnamedAreas, color.colorCode);
         
         // Find and highlight the area associated with this color
         if (colorDetails.area) {
