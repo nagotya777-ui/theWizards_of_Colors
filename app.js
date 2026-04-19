@@ -278,8 +278,8 @@ function styleUnnamedAreas(unnamedAreas, backgroundColor) {
         } else {
             // For dark backgrounds, make unnamed areas slightly darker than inactive regions
             // Inactive regions are 65-70% lightened, so use 50-55% for unnamed
-            area.style.fill = lightenColor(backgroundColor, 50);
-            area.style.stroke = lightenColor(backgroundColor, 55);
+            area.style.fill = lightenColor(backgroundColor, 30);
+            area.style.stroke = lightenColor(backgroundColor, 30);
         }
     });
 }
