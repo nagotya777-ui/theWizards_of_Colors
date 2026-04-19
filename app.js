@@ -205,8 +205,8 @@ function resetRegionStyles(regions, backgroundColor = null) {
             
             if (isLightBackground) {
                 // For light backgrounds, use darker default regions
-                region.style.fill = darkenColor(backgroundColor, 30);
-                region.style.stroke = darkenColor(backgroundColor,35);
+                region.style.fill = darkenColor(backgroundColor, 40);
+                region.style.stroke = darkenColor(backgroundColor,45);
             } else {
                 // For dark backgrounds, use semi-transparent white (60-70% opacity)
                 // Simulate by blending white with background color
@@ -246,7 +246,7 @@ function styleUnnamedAreas(unnamedAreas, backgroundColor) {
 }
 
 // Helper: Darken a hex color by a percentage
-function darkenColor(hex, percent = 20) {
+function darkenColor(hex, percent = 15) {
     // Remove # if present
     hex = hex.replace('#', '');
     
@@ -303,8 +303,8 @@ function highlightRegion(region, colorCode) {
     
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 70);
-        region.style.stroke = darkenColor(colorCode, 75);
+        region.style.fill = darkenColor(colorCode, 80);
+        region.style.stroke = darkenColor(colorCode, 85);
     } else {
         // For dark backgrounds, use white
         region.style.fill = lightenColor(colorCode, 80);
