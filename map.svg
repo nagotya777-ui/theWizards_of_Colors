@@ -8,7 +8,7 @@
 <defs>
   <style>
     .area-region {
-      fill: #BBBBBB;
+      fill: #464646;
       stroke: #ffffff;
       stroke-width: 60;
       transition: all 0.3s ease;
