@@ -303,12 +303,12 @@ function highlightRegion(region, colorCode) {
     
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 90);
-        region.style.stroke = darkenColor(colorCode, 95);
+        region.style.fill = darkenColor(colorCode, 70);
+        region.style.stroke = darkenColor(colorCode, 75);
     } else {
         // For dark backgrounds, use white
-        region.style.fill = '#ffffff';
-        region.style.stroke = '#ffffff';
+        region.style.fill = darkenColor(colorCode, -50);
+        region.style.stroke = darkenColor(colorCode, -40);
     }
 }
 
