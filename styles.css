@@ -268,6 +268,7 @@ header h1 {
     width: 72%;
     height: auto;
     max-height: 70vh;
+    margin-right: 20px;
 }
 
 /* SVG Map Regions */
