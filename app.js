@@ -208,9 +208,10 @@ function resetRegionStyles(regions, backgroundColor = null) {
                 region.style.fill = '#999999';
                 region.style.stroke = '#666666';
             } else {
-                // For dark backgrounds, use lighter default regions (like original)
-                region.style.fill = lightenColor(backgroundColor, 20);
-                region.style.stroke = lightenColor(backgroundColor, 30);
+                // For dark backgrounds, use semi-transparent white (60-70% opacity)
+                // Simulate by blending white with background color
+                region.style.fill = lightenColor(backgroundColor, 65);
+                region.style.stroke = lightenColor(backgroundColor, 70);
             }
         } else {
             // Fallback to medium gray
