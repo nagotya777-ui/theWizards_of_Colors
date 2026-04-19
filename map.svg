@@ -10,7 +10,7 @@
     .area-region {
       fill: #464646;
       stroke: #ffffff;
-      stroke-width: 40;
+      stroke-width: 25;
       transition: all 0.3s ease;
     }
     .unnamed-area {
