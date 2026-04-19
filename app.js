@@ -246,7 +246,7 @@ function styleUnnamedAreas(unnamedAreas, backgroundColor) {
 }
 
 // Helper: Darken a hex color by a percentage
-function darkenColor(hex, percent = 15) {
+function darkenColor(hex, percent = 20) {
     // Remove # if present
     hex = hex.replace('#', '');
     
