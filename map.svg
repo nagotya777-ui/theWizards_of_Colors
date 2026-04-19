@@ -10,7 +10,7 @@
     .area-region {
       fill: #363636;
       stroke: #ffffff;
-      stroke-width: 40;
+      stroke-width: 50;
       transition: all 0.3s ease;
     }
     .area-region:hover {
@@ -23,7 +23,7 @@
       opacity: 0.3;
     }
     .unnamed-area {
-      fill: #363636;
+      fill: #8F8F8F;
       stroke-width: 15;
       opacity: 0.3;
       transition: all 0.3s ease;
