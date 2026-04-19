@@ -337,8 +337,8 @@ function highlightRegion(region, label, colorCode) {
     
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 80);
-        region.style.stroke = darkenColor(colorCode, 80);
+        region.style.fill = darkenColor(colorCode, 70);
+        region.style.stroke = darkenColor(colorCode, 70);
         label.style.fill = darkenColor(colorCode, 0);
     } else {
         // For dark backgrounds, use white
