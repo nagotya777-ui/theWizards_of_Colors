@@ -298,14 +298,19 @@ function darkenColor(hex, percent = 15) {
     
     // For yellow colors (hue 45-75), shift towards orange when darkening
     const isYellow = hsl.h >= 45 && hsl.h <= 75;
+    let actualPercent = percent;
+    
     if (isYellow) {
         // Shift hue towards orange (reduce hue value)
-        const hueShift = Math.min(15, percent * 0.2); // Shift proportional to darkening
+        const hueShift = Math.min(15, percent * 0.5); // Shift proportional to darkening
         hsl.h = Math.max(30, hsl.h - hueShift); // Don't go below orange (30°)
+        
+        // Reduce darkening amount for yellow to prevent it from becoming too dark
+        actualPercent = percent * 0.5; // 50% of the original darkening
     }
     
     // Reduce lightness while preserving saturation
-    hsl.l = Math.max(0, hsl.l - percent);
+    hsl.l = Math.max(0, hsl.l - actualPercent);
     
     // Convert back to hex
     return hslToHex(hsl.h, hsl.s, hsl.l);
