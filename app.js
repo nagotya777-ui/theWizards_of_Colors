@@ -27,6 +27,7 @@ function cacheDOMElements() {
         colorBackground: document.getElementById('colorBackground'),
         selectedColorName: document.getElementById('selectedColorName'),
         colorDescription: document.getElementById('colorDescription'),
+        territoryInfo: document.getElementById('territoryInfo'),
         characterGrid: document.getElementById('characterGrid'),
         profileColorBackground: document.getElementById('profileColorBackground'),
         profileColorName: document.getElementById('profileColorName'),
@@ -881,9 +882,11 @@ async function selectColorFromArea(color) {
     // Update character list screen
     state.dom.selectedColorName.textContent = details.name;
     state.dom.colorDescription.innerHTML = details.description.replace(/\n/g, '<br>');
+    state.dom.territoryInfo.textContent = details.area ? `主な活動拠点: ${details.area}` : '';
     state.dom.colorBackground.style.background = `linear-gradient(135deg, ${color.colorCode} 0%, ${lightenColor(color.colorCode, 20)} 100%)`;
     state.dom.selectedColorName.style.color = getContrastTextColor(color.colorCode);
     state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
+    state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
     
     // Load territory map
     await loadTerritoryMap(color.id);
@@ -932,6 +935,8 @@ async function selectColor(color) {
     selectedColorName.style.color = getContrastTextColor(color.colorCode);
     colorDescription.innerHTML = (details?.description || '').replace(/\n/g, '<br>');
     colorDescription.style.color = getContrastTextColor(color.colorCode);
+    state.dom.territoryInfo.textContent = details?.area ? `主な活動拠点: ${details.area}` : '';
+    state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
     
     // Load territory map
     loadTerritoryMap(color.id);
