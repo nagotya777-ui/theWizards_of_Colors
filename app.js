@@ -443,11 +443,10 @@ function renderGradientBar() {
     state.colors.forEach(color => {
         const pointer = document.createElement('div');
         pointer.className = 'color-pointer';
-        const textColor = getContrastTextColor(color.colorCode);
         pointer.innerHTML = `
             <div class="pointer-line"></div>
-            <div class="pointer-label" style="color: ${textColor}">
-                <div class="color-symbol default-circle" style="background: ${color.colorCode}; border: 2px solid ${textColor}; box-sizing: border-box;"></div>
+            <div class="pointer-label" style="color: #2c2c2c">
+                <div class="color-symbol default-circle" style="background: ${color.colorCode}"></div>
                 <span>${color.name}</span>
             </div>
         `;
