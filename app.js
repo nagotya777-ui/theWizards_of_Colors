@@ -193,10 +193,31 @@ function resetRegionStyles(regions) {
     });
 }
 
+// Helper: Darken a hex color by a percentage
+function darkenColor(hex, percent = 20) {
+    // Remove # if present
+    hex = hex.replace('#', '');
+    
+    // Convert to RGB
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    // Darken by reducing each component
+    const darkenedR = Math.max(0, Math.floor(r * (1 - percent / 100)));
+    const darkenedG = Math.max(0, Math.floor(g * (1 - percent / 100)));
+    const darkenedB = Math.max(0, Math.floor(b * (1 - percent / 100)));
+    
+    // Convert back to hex
+    const toHex = (n) => n.toString(16).padStart(2, '0');
+    return `#${toHex(darkenedR)}${toHex(darkenedG)}${toHex(darkenedB)}`;
+}
+
 // Helper: Highlight a specific region with color
 function highlightRegion(region, colorCode) {
     region.classList.add('active');
-    region.style.fill = colorCode;
+    // Use a slightly darkened version of the color for highlighting
+    region.style.fill = darkenColor(colorCode, 15);
 }
 
 // Helper: Mark all regions except the active one as inactive
