@@ -288,8 +288,8 @@ header h1 {
 }
 
 .map-container .region.inactive {
-    opacity: 0.3;
-    filter: grayscale(0.5);
+    opacity: 0.5;
+    filter: grayscale(0.3);
 }
 
 .map-container .region-label,

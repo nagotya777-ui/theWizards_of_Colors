@@ -195,7 +195,8 @@ let cachedSVG = null;
 function resetRegionStyles(regions) {
     regions.forEach(region => {
         region.classList.remove('active', 'inactive');
-        region.style.fill = '#e0e0e0';
+        region.style.fill = '#999999';
+        region.style.stroke = '#666666';
     });
 }
 
