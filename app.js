@@ -317,7 +317,7 @@ function highlightRegion(region, colorCode) {
     } else {
         // For dark backgrounds, use white
         region.style.fill = lightenColor(colorCode, 95);
-        region.style.stroke = lightenColor(colorCode, 95);]
+        region.style.stroke = lightenColor(colorCode, 95);
         labels.forEach(label => {
             label.style.fill = lightenColor(backgroundColor, 0);
         });
