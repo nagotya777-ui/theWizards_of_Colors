@@ -213,16 +213,27 @@ function setupMapElements(svg, colorCode) {
     return { regions, labels };
 }
 
-// Helper: Highlight the area associated with a color
+// Helper: Highlight the area(s) associated with a color
 function highlightColorArea(regions, labels, colorDetails, colorCode) {
     if (!colorDetails.area) return;
     
-    const selectedRegion = regions.find(r => r.getAttribute('data-area') === colorDetails.area);
-    if (!selectedRegion) return;
+    // Support both single area (string) and multiple areas (array)
+    const areas = Array.isArray(colorDetails.area) ? colorDetails.area : [colorDetails.area];
+    const selectedRegions = [];
     
-    const selectedLabel = labels.find(l => l.textContent.trim() === colorDetails.area);
-    highlightRegion(selectedRegion, selectedLabel, colorCode);
-    setInactiveRegions(regions, selectedRegion);
+    areas.forEach(areaName => {
+        const selectedRegion = regions.find(r => r.getAttribute('data-area') === areaName);
+        if (selectedRegion) {
+            const selectedLabel = labels.find(l => l.textContent.trim() === areaName);
+            highlightRegion(selectedRegion, selectedLabel, colorCode);
+            selectedRegions.push(selectedRegion);
+        }
+    });
+    
+    // Mark all non-selected regions as inactive
+    if (selectedRegions.length > 0) {
+        setInactiveRegions(regions, selectedRegions);
+    }
 }
 
 // Helper: Reset all region styles to default
@@ -349,10 +360,13 @@ function highlightRegion(region, label, colorCode) {
     }
 }
 
-// Helper: Mark all regions except the active one as inactive
-function setInactiveRegions(regions, activeRegion) {
+// Helper: Mark all regions except the active ones as inactive
+function setInactiveRegions(regions, activeRegions) {
+    // Support both single region and array of regions
+    const activeRegionArray = Array.isArray(activeRegions) ? activeRegions : [activeRegions];
+    
     regions.forEach(region => {
-        if (region !== activeRegion) {
+        if (!activeRegionArray.includes(region)) {
             region.classList.add('inactive');
         }
     });
@@ -882,7 +896,13 @@ async function selectColorFromArea(color) {
     // Update character list screen
     state.dom.selectedColorName.textContent = details.name;
     state.dom.colorDescription.innerHTML = details.description.replace(/\n/g, '<br>');
-    state.dom.territoryInfo.textContent = details.area ? `主な活動拠点: ${details.area}` : '';
+    // Support both single area (string) and multiple areas (array)
+    if (details.area) {
+        const areas = Array.isArray(details.area) ? details.area.join('、') : details.area;
+        state.dom.territoryInfo.textContent = `主な活動拠点: ${areas}`;
+    } else {
+        state.dom.territoryInfo.textContent = '';
+    }
     state.dom.colorBackground.style.background = `linear-gradient(135deg, ${color.colorCode} 0%, ${lightenColor(color.colorCode, 20)} 100%)`;
     state.dom.selectedColorName.style.color = getContrastTextColor(color.colorCode);
     state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
@@ -935,7 +955,13 @@ async function selectColor(color) {
     selectedColorName.style.color = getContrastTextColor(color.colorCode);
     colorDescription.innerHTML = (details?.description || '').replace(/\n/g, '<br>');
     colorDescription.style.color = getContrastTextColor(color.colorCode);
-    state.dom.territoryInfo.textContent = details?.area ? `主な活動拠点: ${details.area}` : '';
+    // Support both single area (string) and multiple areas (array)
+    if (details?.area) {
+        const areas = Array.isArray(details.area) ? details.area.join('、') : details.area;
+        state.dom.territoryInfo.textContent = `主な活動拠点: ${areas}`;
+    } else {
+        state.dom.territoryInfo.textContent = '';
+    }
     state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
     
     // Load territory map
