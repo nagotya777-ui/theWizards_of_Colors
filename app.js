@@ -235,7 +235,7 @@ function styleUnnamedAreas(unnamedAreas, backgroundColor) {
         if (isLightBackground) {
             // For light backgrounds, make unnamed areas darker than inactive regions
             area.style.fill = '#666666';
-            area.style.stroke = '#444444';
+            area.style.stroke = '#666666';
         } else {
             // For dark backgrounds, make unnamed areas slightly darker than inactive regions
             // Inactive regions are 65-70% lightened, so use 50-55% for unnamed
