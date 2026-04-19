@@ -306,7 +306,7 @@ function darkenColor(hex, percent = 15) {
         hsl.h = Math.max(40, hsl.h - hueShift); // Don't go below golden yellow (40°)
         
         // Reduce darkening amount for yellow to prevent it from becoming too dark
-        actualPercent = percent * 0.45; // 50% of the original darkening
+        actualPercent = percent * 0.2; // 50% of the original darkening
     }
     
     // Reduce lightness while preserving saturation
