@@ -335,6 +335,8 @@ function highlightRegion(region, label, colorCode) {
     // If lightness is greater than threshold, background is light
     const isLightBackground = hsl.l > threshold;
     
+    label.style.font-weight = ‘bold’
+    
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
         region.style.fill = darkenColor(colorCode, 60);
