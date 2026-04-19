@@ -243,9 +243,17 @@ function lightenColor(hex, percent = 30) {
 function highlightRegion(region, colorCode) {
     region.classList.add('active');
     
-    // Determine if background is light or dark
+    // Use the same logic as getContrastTextColor to determine if background is light or dark
     const hsl = hexToHSL(colorCode);
-    const isLightBackground = hsl.l > 60;
+    
+    // Check if the color is in the yellow range (30° to 90°)
+    const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
+    
+    // Use lower threshold for yellow colors (they appear lighter)
+    const threshold = isYellowish ? 50 : 70;
+    
+    // If lightness is greater than threshold, background is light
+    const isLightBackground = hsl.l > threshold;
     
     if (isLightBackground) {
         // For light backgrounds, use a heavily darkened version of the color
