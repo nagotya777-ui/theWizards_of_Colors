@@ -253,6 +253,13 @@ header h1 {
     padding: 40px 20px;
 }
 
+#areaColorListScreen .color-background {
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
 /* Map container */
 .map-container {
     width: 100%;
