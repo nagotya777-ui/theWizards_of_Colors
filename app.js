@@ -880,7 +880,7 @@ async function selectColorFromArea(color) {
     
     // Update character list screen
     state.dom.selectedColorName.textContent = details.name;
-    state.dom.colorDescription.textContent = details.description;
+    state.dom.colorDescription.innerHTML = details.description.replace(/\n/g, '<br>');
     state.dom.colorBackground.style.background = `linear-gradient(135deg, ${color.colorCode} 0%, ${lightenColor(color.colorCode, 20)} 100%)`;
     state.dom.selectedColorName.style.color = getContrastTextColor(color.colorCode);
     state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
@@ -930,7 +930,7 @@ async function selectColor(color) {
     colorBackground.style.backgroundColor = color.colorCode;
     selectedColorName.textContent = color.name;
     selectedColorName.style.color = getContrastTextColor(color.colorCode);
-    colorDescription.textContent = details?.description || '';
+    colorDescription.innerHTML = (details?.description || '').replace(/\n/g, '<br>');
     colorDescription.style.color = getContrastTextColor(color.colorCode);
     
     // Load territory map
