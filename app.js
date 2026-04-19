@@ -235,7 +235,7 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
         const threshold = isYellowish ? 50 : 70;
         const isLightBackground = hsl.l > threshold;
         
-        fillColor = backgroundColor;
+        fillColor = lightenColor(backgroundColor, 9);
         strokeColor = isLightBackground ? darkenColor(backgroundColor, 60) : lightenColor(backgroundColor, 82);
     } else {
         fillColor = '#999999';
