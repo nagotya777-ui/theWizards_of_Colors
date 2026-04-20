@@ -321,6 +321,7 @@ header h1 {
     letter-spacing: 0.1em;
 }
 
+/* 左側の色説明の英語 */
 .color-eng-dis-name {
     display: block;
     font-size: 0.4em;
@@ -329,6 +330,7 @@ header h1 {
     opacity: 0.9;
 }
 
+/* 地名選択→色一覧カードの英語 */
 .color-eng-name {
     font-size: 0.8em;
     font-weight: normal;
