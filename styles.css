@@ -255,6 +255,7 @@ header h1 {
     flex-direction: column;
     justify-content: flex-start;
     padding: 100px 20px 40px 20px;
+    min-height: 100vh;
 }
 
 #areaColorListScreen .color-background {
@@ -262,6 +263,7 @@ header h1 {
     flex-direction: column;
     justify-content: flex-start;
     padding: 100px 20px 40px 20px;
+    min-height: 100vh;
 }
 
 /* Map container */
