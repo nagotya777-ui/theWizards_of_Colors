@@ -162,8 +162,8 @@
       "id": "Kuchinashi",
       "name": "梔子",
       "colorCode": "#FFE365",
-      "dataPath": "data/梔子"
-      "area": "森林"
+      "dataPath": "data/梔子",
+      "area": "学術都市"
     },
     {
       "id": "Mauve",
