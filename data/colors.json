@@ -5,7 +5,7 @@
       "name": "エルブ",
       "colorCode": "#79C288",
       "dataPath": "data/エルブ",
-      "area": "農村"
+      "area": "森林"
     },
     {
       "id": "Canard",
@@ -19,7 +19,7 @@
       "name": "ミモザ",
       "colorCode": "#FFF462",
       "dataPath": "data/ミモザ",
-      "area": "学術都市"
+      "area": "農村"
     },
     {
       "id": "Geppaku",
@@ -39,91 +39,111 @@
       "id": "Camellia",
       "name": "カメリア",
       "colorCode": "#DA536E",
-      "dataPath": "data/カメリア"
+      "dataPath": "data/カメリア",
+      "area": "中央"
+
     },
     {
       "id": "Smalt",
       "name": "スマルト",
       "colorCode": "#28598f",
-      "dataPath": "data/スマルト"
+      "dataPath": "data/スマルト",
+      "area": "工業都市"
+
     },
     {
       "id": "Hiiro",
       "name": "緋色",
       "colorCode": "#D31313",
-      "dataPath": "data/緋色"
+      "dataPath": "data/緋色",
+      "area": "中央"
     },
     {
       "id": "Baikoutya",
       "name": "梅幸茶",
       "colorCode": "#B2953F",
-      "dataPath": "data/梅幸茶"
+      "dataPath": "data/梅幸茶",
+      "area": "商業都市"
+
     },
     {
       "id": "Russet",
       "name": "ラセット",
       "colorCode": "#B84E09",
-      "dataPath": "data/ラセット"
+      "dataPath": "data/ラセット",
+      "area": "商業都市"
     },
     {
       "id": "Taupe",
       "name": "トープ",
       "colorCode": "#5d5966",
-      "dataPath": "data/トープ"
+      "dataPath": "data/トープ",
+      "area": "工業都市"
     },
     {
       "id": "Peony",
       "name": "ピアニー",
       "colorCode": "#BD4786",
-      "dataPath": "data/ピアニー"
+      "dataPath": "data/ピアニー",
+      "area": "中央"
+
     },
     {
       "id": "Shinonome",
       "name": "東雲",
       "colorCode": "#fcbcb1",
-      "dataPath": "data/トープ"
+      "dataPath": "data/東雲",
+      "area": "雪国"
     },
     {
       "id": "LampBlack",
       "name": "ランプブラック",
       "colorCode": "#1C1C1C",
-      "dataPath": "data/ランプブラック"
+      "dataPath": "data/ランプブラック",
+      "area": "森林"
     },
     {
       "id": "HunterGreen",
       "name": "ハンターグリーン",
       "colorCode": "#006336",
-      "dataPath": "data/ハンターグリーン"
+      "dataPath": "data/ハンターグリーン",
+      "area": "山岳"
     },
     {
       "id": "Suzuiro",
       "name": "錫色",
       "colorCode": "#7D7D7D",
-      "dataPath": "data/錫色"
+      "dataPath": "data/錫色",
+      "area": "工業都市",
+
     },
     {
       "id": "Enji",
       "name": "臙脂",
       "colorCode": "#9A1F40",
-      "dataPath": "data/臙脂"
+      "dataPath": "data/臙脂",
+      "area": "中央"
     },
     {
       "id": "Beige",
       "name": "ベージュ",
       "colorCode": "#E9E1BE",
-      "dataPath": "data/ベージュ"
+      "dataPath": "data/ベージュ",
+      "area": "商業都市",
     },
     {
       "id": "Konparu",
       "name": "金春",
       "colorCode": "#5AC2D9",
-      "dataPath": "data/金春"
+      "dataPath": "data/金春",
+      "area": "商業都市"
     },
     {
       "id": "Katiiro",
       "name": "勝色",
       "colorCode": "#192039",
-      "dataPath": "data/勝色"
+      "dataPath": "data/勝色",
+      "area":"学術都市"
     },
     {
       "id": "Kuchinashi",
@@ -135,73 +155,86 @@
       "id": "Mauve",
       "name": "モーブ",
       "colorCode": "#91607F",
-      "dataPath": "data/モーブ"
+      "dataPath": "data/モーブ",
+      "area": "商業都市"
     },
     {
       "id": "Marigold",
       "name": "マリーゴールド",
       "colorCode": "#F39800",
-      "dataPath": "data/マリーゴールド"
+      "dataPath": "data/マリーゴールド",
+      "area": "農村"
     },
     {
       "id": "SummerShower",
       "name": "サマーシャワー",
       "colorCode": "#A7D3E0",
-      "dataPath": "data/サマーシャワー"
+      "dataPath": "data/サマーシャワー",
+      "area": "港町"
     },
     {
       "id": "ShellPink",
       "name": "シェルピンク",
       "colorCode": "#FDE1E0",
-      "dataPath": "data/シェルピンク"
+      "dataPath": "data/シェルピンク",
+      "area": "港町"
     },
     {
       "id": "Tokiwa",
       "name": "常盤",
       "colorCode": "#007B43",
-      "dataPath": "data/常盤"
+      "dataPath": "data/常盤",
+      "area": "学術都市"
+
     },
     {
       "id": "Sanguigna",
       "name": "サングイニャ",
       "colorCode": "#5C3232",
-      "dataPath": "data/サングイニャ"
+      "dataPath": "data/サングイニャ",
+      "area": "農村"
     },
     {
       "id": "Shirafuji",
       "name": "白藤",
       "colorCode": "#E6E6FA",
-      "dataPath": "data/白藤"
+      "dataPath": "data/白藤",
+      "area": "山岳"
     },
     {
       "id": "Minium",
       "name": "ミニウム",
       "colorCode": "#E75E32",
-      "dataPath": "data/ミニウム"
+      "dataPath": "data/ミニウム",
+      "area": "工業都市"
     },
     {
       "id": "Limelight",
       "name": "ライムライト",
       "colorCode": "#fff799",
-      "dataPath": "data/ライムライト"
+      "dataPath": "data/ライムライト",
+      "area": "工業都市"
     },
     {
       "id": "Benimidori",
       "name": "紅碧",
       "colorCode": "#8A99CF",
-      "dataPath": "data/紅碧"
+      "dataPath": "data/紅碧",
+      "area": "雪国"
     },
     {
       "id": "Ouryoku",
       "name": "鴨緑",
       "colorCode": "#9FBB00",
-      "dataPath": "data/鴨緑"
+      "dataPath": "data/鴨緑",
+      "area": "商業都市"
     },
     {
       "id": "RoseMadder",
       "name": "ローズマダー",
       "colorCode": "#C20051",
-      "dataPath": "data/ローズマダー"
+      "dataPath": "data/ローズマダー",
+      "area": "山岳、工業都市"
     }
   ]
  }
