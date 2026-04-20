@@ -480,8 +480,8 @@ header h1 {
 }
 
 .color-icon {
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #e0e0e0;
