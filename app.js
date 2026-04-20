@@ -1027,9 +1027,9 @@ async function selectColorFromArea(color) {
     state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
     state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
     
-    // Update back button text to show color name
+    // Reset back button text to default
     const backButton = document.getElementById('backToColors');
-    backButton.textContent = `← ${details.name}に戻る`;
+    backButton.textContent = '← いろの選択に戻る';
     
     // Load territory map
     await loadTerritoryMap(color.id);
