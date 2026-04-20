@@ -933,9 +933,9 @@ function renderColorGrid(colors) {
         iconDiv.className = 'color-icon';
         iconDiv.style.backgroundColor = color.colorCode;
         
-        if (details.symbol && details.symbol !== 'symbol.png') {
+        if (details.symbol) {
             const symbolImg = document.createElement('img');
-            symbolImg.src = `data/${details.name}/${details.symbol}`;
+            symbolImg.src = details.symbol;
             symbolImg.alt = details.name;
             symbolImg.onerror = () => {
                 iconDiv.classList.add('default-circle');
@@ -975,12 +975,13 @@ function renderColorGrid(colors) {
 async function selectColorFromArea(color) {
     state.selectedColor = color;
     
-    const details = state.colorDetails[color.id];
+    // Load color details if not already loaded
+    const details = await loadColorDetails(color.id);
     if (!details) return;
     
     // Update character list screen
     state.dom.selectedColorName.textContent = details.name;
-    state.dom.colorDescription.innerHTML = details.description.replace(/\n/g, '<br>');
+    state.dom.colorDescription.innerHTML = (details.description || '').replace(/\n/g, '<br>');
     // Get area from colors.json (state.colors) instead of color.json
     if (color.area) {
         const areas = Array.isArray(color.area) ? color.area.join('、') : color.area;
