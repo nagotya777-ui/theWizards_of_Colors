@@ -418,33 +418,20 @@ function highlightRegion(region, label, colorCode) {
     // If lightness is greater than threshold, background is light
     const isLightBackground = hsl.l > threshold;
     
-    // Determine the fill color for this region
-    const fillColor = isLightBackground ? darkenColor(colorCode, 70) : lightenColor(colorCode, 82);
-    const strokeColor = fillColor;
-    
-    // Apply pattern if area has a name, otherwise use solid color
-    const areaName = region.getAttribute('data-area');
-    if (areaName) {
-        const patternId = getPatternForArea(areaName);
-        if (patternId) {
-            // Apply pattern with the highlight color
-            applyPatternToRegion(region, patternId, fillColor);
-        } else {
-            // No pattern available, use solid color
-            region.style.fill = fillColor;
+    if (isLightBackground) {
+        // For light backgrounds, use a very heavily darkened version of the color
+        region.style.fill = darkenColor(colorCode, 70);
+        region.style.stroke = darkenColor(colorCode, 70);
+        if (label) {
+            label.style.fill = darkenColor(colorCode, 0);
         }
     } else {
-        // No area name, use solid color
-        region.style.fill = fillColor;
-    }
-    
-    // Always set stroke color
-    region.style.stroke = strokeColor;
-    
-    // Set label color
-    if (label) {
-        const labelColor = isLightBackground ? darkenColor(colorCode, 0) : lightenColor(colorCode, 0);
-        label.style.fill = labelColor;
+        // For dark backgrounds, use white
+        region.style.fill = lightenColor(colorCode, 82);
+        region.style.stroke = lightenColor(colorCode, 82);
+        if (label) {
+            label.style.fill = lightenColor(colorCode, 0);
+        }
     }
 }
 
