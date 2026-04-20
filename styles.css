@@ -324,7 +324,7 @@ header h1 {
 /* 左側の色説明の英語 */
 .color-eng-dis-name {
     display: block;
-    font-size: 0.4em;
+    font-size: 0.8em;
     margin-bottom: 2px;
     letter-spacing: 0.05em;
     opacity: 0.8;
