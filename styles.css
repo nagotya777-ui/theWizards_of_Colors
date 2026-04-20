@@ -337,6 +337,7 @@ header h1 {
 }
 
 .character-list-container,
+.color-list-container,
 .profile-container {
     width: 80%;
     background: white;
@@ -364,7 +365,8 @@ header h1 {
 }
 
 /* Character Grid */
-.character-grid {
+.character-grid,
+.color-grid {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -443,68 +445,65 @@ header h1 {
 
 .color-card {
     background: white;
-    border-radius: 12px;
-    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .color-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-color: #ccc;
 }
 
-.color-card-header {
-    height: 80px;
+.color-icon {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+    box-shadow: none;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
-.color-symbol-large {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.color-symbol-large img {
-    max-width: 100%;
-    max-height: 100%;
+.color-icon img {
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
 }
 
-.color-symbol-large.default-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 3px solid white;
+.color-icon.default-circle {
+    border: 3px solid #e0e0e0;
 }
 
-.color-card-body {
-    padding: 1rem;
-    text-align: center;
+.color-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
 }
 
 .color-card h3 {
-    font-size: 1.3rem;
-    margin: 0 0 0.5rem 0;
-    color: #333;
+    font-size: 1.2rem;
+    color: #2c2c2c;
+    margin: 0;
+    font-weight: 400;
 }
 
 .color-card-description {
     font-size: 0.9rem;
     color: #666;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    line-height: 1.6;
+    font-weight: 300;
 }
 
 /* Character Profile */
@@ -1017,7 +1016,8 @@ body {
     }
     
     /* Character list screen with map on mobile */
-    #characterListScreen .color-background {
+    #characterListScreen .color-background,
+    #areaColorListScreen .color-background {
         width: 100%;
         min-height: 50vh;
         padding: 20px 15px;
@@ -1040,6 +1040,7 @@ body {
     
     /* Character List - Mobile */
     .character-list-container,
+    .color-list-container,
     .profile-container {
         width: 100%;
         padding: 20px;
@@ -1053,33 +1054,42 @@ body {
         text-align: center;
     }
     
-    .character-grid {
+    .character-grid,
+    .color-grid {
         gap: 15px;
     }
     
-    .character-card {
+    .character-card,
+    .color-card {
         padding: 15px;
         flex-direction: column;
         text-align: center;
     }
     
-    .character-icon {
+    .character-icon,
+    .color-icon {
         width: 120px;
         height: 120px;
         margin: 0 auto;
     }
     
-    .character-info {
+    .character-info,
+    .color-info {
         align-items: center;
         text-align: center;
     }
     
-    .character-card h3 {
+    .character-card h3,
+    .color-card h3 {
         font-size: 1.1rem;
     }
     
     .character-catchphrase {
         font-size: 0.8rem;
+    }
+    
+    .color-card-description {
+        font-size: 0.85rem;
     }
     
     /* Character Profile - Mobile */

@@ -909,47 +909,39 @@ function renderColorGrid(colors) {
         const card = document.createElement('div');
         card.className = 'color-card';
         
-        // Create color header with symbol
-        const header = document.createElement('div');
-        header.className = 'color-card-header';
-        header.style.backgroundColor = color.colorCode;
-        
-        const symbolDiv = document.createElement('div');
-        symbolDiv.className = 'color-symbol-large';
+        // Create color icon (similar to character icon)
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'color-icon';
+        iconDiv.style.backgroundColor = color.colorCode;
         
         if (details.symbol && details.symbol !== 'symbol.png') {
             const symbolImg = document.createElement('img');
             symbolImg.src = `data/${details.name}/${details.symbol}`;
             symbolImg.alt = details.name;
             symbolImg.onerror = () => {
-                symbolDiv.classList.add('default-circle');
-                symbolDiv.style.backgroundColor = color.colorCode;
-                symbolImg.remove();
+                iconDiv.classList.add('default-circle');
             };
-            symbolDiv.appendChild(symbolImg);
+            iconDiv.appendChild(symbolImg);
         } else {
-            symbolDiv.classList.add('default-circle');
-            symbolDiv.style.backgroundColor = color.colorCode;
+            iconDiv.classList.add('default-circle');
         }
         
-        header.appendChild(symbolDiv);
-        
-        // Create card body
-        const body = document.createElement('div');
-        body.className = 'color-card-body';
+        // Create color info (similar to character info)
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'color-info';
         
         const title = document.createElement('h3');
         title.textContent = details.name;
         
-        const description = document.createElement('p');
+        const description = document.createElement('div');
         description.className = 'color-card-description';
         description.textContent = details.description;
         
-        body.appendChild(title);
-        body.appendChild(description);
+        infoDiv.appendChild(title);
+        infoDiv.appendChild(description);
         
-        card.appendChild(header);
-        card.appendChild(body);
+        card.appendChild(iconDiv);
+        card.appendChild(infoDiv);
         
         // Add click handler to navigate to character list
         card.addEventListener('click', () => {
