@@ -84,7 +84,7 @@ header h1 {
 .gradient-wrapper {
     position: relative;
     width: 90%;
-    max-width: 1800px;
+    max-width: 2000px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -103,7 +103,7 @@ header h1 {
 }
 
 .gradient-container::-webkit-scrollbar {
-    height: 5px;
+    height: 4px;
 }
 
 .gradient-container::-webkit-scrollbar-track {
@@ -154,10 +154,10 @@ header h1 {
 }
 
 .gradient-bar {
-    height: 45px;
+    height: 40px;
     border-radius: 10px;
     /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
-    min-width: 1000px;
+    min-width: 1500px;
     transition: all 0.3s ease;
     /* Pastel color adjustment: increase saturation, reduce contrast for vibrant but soft appearance */
     filter: brightness(1.05) saturate(1.2) contrast(0.9);
