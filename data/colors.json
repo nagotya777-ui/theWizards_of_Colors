@@ -5,43 +5,54 @@
       "name": "エルブ",
       "colorCode": "#79C288",
       "dataPath": "data/エルブ",
-      "area": "森林"
+      "area": "森林",
+      "description": "怪我や病を癒すための魔法に長けたまほうつかいたち。勤勉で使命感の強い者が多く、拠点である森の奥の診療所には日々の活動や研究の成果が数多く蓄積されています。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Canard",
       "name": "カナール",
       "colorCode": "#007D8B",
       "dataPath": "data/カナール",
-      "area": "港町"
+      "area": "港町",
+      "description": "船上で生活を営む海の民たち。波に乗り風を操り、魚たちと戯れながら気ままに海での暮らしを送っています。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Mimosa",
       "name": "ミモザ",
       "colorCode": "#FFF462",
       "dataPath": "data/ミモザ",
-      "area": "農村"
+      "area": "農村",
+      "description": "人を幸せにする魔法を使う小さなグループ。家族のように互いを支え合う彼らのくらしの場は、必ずミモザの花に彩られています。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Geppaku",
       "name": "月白",
       "colorCode": "#DCEBF5",
       "dataPath": "data/月白",
-      "area": "雪国"
+      "area": "雪国",
+      "description": "雪降る土地で育まれた、幻想的な魔法を操る集団。職人として黙々と作品を作る者、吟遊詩人として各地を飛び回る者など、その暮らし方は実に多彩。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Shion",
       "name": "紫苑",
       "colorCode": "#968ABD",
       "dataPath": "data/紫苑",
-      "area": "森林"
+      "area": "森林",
+      "description": "死者と交信することができるまほうつかい達。\n遺された者から依頼を受け、読み取った記憶や聞き取った死者の言葉を伝えています。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Camellia",
       "name": "カメリア",
       "colorCode": "#DA536E",
       "dataPath": "data/カメリア",
-      "area": "中央"
-
+      "area": "中央",
+      "description": "人の心に干渉する魔法を得意とするまほうつかい達。職業は様々だが、魔法を活かしたカウンセリングや情報屋を行う者が多い。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Smalt",
@@ -49,14 +60,15 @@
       "colorCode": "#28598f",
       "dataPath": "data/スマルト",
       "area": "工業都市"
-
     },
     {
       "id": "Hiiro",
       "name": "緋色",
       "colorCode": "#D31313",
       "dataPath": "data/緋色",
-      "area": "中央"
+      "area": "中央",
+      "description": "魔法の炎を操るまほうつかい達。普段は各地に散って活動していますが大きなお祭りがある時には一同に集い、輝く炎で場を彩ります。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Baikoutya",
@@ -64,14 +76,15 @@
       "colorCode": "#B2953F",
       "dataPath": "data/梅幸茶",
       "area": "商業都市"
-
     },
     {
       "id": "Russet",
       "name": "ラセット",
       "colorCode": "#B84E09",
       "dataPath": "data/ラセット",
-      "area": "商業都市"
+      "area": "商業都市",
+      "description": "魔法を織り込んだ個性ある布を生み出す職人集団。製品は一般から服作りのプロまで幅広く取引され、さまざまなニーズに応えてくれると人気です。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Taupe",
@@ -85,8 +98,9 @@
       "name": "ピアニー",
       "colorCode": "#BD4786",
       "dataPath": "data/ピアニー",
-      "area": "中央"
-
+      "area": "中央",
+      "description": "雪降る土地で育まれた、幻想的な魔法を操る集団。職人として黙々と作品を作る者、吟遊詩人として各地を飛び回る者など、その暮らし方は実に多彩。",
+      "symbol": "symbol.png"
     },
     {
       "id": "Shinonome",
@@ -114,8 +128,7 @@
       "name": "錫色",
       "colorCode": "#7D7D7D",
       "dataPath": "data/錫色",
-      "area": "工業都市",
-
+      "area": "工業都市"
     },
     {
       "id": "Enji",
@@ -129,7 +142,7 @@
       "name": "ベージュ",
       "colorCode": "#E9E1BE",
       "dataPath": "data/ベージュ",
-      "area": "商業都市",
+      "area": "商業都市"
     },
     {
       "id": "Konparu",
@@ -185,7 +198,6 @@
       "colorCode": "#007B43",
       "dataPath": "data/常盤",
       "area": "学術都市"
-
     },
     {
       "id": "Sanguigna",

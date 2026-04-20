@@ -167,14 +167,13 @@ async function loadColorDetails(colorId) {
             return state.colorDetails[colorId];
         }
         
-        // Load from new split structure
-        const response = await fetch(`${color.dataPath}/color.json?v=${Date.now()}`);
-        const details = await response.json();
-        
-        // Add full path to symbol
-        if (details.symbol) {
-            details.symbol = `${color.dataPath}/${details.symbol}`;
-        }
+        // Use data from colors.json (already loaded)
+        const details = {
+            name: color.name,
+            colorCode: color.colorCode,
+            description: color.description || '',
+            symbol: color.symbol ? `${color.dataPath}/${color.symbol}` : ''
+        };
         
         state.colorDetails[colorId] = details;
         return details;
