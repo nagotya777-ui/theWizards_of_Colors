@@ -317,9 +317,10 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
         }
     });
     
-    // Apply label color once for all labels
+    // Apply label color once for all labels and remove highlighted class
     labels.forEach(label => {
         label.style.fill = strokeColor;
+        label.classList.remove('highlighted');
     });
 }
 
@@ -399,6 +400,11 @@ function lightenColor(hex, percent = 30) {
 function highlightRegion(region, label, colorCode) {
     region.classList.add('active');
     
+    // Add highlighted class to label for styling
+    if (label) {
+        label.classList.add('highlighted');
+    }
+    
     // Use the same logic as getContrastTextColor to determine if background is light or dark
     const hsl = hexToHSL(colorCode);
     
@@ -415,12 +421,16 @@ function highlightRegion(region, label, colorCode) {
         // For light backgrounds, use a very heavily darkened version of the color
         region.style.fill = darkenColor(colorCode, 70);
         region.style.stroke = darkenColor(colorCode, 70);
-        label.style.fill = darkenColor(colorCode, 0);
+        if (label) {
+            label.style.fill = darkenColor(colorCode, 0);
+        }
     } else {
         // For dark backgrounds, use white
         region.style.fill = lightenColor(colorCode, 82);
         region.style.stroke = lightenColor(colorCode, 82);
-        label.style.fill = lightenColor(colorCode, 0);
+        if (label) {
+            label.style.fill = lightenColor(colorCode, 0);
+        }
     }
 }
 

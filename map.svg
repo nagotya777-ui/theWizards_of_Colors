@@ -64,6 +64,11 @@
       stroke: #ffffff;
       stroke-width: 25;
       transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .area-region:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
     }
     .unnamed-area {
       fill: #262626;
@@ -79,6 +84,11 @@
       text-anchor: middle;
       pointer-events: none;
       user-select: none;
+      transition: all 0.3s ease;
+    }
+    .area-label.highlighted {
+      font-size: 374px;
+      font-weight: bold;
     }
   </style>
 </defs>
