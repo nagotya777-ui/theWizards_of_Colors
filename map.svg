@@ -70,9 +70,6 @@
       transform: scale(1.017);
       filter: brightness(1.05);
     }
-    .area-region.active {
-      transform: scale(1.01);
-    }
     .unnamed-area {
       fill: #262626;
       stroke-width: 15;
