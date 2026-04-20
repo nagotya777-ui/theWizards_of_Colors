@@ -1,0 +1,22 @@
+{
+  "characters": [
+    {
+      "id": "Uzu",
+      "name": "ウズ",
+      "catchphrase": "秘密が好きな情報屋",
+      "profilePath": "Uzu/profile.json"
+    },
+    {
+      "id": "Hioto",
+      "name": "ヒオト",
+      "catchphrase": "お話上手のカウンセラー",
+      "profilePath": "Hioto/profile.json"
+    },
+    {
+      "id": "Kouka",
+      "name": "コウカ",
+      "catchphrase": "Kouka",
+      "profilePath": "Kouka/profile.json"
+    }
+  ]
+}
