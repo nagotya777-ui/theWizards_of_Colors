@@ -7,6 +7,7 @@ const state = {
     selectedCharacter: null,
     selectedArea: null,
     previousScreen: null, // Track which screen we came from
+    previousColor: null, // Track the color we came from when navigating to area
     // Cache DOM elements
     dom: {}
 };
@@ -828,8 +829,14 @@ function getAdjustedButtonColor(backgroundColorCode) {
 async function selectArea(areaName) {
     state.selectedArea = areaName;
     
-    // Store the previous screen to enable proper back navigation
-    state.previousScreen = 'colorSelectionScreen';
+    // Store the previous color if we're coming from a character list screen
+    if (state.selectedColor) {
+        state.previousColor = state.selectedColor;
+        state.previousScreen = 'characterListScreen';
+    } else {
+        state.previousColor = null;
+        state.previousScreen = 'colorSelectionScreen';
+    }
     
     // Find all colors in this area using the area property from colors.json
     const colorsInArea = state.colors.filter(c => c.area === areaName);
@@ -853,6 +860,15 @@ async function selectArea(areaName) {
     // Update text colors based on background
     state.dom.areaName.style.color = getContrastTextColor(avgColor);
     state.dom.areaDescription.style.color = getContrastTextColor(avgColor);
+    
+    // Update back button text
+    const backButton = document.getElementById('backToColorSelection');
+    if (state.previousColor) {
+        const colorDetails = state.colorDetails[state.previousColor.id];
+        backButton.textContent = `← ${colorDetails.name}に戻る`;
+    } else {
+        backButton.textContent = '← 戻る';
+    }
     
     // Load and display the map with the area's color
     await loadAreaMap(areaName, avgColor);
@@ -1361,13 +1377,22 @@ function hideLoading() {
 function setupEventListeners() {
     document.getElementById('backToColorSelection').addEventListener('click', () => {
         document.getElementById('areaColorListScreen').classList.remove('active');
-        // Go back to the previous screen (color selection)
-        if (state.previousScreen === 'colorSelectionScreen') {
+        
+        // Go back to the previous screen
+        if (state.previousScreen === 'characterListScreen' && state.previousColor) {
+            // Return to the character list screen of the previous color
+            document.getElementById('characterListScreen').classList.add('active');
+            // Restore the selected color
+            state.selectedColor = state.previousColor;
+        } else {
+            // Default: go back to color selection screen
             document.getElementById('colorSelectionScreen').classList.add('active');
         }
-        // Clear the selected area when going back
+        
+        // Clear the selected area and previous color when going back
         state.selectedArea = null;
         state.previousScreen = null;
+        state.previousColor = null;
     });
     
     document.getElementById('backToColors').addEventListener('click', () => {
