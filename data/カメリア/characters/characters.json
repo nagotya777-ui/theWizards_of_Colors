@@ -9,13 +9,13 @@
     {
       "id": "Hioto",
       "name": "ヒオト",
-      "catchphrase": "お話上手のカウンセラー",
+      "catchphrase": "お話上手なカウンセラー",
       "profilePath": "Hioto/profile.json"
     },
     {
       "id": "Kouka",
       "name": "コウカ",
-      "catchphrase": "Kouka",
+      "catchphrase": "恋愛相談ならおまかせ",
       "profilePath": "Kouka/profile.json"
     }
   ]
