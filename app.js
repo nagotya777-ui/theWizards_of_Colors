@@ -849,8 +849,12 @@ async function selectArea(areaName) {
     const avgColor = colorsInArea.length > 0 ? colorsInArea[0].colorCode : '#888888';
     state.dom.areaColorBackground.style.background = `linear-gradient(135deg, ${avgColor} 0%, ${lightenColor(avgColor, 20)} 100%)`;
     
-    // Load and display the map
-    await loadAreaMap(areaName);
+    // Update text colors based on background
+    state.dom.areaName.style.color = getContrastTextColor(avgColor);
+    state.dom.areaDescription.style.color = getContrastTextColor(avgColor);
+    
+    // Load and display the map with the area's color
+    await loadAreaMap(areaName, avgColor);
     
     // Render color grid
     renderColorGrid(colorsInArea);
@@ -861,7 +865,7 @@ async function selectArea(areaName) {
 }
 
 // Load territory map for area screen
-async function loadAreaMap(areaName) {
+async function loadAreaMap(areaName, colorCode) {
     const mapContainer = document.getElementById('areaMapContainer');
     if (!mapContainer) return;
     
@@ -878,14 +882,14 @@ async function loadAreaMap(areaName) {
         const labels = Array.from(svg.querySelectorAll('.area-label'));
         
         // Reset all regions to default state
-        resetRegionStyles(regions,labels);
+        resetRegionStyles(regions, labels);
         
-        // Highlight the selected area
+        // Highlight the selected area with the area's color
         const selectedRegion = regions.find(r => r.getAttribute('data-area') === areaName);
         if (selectedRegion) {
-            // Use a neutral highlight color
-            highlightRegion(selectedRegion, '#4A90E2');
-            setInactiveRegions(regions, selectedRegion);
+            const selectedLabel = labels.find(l => l.textContent.trim() === areaName);
+            highlightRegion(selectedRegion, selectedLabel, colorCode);
+            setInactiveRegions(regions, [selectedRegion]);
         }
         
         // Attach click handler for navigation
@@ -978,8 +982,9 @@ async function selectColorFromArea(color) {
     await loadTerritoryMap(color.id);
     
     // Load and render characters
-    await loadCharactersForColor(color);
-    renderCharacterGrid(state.characters[color.id] || [], color);
+    const characters = await loadCharactersForColor(color.id);
+    state.characters[color.id] = characters;
+    renderCharacterGrid(characters, color);
     
     // Update button colors
     updateButtonColor(color.colorCode);
