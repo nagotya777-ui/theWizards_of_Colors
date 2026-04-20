@@ -973,7 +973,8 @@ async function selectColorFromArea(color) {
     } else {
         state.dom.territoryInfo.textContent = '';
     }
-    state.dom.colorBackground.style.background = `linear-gradient(135deg, ${color.colorCode} 0%, ${lightenColor(color.colorCode, 20)} 100%)`;
+    // Use backgroundColor instead of background to match selectColor function
+    state.dom.colorBackground.style.backgroundColor = color.colorCode;
     state.dom.selectedColorName.style.color = getContrastTextColor(color.colorCode);
     state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
     state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
