@@ -50,7 +50,7 @@
       "name": "カメリア",
       "colorCode": "#DA536E",
       "dataPath": "data/カメリア",
-      "area": "中央",
+      "area": "中央部",
       "description": "人の心に干渉する魔法を得意とするまほうつかい達。職業は様々だが、魔法を活かしたカウンセリングや情報屋を行う者が多い。",
       "symbol": "symbol.png"
     },
@@ -66,7 +66,7 @@
       "name": "緋色",
       "colorCode": "#D31313",
       "dataPath": "data/緋色",
-      "area": "中央",
+      "area": "中央部",
       "description": "魔法の炎を操るまほうつかい達。普段は各地に散って活動していますが大きなお祭りがある時には一同に集い、輝く炎で場を彩ります。",
       "symbol": "symbol.png"
     },
@@ -98,7 +98,7 @@
       "name": "ピアニー",
       "colorCode": "#BD4786",
       "dataPath": "data/ピアニー",
-      "area": "中央",
+      "area": "中央部",
       "description": "雪降る土地で育まれた、幻想的な魔法を操る集団。職人として黙々と作品を作る者、吟遊詩人として各地を飛び回る者など、その暮らし方は実に多彩。",
       "symbol": "symbol.png"
     },
@@ -135,7 +135,7 @@
       "name": "臙脂",
       "colorCode": "#9A1F40",
       "dataPath": "data/臙脂",
-      "area": "中央"
+      "area": "中央部"
     },
     {
       "id": "Beige",
