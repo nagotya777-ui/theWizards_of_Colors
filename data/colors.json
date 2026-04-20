@@ -4,31 +4,36 @@
       "id": "Herbe",
       "name": "エルブ",
       "colorCode": "#79C288",
-      "dataPath": "data/エルブ"
+      "dataPath": "data/エルブ",
+      "area": "農村"
     },
     {
       "id": "Canard",
       "name": "カナール",
       "colorCode": "#007D8B",
-      "dataPath": "data/カナール"
+      "dataPath": "data/カナール",
+      "area": "港町"
     },
     {
       "id": "Mimosa",
       "name": "ミモザ",
       "colorCode": "#FFF462",
-      "dataPath": "data/ミモザ"
+      "dataPath": "data/ミモザ",
+      "area": "学術都市"
     },
     {
       "id": "Geppaku",
       "name": "月白",
       "colorCode": "#DCEBF5",
-      "dataPath": "data/月白"
+      "dataPath": "data/月白",
+      "area": "雪国"
     },
     {
       "id": "Shion",
       "name": "紫苑",
       "colorCode": "#968ABD",
-      "dataPath": "data/紫苑"
+      "dataPath": "data/紫苑",
+      "area": "森林"
     },
     {
       "id": "Camellia",

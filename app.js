@@ -877,12 +877,8 @@ async function loadAreaMap(areaName, colorCode) {
         const svg = mapContainer.querySelector('svg');
         if (!svg) return;
         
-        // Get all area region elements
-        const regions = Array.from(svg.querySelectorAll('.area-region'));
-        const labels = Array.from(svg.querySelectorAll('.area-label'));
-        
-        // Reset all regions to default state
-        resetRegionStyles(regions, labels);
+        // Setup map elements with initial styling (same as character list screen)
+        const { regions, labels } = setupMapElements(svg, colorCode);
         
         // Highlight the selected area with the area's color
         const selectedRegion = regions.find(r => r.getAttribute('data-area') === areaName);
