@@ -484,7 +484,7 @@ async function loadTerritoryMap(colorId) {
     // Consolidated validation
     const mapContainer = document.getElementById('mapContainer');
     const color = state.colors.find(c => c.id === colorId);
-    const colorDetails = state.colorDetails[colorId];
+    const color = state.colors[colorId];
     
     if (!mapContainer || !color || !colorDetails) {
         console.warn('Missing required elements for territory map:', {
@@ -506,7 +506,7 @@ async function loadTerritoryMap(colorId) {
         const { regions, labels } = setupMapElements(svg, color.colorCode);
         
         // Highlight the area associated with this color
-        highlightColorArea(regions, labels, colorDetails, color.colorCode);
+        highlightColorArea(regions, labels, color, color.colorCode);
         
         // Attach click handler using event delegation
         attachRegionClickHandler(svg);
