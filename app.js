@@ -979,9 +979,9 @@ async function selectColorFromArea(color) {
     // Update character list screen
     state.dom.selectedColorName.textContent = details.name;
     state.dom.colorDescription.innerHTML = details.description.replace(/\n/g, '<br>');
-    // Support both single area (string) and multiple areas (array)
-    if (details.area) {
-        const areas = Array.isArray(details.area) ? details.area.join('、') : details.area;
+    // Get area from colors.json (state.colors) instead of color.json
+    if (color.area) {
+        const areas = Array.isArray(color.area) ? color.area.join('、') : color.area;
         state.dom.territoryInfo.textContent = `主な活動拠点: ${areas}`;
     } else {
         state.dom.territoryInfo.textContent = '';
@@ -1047,9 +1047,9 @@ async function selectColor(color) {
     selectedColorName.style.color = getContrastTextColor(color.colorCode);
     colorDescription.innerHTML = (details?.description || '').replace(/\n/g, '<br>');
     colorDescription.style.color = getContrastTextColor(color.colorCode);
-    // Support both single area (string) and multiple areas (array)
-    if (details?.area) {
-        const areas = Array.isArray(details.area) ? details.area.join('、') : details.area;
+    // Get area from colors.json (color object) instead of color.json
+    if (color.area) {
+        const areas = Array.isArray(color.area) ? color.area.join('、') : color.area;
         state.dom.territoryInfo.textContent = `主な活動拠点: ${areas}`;
     } else {
         state.dom.territoryInfo.textContent = '';
