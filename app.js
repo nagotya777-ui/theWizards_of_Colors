@@ -188,6 +188,7 @@ async function loadColorDetails(colorId) {
         // Use data from colors.json (already loaded)
         const details = {
             name: color.name,
+            engName: color.id
             colorCode: color.colorCode,
             description: color.description || '',
             symbol: color.symbol ? `${color.dataPath}/${color.symbol}` : ''
@@ -981,8 +982,17 @@ function renderColorGrid(colors) {
         const infoDiv = document.createElement('div');
         infoDiv.className = 'color-info';
         
-        const title = document.createElement('h3');
-        title.textContent = details.name;
+		const title = document.createElement('h3');
+
+		const nameSpan = document.createElement('span');
+		nameSpan.textContent = details.name;
+
+		const engName = document.createElement('small');
+		engName.className = 'color-eng-name';
+		engName.textContent = details.engName;
+
+		title.appendChild(nameSpan);
+		title.appendChild(engName);
         
         const description = document.createElement('div');
         description.className = 'color-card-description';
