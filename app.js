@@ -6,6 +6,7 @@ const state = {
     selectedColor: null,
     selectedCharacter: null,
     selectedArea: null,
+    previousScreen: null, // Track which screen we came from
     // Cache DOM elements
     dom: {}
 };
@@ -827,11 +828,11 @@ function getAdjustedButtonColor(backgroundColorCode) {
 async function selectArea(areaName) {
     state.selectedArea = areaName;
     
-    // Find all colors in this area
-    const colorsInArea = state.colors.filter(c => {
-        const details = state.colorDetails[c.id];
-        return details && details.area === areaName;
-    });
+    // Store the previous screen to enable proper back navigation
+    state.previousScreen = 'colorSelectionScreen';
+    
+    // Find all colors in this area using the area property from colors.json
+    const colorsInArea = state.colors.filter(c => c.area === areaName);
     
     if (colorsInArea.length === 0) {
         console.warn('No colors found for area:', areaName);
@@ -1349,7 +1350,13 @@ function hideLoading() {
 function setupEventListeners() {
     document.getElementById('backToColorSelection').addEventListener('click', () => {
         document.getElementById('areaColorListScreen').classList.remove('active');
-        document.getElementById('colorSelectionScreen').classList.add('active');
+        // Go back to the previous screen (color selection)
+        if (state.previousScreen === 'colorSelectionScreen') {
+            document.getElementById('colorSelectionScreen').classList.add('active');
+        }
+        // Clear the selected area when going back
+        state.selectedArea = null;
+        state.previousScreen = null;
     });
     
     document.getElementById('backToColors').addEventListener('click', () => {
