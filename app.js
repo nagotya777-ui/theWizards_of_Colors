@@ -1432,12 +1432,8 @@ function setupEventListeners() {
     
     document.getElementById('backToColors').addEventListener('click', () => {
         document.getElementById('characterListScreen').classList.remove('active');
-        // Go back to area screen if we came from there, otherwise to color selection
-        if (state.selectedArea) {
-            document.getElementById('areaColorListScreen').classList.add('active');
-        } else {
-            document.getElementById('colorSelectionScreen').classList.add('active');
-        }
+        // Always return to color selection screen
+        document.getElementById('colorSelectionScreen').classList.add('active');
     });
     
     document.getElementById('backToCharacters').addEventListener('click', () => {
