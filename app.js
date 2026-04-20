@@ -216,11 +216,11 @@ function setupMapElements(svg, colorCode) {
 }
 
 // Helper: Highlight the area(s) associated with a color
-function highlightColorArea(regions, labels, colorDetails, colorCode) {
-    if (!colorDetails.area) return;
+function highlightColorArea(regions, labels, Areas, colorCode) {
+    if (!Areas) return;
     
     // Support both single area (string) and multiple areas (array)
-    const areas = Array.isArray(colorDetails.area) ? colorDetails.area : [colorDetails.area];
+    const areas = Array.isArray(Areas) ? Areas : [Areas];
     const selectedRegions = [];
     
     areas.forEach(areaName => {
@@ -484,7 +484,7 @@ async function loadTerritoryMap(colorId) {
     // Consolidated validation
     const mapContainer = document.getElementById('mapContainer');
     const color = state.colors.find(c => c.id === colorId);
-    const color = state.colors[colorId];
+    const colorDetails = state.colorDetails[colorId];
     
     if (!mapContainer || !color || !colorDetails) {
         console.warn('Missing required elements for territory map:', {
@@ -506,7 +506,7 @@ async function loadTerritoryMap(colorId) {
         const { regions, labels } = setupMapElements(svg, color.colorCode);
         
         // Highlight the area associated with this color
-        highlightColorArea(regions, labels, color, color.colorCode);
+        highlightColorArea(regions, labels, color.area, color.colorCode);
         
         // Attach click handler using event delegation
         attachRegionClickHandler(svg);
