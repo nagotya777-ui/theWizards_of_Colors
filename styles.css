@@ -1225,12 +1225,12 @@ body {
     
     .gradient-bar {
         height: 35px;
-        min-width: 600px;
+        min-width: auto;
     }
     
     .color-pointers {
-        min-width: 600px;
-        margin-top: 35px;
+        min-width: auto;
+        margin-top: 0;
     }
     
     .pointer-line {
