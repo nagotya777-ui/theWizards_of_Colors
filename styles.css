@@ -362,6 +362,7 @@ header h1 {
     background: white;
     padding: 60px;
     overflow-y: auto;
+    height: 100vh;
 }
 
 .back-button {
