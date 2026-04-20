@@ -254,16 +254,16 @@ header h1 {
     width: 50%;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 100px 20px 40px 20px;
-    height: 100%;
+    padding: 90px 20px 40px 20px;
+    height: 95%;
 }
 
 #areaColorListScreen .color-background {
     width: 50%;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 100px 20px 40px 20px;
-    height: 100%;
+    padding: 90px 20px 40px 20px;
+    height: 95%;
 }
 
 /* Map container */
