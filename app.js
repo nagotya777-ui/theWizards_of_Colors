@@ -976,6 +976,10 @@ async function selectColorFromArea(color) {
     state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
     state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
     
+    // Update back button text to show color name
+    const backButton = document.getElementById('backToColors');
+    backButton.textContent = `← ${details.name}に戻る`;
+    
     // Load territory map
     await loadTerritoryMap(color.id);
     
@@ -995,6 +999,9 @@ async function selectColorFromArea(color) {
 // Select a color and show character list
 async function selectColor(color) {
     state.selectedColor = color;
+    
+    // Clear selected area since we're coming from color selection
+    state.selectedArea = null;
     
     // Show loading indicator
     showLoading();
@@ -1032,6 +1039,10 @@ async function selectColor(color) {
         state.dom.territoryInfo.textContent = '';
     }
     state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
+    
+    // Reset back button text to default
+    const backButton = document.getElementById('backToColors');
+    backButton.textContent = '← いろの選択に戻る';
     
     // Load territory map
     loadTerritoryMap(color.id);
