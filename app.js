@@ -29,6 +29,7 @@ function cacheDOMElements() {
         colorGrid: document.getElementById('colorGrid'),
         colorBackground: document.getElementById('colorBackground'),
         selectedColorName: document.getElementById('selectedColorName'),
+        selectedColorEngName: document.getElementById('selectedColorEngName'),
         colorDescription: document.getElementById('colorDescription'),
         territoryInfo: document.getElementById('territoryInfo'),
         characterGrid: document.getElementById('characterGrid'),
@@ -1023,6 +1024,7 @@ async function selectColorFromArea(color) {
     
     // Update character list screen
     state.dom.selectedColorName.textContent = details.name;
+    state.dom.selectedColorEngName.textContent = details.engName;
     state.dom.colorDescription.innerHTML = (details.description || '').replace(/\n/g, '<br>');
     // Get area from colors.json (state.colors) instead of color.json
     if (color.area) {
@@ -1034,6 +1036,7 @@ async function selectColorFromArea(color) {
     // Use backgroundColor instead of background to match selectColor function
     state.dom.colorBackground.style.backgroundColor = color.colorCode;
     state.dom.selectedColorName.style.color = getContrastTextColor(color.colorCode);
+    state.dom.selectedColorEngName.style.color = getContrastTextColor(color.colorCode);
     state.dom.colorDescription.style.color = getContrastTextColor(color.colorCode);
     state.dom.territoryInfo.style.color = getContrastTextColor(color.colorCode);
     
@@ -1091,6 +1094,8 @@ async function selectColor(color) {
     colorBackground.style.backgroundColor = color.colorCode;
     selectedColorName.textContent = color.name;
     selectedColorName.style.color = getContrastTextColor(color.colorCode);
+    selectedColorEngName.textContent = color.id;
+    selectedColorEngName.style.color = getContrastTextColor(color.colorCode);
     colorDescription.innerHTML = (details?.description || '').replace(/\n/g, '<br>');
     colorDescription.style.color = getContrastTextColor(color.colorCode);
     // Get area from colors.json (color object) instead of color.json
