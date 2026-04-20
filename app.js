@@ -236,6 +236,53 @@ function highlightColorArea(regions, labels, colorDetails, colorCode) {
     }
 }
 
+// Helper: Get pattern ID for an area based on its name
+function getPatternForArea(areaName) {
+    if (areaName.includes('都市')) {
+        return 'pattern-city'; // All cities use the same pattern
+    }
+    
+    const patternMap = {
+        '港町': 'pattern-port',
+        '森林': 'pattern-forest',
+        '山岳': 'pattern-mountain',
+        '農村': 'pattern-farm',
+        '雪国': 'pattern-snow',
+        '中央': 'pattern-center'
+    };
+    
+    return patternMap[areaName] || null;
+}
+
+// Helper: Apply pattern to a region
+function applyPatternToRegion(region, patternId, baseColor) {
+    if (!patternId) return;
+    
+    const areaName = region.getAttribute('data-area');
+    if (!areaName) return;
+    
+    // Create a unique pattern ID for this color
+    const uniquePatternId = `${patternId}-${baseColor.replace('#', '')}`;
+    const svg = region.ownerSVGElement;
+    const defs = svg.querySelector('defs');
+    
+    // Check if this colored pattern already exists
+    let coloredPattern = svg.querySelector(`#${uniquePatternId}`);
+    
+    if (!coloredPattern) {
+        // Clone the base pattern and modify it for this color
+        const basePattern = svg.querySelector(`#${patternId}`);
+        if (basePattern) {
+            coloredPattern = basePattern.cloneNode(true);
+            coloredPattern.id = uniquePatternId;
+            defs.appendChild(coloredPattern);
+        }
+    }
+    
+    // Apply the pattern as a fill
+    region.style.fill = `url(#${uniquePatternId})`;
+}
+
 // Helper: Reset all region styles to default
 function resetRegionStyles(regions, labels, backgroundColor = null) {
     // Determine background brightness once
@@ -259,6 +306,15 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
         region.classList.remove('active', 'inactive');
         region.style.fill = fillColor;
         region.style.stroke = strokeColor;
+        
+        // Apply pattern if area has a name
+        const areaName = region.getAttribute('data-area');
+        if (areaName) {
+            const patternId = getPatternForArea(areaName);
+            if (patternId) {
+                applyPatternToRegion(region, patternId, fillColor);
+            }
+        }
     });
     
     // Apply label color once for all labels
