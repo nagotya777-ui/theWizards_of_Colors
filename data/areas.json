@@ -4,55 +4,55 @@
       "id": "forest",
       "name": "森林",
       "description": "深い緑に包まれた静かな森。癒しの魔法を使う者や、死者と交信する者たちが、この神秘的な場所に拠点を構えています。",
-      "backgroundColor": "#79C288"
+      "backgroundColor": "#A5A393"
     },
     {
       "id": "port",
       "name": "港町",
       "description": "潮風が心地よく吹き抜ける港町。海の民たちが船を操り、自由な暮らしを送っています。",
-      "backgroundColor": "#007D8B"
+      "backgroundColor": "#B2BFC7"
     },
     {
       "id": "farm",
       "name": "農村",
       "description": "豊かな大地が広がる農村地帯。人を幸せにする魔法を使う者たちが、温かな暮らしを営んでいます。",
-      "backgroundColor": "#FFF462"
+      "backgroundColor": "#BCB1A8"
     },
     {
       "id": "snow",
       "name": "雪国",
       "description": "一年中雪に覆われた幻想的な土地。芸術家や職人たちが、静寂の中で作品を生み出しています。",
-      "backgroundColor": "#DCEBF5"
+      "backgroundColor": "#E9ECEC"
     },
     {
       "id": "center",
       "name": "中央",
       "description": "世界の中心に位置する賑やかな地域。様々な魔法使いたちが集い、活気に満ちています。",
-      "backgroundColor": "#DA536E"
+      "backgroundColor": "#B8A2A1"
     },
     {
       "id": "industrial",
       "name": "工業都市",
       "description": "機械と魔法が融合した先進的な都市。技術者たちが日々新しい発明に取り組んでいます。",
-      "backgroundColor": "#28598f"
+      "backgroundColor": "#E1C9B2"
     },
     {
       "id": "commercial",
       "name": "商業都市",
       "description": "商人や職人が集う活気ある商業の中心地。様々な品物や魔法の道具が取引されています。",
-      "backgroundColor": "#B2953F"
+      "backgroundColor": "#DFC59B"
     },
     {
       "id": "mountain",
       "name": "山岳",
       "description": "険しい山々が連なる高地。厳しい環境の中で、強靭な精神を持つ者たちが暮らしています。",
-      "backgroundColor": "#006336"
+      "backgroundColor": "#8B9483"
     },
     {
       "id": "academic",
       "name": "学術都市",
       "description": "知識と学問の中心地。研究者や学者たちが、魔法の真理を探求しています。",
-      "backgroundColor": "#192039"
+      "backgroundColor": "#C4BAA7"
     }
   ]
 }
