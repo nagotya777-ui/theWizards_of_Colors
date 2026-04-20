@@ -1,22 +1,10 @@
 {
   "characters": [
     {
-      "id": "Palel",
-      "name": "パレル",
-      "catchphrase": "Palel",
-      "profilePath": "Palel/profile.json"
-    },
-    {
-      "id": "Shukka",
-      "name": "シュカ",
-      "catchphrase": "Shukka",
-      "profilePath": "Shukka/profile.json"
-    },
-    {
-      "id": "Shue",
-      "name": "シュエ",
-      "catchphrase": "Shue",
-      "profilePath": "Shue/profile.json"
+      "id": "Eri",
+      "name": "エリー",
+      "catchphrase": "好奇心旺盛なみならいまほうつかい",
+      "profilePath": "Eri/profile.json"
     }
   ]
 }
