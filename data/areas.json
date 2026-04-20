@@ -10,7 +10,7 @@
       "id": "port",
       "name": "港町",
       "description": "海に面し、人や物が行き交う賑やかな町。魔法を生かし、漁業や交易で活躍するまほうつかいたちが多くいます。",
-      "backgroundColor": "#AABDC9"
+      "backgroundColor": "#4B8F94"
     },
     {
       "id": "farm",
@@ -34,13 +34,13 @@
       "id": "industrial",
       "name": "工業都市",
       "description": "職人気質のまほうつかいたちが多く集まる都市。日用品から工芸品まで日夜様々なものが生み出されます。",
-      "backgroundColor": "#E1C9B2"
+      "backgroundColor": "#C37D56"
     },
     {
       "id": "commercial",
       "name": "商業都市",
       "description": "最も娯楽とものが集まる都市。多くのまほうつかい達が魔法を生かした商いを繰り広げ、活気に溢れています。",
-      "backgroundColor": "#DFC59B"
+      "backgroundColor": "#C39256"
     },
     {
       "id": "mountain",
@@ -52,7 +52,7 @@
       "id": "academic",
       "name": "学術都市",
       "description": "魔法を含むこの世界のあらゆる事象の追求の都市。学問を志すまほうつかいたちが集まります。",
-      "backgroundColor": "#C4BAA7"
+      "backgroundColor": "#897365"
     }
   ]
 }
