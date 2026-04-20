@@ -1066,12 +1066,13 @@ async function selectColor(color) {
     hideLoading();
     
     // Hide all screens first
-    const { colorSelectionScreen, characterListScreen, characterProfileScreen,
+    const { colorSelectionScreen, characterListScreen, characterProfileScreen, areaColorListScreen,
             colorBackground, selectedColorName, colorDescription, territoryMap, mapPlaceholder } = state.dom;
     
     colorSelectionScreen.classList.remove('active');
     characterListScreen.classList.remove('active');
     characterProfileScreen.classList.remove('active');
+    areaColorListScreen.classList.remove('active');
     
     // Show character list screen
     characterListScreen.classList.add('active');
