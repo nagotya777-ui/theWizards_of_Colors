@@ -78,7 +78,7 @@
     }
     .area-label {
       fill: #ffffff;
-      font-family: 'UtukushiMincho', serif;
+      font-family: 'Meiryo', sans-serif;
       font-size: 340px;
       font-weight: normal;
       text-anchor: middle;
