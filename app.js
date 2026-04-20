@@ -3,6 +3,7 @@ const state = {
     colors: [],
     colorDetails: {},
     characters: {},
+    areas: {},
     selectedColor: null,
     selectedCharacter: null,
     selectedArea: null,
@@ -52,6 +53,7 @@ function cacheDOMElements() {
 async function init() {
     cacheDOMElements();
     await loadColorsList();
+    await loadAreasList();
     sortColorsByHue(); // Sort colors by hue for smooth gradient
     renderGradientBar();
     setupEventListeners();
@@ -143,6 +145,22 @@ async function loadOldConfig() {
     } catch (error) {
         console.error('Error loading config:', error);
         state.colors = [];
+    }
+}
+
+// Load areas list
+async function loadAreasList() {
+    try {
+        const response = await fetch('data/areas.json?v=' + Date.now());
+        const config = await response.json();
+        // Create a map of area name to area data for easy lookup
+        config.areas.forEach(area => {
+            state.areas[area.name] = area;
+        });
+        console.log('Loaded areas:', Object.keys(state.areas).length, 'areas');
+    } catch (error) {
+        console.error('Error loading areas list:', error);
+        state.areas = {};
     }
 }
 
@@ -848,20 +866,37 @@ async function selectArea(areaName) {
     // Load color details for all colors in the area
     await Promise.all(colorsInArea.map(color => loadColorDetails(color.id)));
     
-    // Use the first color's details to get area description (if available)
-    const firstColor = colorsInArea[0];
+    // Get area data from areas.json
+    const areaData = state.areas[areaName];
     
-    // Update area info
-    state.dom.areaName.textContent = areaName;
-    state.dom.areaDescription.textContent = `${areaName}に拠点を置く色の魔法使いたち`;
-    
-    // Set background color (use a neutral color or blend of colors in area)
-    const avgColor = colorsInArea.length > 0 ? colorsInArea[0].colorCode : '#888888';
-    state.dom.areaColorBackground.style.background = `linear-gradient(135deg, ${avgColor} 0%, ${lightenColor(avgColor, 20)} 100%)`;
-    
-    // Update text colors based on background
-    state.dom.areaName.style.color = getContrastTextColor(avgColor);
-    state.dom.areaDescription.style.color = getContrastTextColor(avgColor);
+    // Update area info using data from areas.json if available
+    if (areaData) {
+        state.dom.areaName.textContent = areaData.name;
+        state.dom.areaDescription.textContent = areaData.description;
+        
+        // Use backgroundColor from areas.json
+        const bgColor = areaData.backgroundColor;
+        state.dom.areaColorBackground.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${lightenColor(bgColor, 20)} 100%)`;
+        
+        // Update text colors based on background
+        state.dom.areaName.style.color = getContrastTextColor(bgColor);
+        state.dom.areaDescription.style.color = getContrastTextColor(bgColor);
+        
+        // Load and display the map with the area's color
+        await loadAreaMap(areaName, bgColor);
+    } else {
+        // Fallback to old behavior if area data not found
+        state.dom.areaName.textContent = areaName;
+        state.dom.areaDescription.textContent = `${areaName}に拠点を置く色の魔法使いたち`;
+        
+        const avgColor = colorsInArea.length > 0 ? colorsInArea[0].colorCode : '#888888';
+        state.dom.areaColorBackground.style.background = `linear-gradient(135deg, ${avgColor} 0%, ${lightenColor(avgColor, 20)} 100%)`;
+        
+        state.dom.areaName.style.color = getContrastTextColor(avgColor);
+        state.dom.areaDescription.style.color = getContrastTextColor(avgColor);
+        
+        await loadAreaMap(areaName, avgColor);
+    }
     
     // Update back button text
     const backButton = document.getElementById('backToColorSelection');
@@ -871,9 +906,6 @@ async function selectArea(areaName) {
     } else {
         backButton.textContent = '← 戻る';
     }
-    
-    // Load and display the map with the area's color
-    await loadAreaMap(areaName, avgColor);
     
     // Render color grid
     renderColorGrid(colorsInArea);
