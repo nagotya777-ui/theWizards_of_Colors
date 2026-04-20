@@ -846,6 +846,9 @@ async function selectArea(areaName) {
         return;
     }
     
+    // Load color details for all colors in the area
+    await Promise.all(colorsInArea.map(color => loadColorDetails(color.id)));
+    
     // Use the first color's details to get area description (if available)
     const firstColor = colorsInArea[0];
     
