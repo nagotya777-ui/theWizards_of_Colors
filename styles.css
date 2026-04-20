@@ -321,6 +321,13 @@ header h1 {
     letter-spacing: 0.1em;
 }
 
+.color-eng-dis-name {
+    display: block;
+    font-size: 0.4em;
+    margin-bottom: 2px;
+    letter-spacing: 0.05em;
+}
+
 .color-eng-name {
     font-size: 0.8em;
     font-weight: normal;
