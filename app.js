@@ -188,7 +188,7 @@ async function loadColorDetails(colorId) {
         // Use data from colors.json (already loaded)
         const details = {
             name: color.name,
-            engName: color.id
+            engName: color.id,
             colorCode: color.colorCode,
             description: color.description || '',
             symbol: color.symbol ? `${color.dataPath}/${color.symbol}` : ''
