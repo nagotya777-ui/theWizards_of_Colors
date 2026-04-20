@@ -67,11 +67,11 @@
       transform-origin: center;
     }
     .area-region:hover {
-      transform: scale(1.025);
+      transform: scale(1.017);
       filter: brightness(1.05);
     }
     .area-region.active {
-      transform: scale(1.03);
+      transform: scale(1.01);
     }
     .unnamed-area {
       fill: #262626;
@@ -203,7 +203,7 @@ l6 32 68 0 c49 0 96 9 162 30 132 43 191 79 224 137 52 94 53 94 124 98 130 8
 116 334 154 495 105 46 -13 47 -13 104 21 150 90 396 305 715 623 260 259 346
 368 363 459 12 65 -60 479 -110 631 -34 104 -91 183 -241 335 -202 205 -350
 312 -539 391 -173 71 -366 93 -535 59z"/>
-<text class="area-label" x="5500" y="9000" transform="scale(1,-1) translate(0,-17000)">学術都市</text>
+<text class="area-label" x="5500" y="9200" transform="scale(1,-1) translate(0,-17000)">学術都市</text>
 
 <!-- 工業都市 (Industrial City) -->
 <path id="area-工業都市" class="area-region" data-area="工業都市" transform="translate(10400, 7500) scale(0.97) translate(-10400, -7500)"
