@@ -475,6 +475,29 @@ function attachRegionClickHandler(svg) {
     // Add both click and touch event listeners for mobile compatibility
     svg.addEventListener('click', svg._territoryClickHandler);
     svg.addEventListener('touchend', svg._territoryClickHandler);
+    
+    // Add hover handlers to sync label scaling with region hover
+    const regions = svg.querySelectorAll('.area-region');
+    const labels = svg.querySelectorAll('.area-label');
+    
+    regions.forEach(region => {
+        const areaName = region.getAttribute('data-area');
+        if (!areaName) return;
+        
+        const correspondingLabel = Array.from(labels).find(label =>
+            label.textContent.trim() === areaName
+        );
+        
+        if (correspondingLabel) {
+            region.addEventListener('mouseenter', () => {
+                correspondingLabel.classList.add('hover-label');
+            });
+            
+            region.addEventListener('mouseleave', () => {
+                correspondingLabel.classList.remove('hover-label');
+            });
+        }
+    });
 }
 
 // Load territory map for selected color

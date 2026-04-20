@@ -70,6 +70,9 @@
       transform: scale(1.05);
       filter: brightness(1.1);
     }
+    .area-region.active {
+      transform: scale(1.03);
+    }
     .unnamed-area {
       fill: #262626;
       stroke-width: 15;
@@ -85,10 +88,15 @@
       pointer-events: none;
       user-select: none;
       transition: all 0.3s ease;
+      transform-origin: center;
     }
     .area-label.highlighted {
       font-size: 374px;
       font-weight: bold;
+      transform: scale(1.03);
+    }
+    .area-label.hover-label {
+      transform: scale(1.05);
     }
   </style>
 </defs>
