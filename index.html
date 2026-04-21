@@ -11,20 +11,45 @@
 </head>
 <body>
     <div class="container">
-        <!-- Color Selection Screen -->
-        <div id="colorSelectionScreen" class="screen active">
-            <header>
-                <h1>いろのまほうつかい</h1>
-                <p class="subtitle">-キャラクター紹介-</p>
-            </header>
-            
-            <div class="gradient-wrapper">
-                <button id="scrollLeft" class="scroll-arrow" aria-label="前へ"><</button>
-                <div class="gradient-container">
-                    <div id="gradientBar" class="gradient-bar"></div>
-                    <div id="colorPointers" class="color-pointers"></div>
+        <!-- Sliding Container for Color Selection and Character List -->
+        <div id="slidingContainer" class="sliding-container">
+            <!-- Color Selection Screen -->
+            <div id="colorSelectionScreen" class="screen slide-screen active">
+                <header>
+                    <h1>いろのまほうつかい</h1>
+                    <p class="subtitle">-キャラクター紹介-</p>
+                </header>
+                
+                <div class="gradient-wrapper">
+                    <button id="scrollLeft" class="scroll-arrow" aria-label="前へ"><</button>
+                    <div class="gradient-container">
+                        <div id="gradientBar" class="gradient-bar"></div>
+                        <div id="colorPointers" class="color-pointers"></div>
+                    </div>
+                    <button id="scrollRight" class="scroll-arrow" aria-label="次へ">></button>
                 </div>
-                <button id="scrollRight" class="scroll-arrow" aria-label="次へ">></button>
+            </div>
+
+            <!-- Character List Screen -->
+            <div id="characterListScreen" class="screen slide-screen">
+                <div class="split-layout">
+                    <div id="colorBackground" class="color-background">
+                        <div class="color-description">
+                             <small id="selectedColorEngName" class="color-eng-dis-name"></small>
+                            <h2 id="selectedColorName" class="color-name"></h2>
+                            <p id="colorDescription" class="color-description-text"></p>
+                            <p id="territoryInfo" class="territory-info"></p>
+                        </div>
+                        <div class="map-container" id="mapContainer">
+                            <!-- SVG Map will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="character-list-container">
+                        <button id="backToColors" class="back-button">← いろの選択に戻る</button>
+                        <div id="characterGrid" class="character-grid"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -49,27 +74,6 @@
             </div>
         </div>
 
-        <!-- Character List Screen -->
-        <div id="characterListScreen" class="screen">
-            <div class="split-layout">
-                <div id="colorBackground" class="color-background">
-                    <div class="color-description">
-                         <small id="selectedColorEngName" class="color-eng-dis-name"></small>
-                        <h2 id="selectedColorName" class="color-name"></h2>
-                        <p id="colorDescription" class="color-description-text"></p>
-                        <p id="territoryInfo" class="territory-info"></p>
-                    </div>
-                    <div class="map-container" id="mapContainer">
-                        <!-- SVG Map will be loaded here -->
-                    </div>
-                </div>
-                
-                <div class="character-list-container">
-                    <button id="backToColors" class="back-button">← いろの選択に戻る</button>
-                    <div id="characterGrid" class="character-grid"></div>
-                </div>
-            </div>
-        </div>
 
         <!-- Character Profile Screen -->
         <div id="characterProfileScreen" class="screen">
