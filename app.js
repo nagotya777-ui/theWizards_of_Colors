@@ -307,21 +307,25 @@ function applyPatternToRegion(region, patternId, baseColor, strokeColor = null) 
                 circles.forEach(circle => {
                     if (circle.hasAttribute('fill')) {
                         circle.setAttribute('fill', strokeColor);
+                        circle.setAttribute('opacity', '0.6');
                     }
                 });
                 
                 lines.forEach(line => {
                     if (line.hasAttribute('stroke')) {
                         line.setAttribute('stroke', strokeColor);
+                        line.setAttribute('opacity', '0.6');
                     }
                 });
                 
                 paths.forEach(path => {
                     if (path.hasAttribute('fill')) {
                         path.setAttribute('fill', strokeColor);
+                        path.setAttribute('opacity', '0.6');
                     }
                     if (path.hasAttribute('stroke')) {
                         path.setAttribute('stroke', strokeColor);
+                        path.setAttribute('opacity', '0.6');
                     }
                 });
             }
@@ -414,7 +418,7 @@ function darkenColor(hex, percent = 15) {
         hsl.h = Math.max(40, hsl.h - hueShift); // Don't go below golden yellow (40°)
         
         // Reduce darkening amount for yellow to prevent it from becoming too dark
-        actualPercent = percent * 0.6; // 50% of the original darkening
+        actualPercent = percent * 0.7; // 70% of the original darkening
     }
     
     // Reduce lightness proportionally to avoid going too dark
@@ -492,15 +496,6 @@ function highlightRegion(region, label, colorCode) {
         region.style.stroke = strokeColor;
         if (label) {
             label.style.fill = lightenColor(colorCode, 0);
-        }
-    }
-    
-    // Apply pattern with stroke color if area has a name
-    const areaName = region.getAttribute('data-area');
-    if (areaName) {
-        const patternId = getPatternForArea(areaName);
-        if (patternId) {
-            applyPatternToRegion(region, patternId, fillColor, strokeColor);
         }
     }
 }
