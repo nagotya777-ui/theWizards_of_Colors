@@ -859,11 +859,11 @@ function getContrastTextColor(hexColor) {
     const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
     
     // Use lower threshold for yellow colors (they appear lighter)
-    const threshold = isYellowish ? 50 : 70;
+    const threshold = isYellowish ? 50 : 80;
     
     // If lightness is greater than threshold, use darkened version with charcoal multiply
     if (hsl.l > threshold) {
-        const darkened = darkenColor(hexColor, 80);
+        const darkened = darkenColor(hexColor, 75);
         // Multiply with charcoal gray (#36454F) to make it darker
         return multiplyColors(darkened, '#999999');
     } else {
