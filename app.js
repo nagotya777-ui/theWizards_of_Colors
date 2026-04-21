@@ -387,8 +387,13 @@ function darkenColor(hex, percent = 15) {
         actualPercent = percent * 0.6; // 50% of the original darkening
     }
     
-    // Reduce lightness
-    hsl.l = Math.max(0, hsl.l - actualPercent);
+    // Reduce lightness proportionally to avoid going too dark
+    // For light colors, reduce by a percentage of current lightness
+    // This ensures the result stays in a reasonable range (not too close to black)
+    const minLightness = 25; // Minimum lightness to maintain color visibility
+    const reductionFactor = actualPercent / 100;
+    const reducedLightness = hsl.l * (1 - reductionFactor);
+    hsl.l = Math.max(minLightness, reducedLightness);
     
     // Slightly reduce saturation for more natural darkened colors
     hsl.s = Math.max(0, hsl.s - (actualPercent * 0.15));
