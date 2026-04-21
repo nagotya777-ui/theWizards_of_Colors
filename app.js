@@ -346,7 +346,7 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
     if (backgroundColor) {
         const hsl = hexToHSL(backgroundColor);
         const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
-        const threshold = isYellowish ? 50 : 70;
+        const threshold = isYellowish ? 50 : 80;
         const isLightBackground = hsl.l > threshold;
         
         fillColor = backgroundColor;
@@ -386,7 +386,7 @@ function styleUnnamedAreas(unnamedAreas, backgroundColor) {
     // Use the same logic as getContrastTextColor to determine if background is light or dark
     const hsl = hexToHSL(backgroundColor);
     const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
-    const threshold = isYellowish ? 50 : 70;
+    const threshold = isYellowish ? 50 : 80;
     const isLightBackground = hsl.l > threshold;
     
     unnamedAreas.forEach(area => {
@@ -482,7 +482,7 @@ function highlightRegion(region, label, colorCode) {
     const isYellowish = (hsl.h >= 30 && hsl.h <= 90);
     
     // Use lower threshold for yellow colors (they appear lighter)
-    const threshold = isYellowish ? 50 : 70;
+    const threshold = isYellowish ? 50 : 80;
     
     // If lightness is greater than threshold, background is light
     const isLightBackground = hsl.l > threshold;
