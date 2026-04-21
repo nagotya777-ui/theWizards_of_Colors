@@ -485,7 +485,7 @@ header h1 {
     height: 140px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #e0e0e0;
+    border: none;
     box-shadow: none;
     flex-shrink: 0;
     display: flex;
@@ -500,7 +500,7 @@ header h1 {
 }
 
 .color-icon.default-circle {
-    border: 3px solid #e0e0e0;
+    border: none;
 }
 
 .color-info {
