@@ -276,7 +276,7 @@ function getPatternForArea(areaName) {
 }
 
 // Helper: Apply pattern to a region
-function applyPatternToRegion(region, patternId, baseColor) {
+function applyPatternToRegion(region, patternId, baseColor, strokeColor = null) {
     if (!patternId) return;
     
     const areaName = region.getAttribute('data-area');
@@ -296,6 +296,36 @@ function applyPatternToRegion(region, patternId, baseColor) {
         if (basePattern) {
             coloredPattern = basePattern.cloneNode(true);
             coloredPattern.id = uniquePatternId;
+            
+            // Update pattern elements to use the stroke color if provided
+            if (strokeColor) {
+                // Update all circles, lines, and paths in the pattern
+                const circles = coloredPattern.querySelectorAll('circle');
+                const lines = coloredPattern.querySelectorAll('line');
+                const paths = coloredPattern.querySelectorAll('path');
+                
+                circles.forEach(circle => {
+                    if (circle.hasAttribute('fill')) {
+                        circle.setAttribute('fill', strokeColor);
+                    }
+                });
+                
+                lines.forEach(line => {
+                    if (line.hasAttribute('stroke')) {
+                        line.setAttribute('stroke', strokeColor);
+                    }
+                });
+                
+                paths.forEach(path => {
+                    if (path.hasAttribute('fill')) {
+                        path.setAttribute('fill', strokeColor);
+                    }
+                    if (path.hasAttribute('stroke')) {
+                        path.setAttribute('stroke', strokeColor);
+                    }
+                });
+            }
+            
             defs.appendChild(coloredPattern);
         }
     }
@@ -333,7 +363,7 @@ function resetRegionStyles(regions, labels, backgroundColor = null) {
         if (areaName) {
             const patternId = getPatternForArea(areaName);
             if (patternId) {
-                applyPatternToRegion(region, patternId, fillColor);
+                applyPatternToRegion(region, patternId, fillColor, strokeColor);
             }
         }
     });
@@ -443,19 +473,34 @@ function highlightRegion(region, label, colorCode) {
     // If lightness is greater than threshold, background is light
     const isLightBackground = hsl.l > threshold;
     
+    let fillColor, strokeColor;
+    
     if (isLightBackground) {
         // For light backgrounds, use a very heavily darkened version of the color
-        region.style.fill = darkenColor(colorCode, 70);
-        region.style.stroke = darkenColor(colorCode, 70);
+        fillColor = darkenColor(colorCode, 70);
+        strokeColor = darkenColor(colorCode, 70);
+        region.style.fill = fillColor;
+        region.style.stroke = strokeColor;
         if (label) {
             label.style.fill = darkenColor(colorCode, 0);
         }
     } else {
         // For dark backgrounds, use white
-        region.style.fill = lightenColor(colorCode, 82);
-        region.style.stroke = lightenColor(colorCode, 82);
+        fillColor = lightenColor(colorCode, 82);
+        strokeColor = lightenColor(colorCode, 82);
+        region.style.fill = fillColor;
+        region.style.stroke = strokeColor;
         if (label) {
             label.style.fill = lightenColor(colorCode, 0);
+        }
+    }
+    
+    // Apply pattern with stroke color if area has a name
+    const areaName = region.getAttribute('data-area');
+    if (areaName) {
+        const patternId = getPatternForArea(areaName);
+        if (patternId) {
+            applyPatternToRegion(region, patternId, fillColor, strokeColor);
         }
     }
 }
