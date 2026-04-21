@@ -1082,16 +1082,12 @@ async function selectColor(color) {
     const { colorSelectionScreen, characterListScreen, characterProfileScreen, areaColorListScreen,
             colorBackground, selectedColorName, colorDescription, territoryMap, mapPlaceholder } = state.dom;
     
-    // Hide area color list screen if it's active
-    areaColorListScreen.classList.remove('active');
+    colorSelectionScreen.classList.remove('active');
+    characterListScreen.classList.remove('active');
     characterProfileScreen.classList.remove('active');
+    areaColorListScreen.classList.remove('active');
     
-    // Slide to character list screen
-    const slidingContainer = document.getElementById('slidingContainer');
-    slidingContainer.classList.add('show-character-list');
-    
-    // Ensure both screens are visible for sliding
-    colorSelectionScreen.classList.add('active');
+    // Show character list screen
     characterListScreen.classList.add('active');
     
     // Set background color
@@ -1451,12 +1447,9 @@ function setupEventListeners() {
     });
     
     document.getElementById('backToColors').addEventListener('click', () => {
-        // Slide back to color selection screen
-        const slidingContainer = document.getElementById('slidingContainer');
-        slidingContainer.classList.remove('show-character-list');
-        
-        // Keep both screens active for sliding effect
-        // Don't remove active class from either screen
+        document.getElementById('characterListScreen').classList.remove('active');
+        // Always return to color selection screen
+        document.getElementById('colorSelectionScreen').classList.add('active');
     });
     
     document.getElementById('backToCharacters').addEventListener('click', () => {
