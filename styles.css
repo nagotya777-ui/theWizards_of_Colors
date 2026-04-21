@@ -937,11 +937,9 @@ body {
     #colorSelectionScreen {
         padding: 20px 15px;
         min-height: 100vh;
-        max-height: 100vh;
-        height: 100vh;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        overflow: visible;
     }
     
     header {
@@ -965,8 +963,8 @@ body {
         max-width: 100%;
         gap: 15px;
         flex: 1;
-        min-height: 0;
-        overflow: hidden;
+        min-height: 400px;
+        overflow: visible;
     }
     
     .scroll-arrow {
@@ -980,7 +978,7 @@ body {
         overflow-x: visible;
         padding-bottom: 0;
         padding-right: 10px;
-        height: 100%;
+        min-height: 400px;
     }
     
     .gradient-bar {
@@ -1000,7 +998,7 @@ body {
         min-width: auto;
         width: auto;
         flex: 1;
-        height: 100%;
+        min-height: 400px;
         overflow-y: auto;
         padding-right: 10px;
     }
