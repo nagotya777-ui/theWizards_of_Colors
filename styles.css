@@ -411,8 +411,8 @@ header h1 {
 }
 
 .character-icon {
-    width: 150px;
-    height: 150px;
+    width: 145px;
+    height: 145px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #e0e0e0;
@@ -481,8 +481,8 @@ header h1 {
 }
 
 .color-icon {
-    width: 140px;
-    height: 140px;
+    width: 145px;
+    height: 145px;
     border-radius: 50%;
     object-fit: cover;
     border: none;
