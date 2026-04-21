@@ -717,89 +717,6 @@ header h1 {
         font-size: 2rem;
     }
     
-    /* Hide gradient bar on mobile */
-    .gradient-wrapper {
-        flex-direction: column;
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        gap: 0;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .scroll-arrow {
-        display: none; /* Hide arrows on mobile */
-    }
-    
-    .gradient-container {
-        display: none; /* Hide gradient container on mobile */
-    }
-    
-    .gradient-bar {
-        display: none; /* Hide gradient bar on mobile */
-    }
-    
-    .color-pointers {
-        position: relative;
-        width: 100%;
-        min-width: auto;
-        margin: 0;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        flex: 1;
-        max-width: 100%;
-        gap: 12px;
-    }
-    
-    .color-pointer {
-        flex: 0 0 auto;
-        flex-direction: row;
-        align-items: center;
-        gap: 15px;
-        padding: 12px 16px;
-        width: 100%;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-    
-    .color-pointer:hover {
-        transform: scale(1.02);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    }
-    
-    .pointer-line {
-        display: none; /* Hide line on mobile for cleaner look */
-    }
-    
-    .pointer-label {
-        font-size: 1.1rem;
-        gap: 12px;
-        margin: 0;
-        white-space: normal;
-        word-wrap: break-word;
-        flex-direction: row;
-        align-items: center;
-        flex: 1;
-        overflow-wrap: break-word;
-    }
-    
-    .pointer-label span {
-        flex: 1;
-        word-break: keep-all;
-        overflow-wrap: anywhere;
-    }
-    
-    .color-symbol {
-        width: 32px;
-        height: 32px;
-        flex-shrink: 0;
-    }
-    
     .character-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 20px;
@@ -1239,28 +1156,32 @@ body {
         font-size: 0.9rem;
     }
     
+    .gradient-container {
+        width: 50px;
+        flex: 0 0 50px;
+    }
+    
     .gradient-bar {
-        height: 35px;
-        min-width: auto;
+        width: 35px;
+        min-width: 35px;
     }
     
     .color-pointers {
-        min-width: auto;
-        margin-top: 0;
+        gap: 10px;
     }
     
-    .pointer-line {
-        display: none; /* Hide line on mobile */
+    .color-pointer {
+        padding: 10px 12px;
     }
     
     .pointer-label {
-        font-size: 0.85rem;
-        gap: 6px;
+        font-size: 0.9rem;
+        gap: 8px;
     }
     
     .color-symbol {
-        width: 18px;
-        height: 18px;
+        width: 24px;
+        height: 24px;
     }
     
     .character-icon {
