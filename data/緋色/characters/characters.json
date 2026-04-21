@@ -1,6 +1,18 @@
 {
   "characters": [
     {
+      "id": "Hongfa",
+      "name": "ホンファ",
+      "catchphrase": "",
+      "profilePath": "Hongfa/profile.json"
+    },
+    {
+      "id": "Akeno",
+      "name": "アケノ",
+      "catchphrase": "",
+      "profilePath": "Akeno/profile.json"
+    },
+    {
       "id": "Kagari",
       "name": "カガリ",
       "catchphrase": "",

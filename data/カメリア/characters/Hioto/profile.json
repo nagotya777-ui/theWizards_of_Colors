@@ -6,7 +6,10 @@
   "expressions": [
     "expression1.png"
   ],
-  "relatedCharacters": [],
+  "relatedCharacters": [
+    "Kouka",
+    "Uzu"
+  ],
   "profile": {
     "gender": "女性",
     "age": "26歳",

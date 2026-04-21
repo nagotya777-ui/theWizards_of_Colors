@@ -358,7 +358,7 @@ header h1 {
 .profile-container {
     width: 80%;
     background: white;
-    padding: 60px;
+    padding: 40px;
     overflow-y: auto;
     min-height: 100vh;
 }
@@ -1283,23 +1283,25 @@ body {
 }
 
 /* Safe area insets for notched devices (iPhone X and newer) */
-@supports (padding: max(0px)) {
-    body {
-        padding-left: max(0px, env(safe-area-inset-left));
-        padding-right: max(0px, env(safe-area-inset-right));
-    }
-    
-    #colorSelectionScreen,
-    .character-list-container,
-    .profile-container {
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
-        padding-bottom: max(20px, env(safe-area-inset-bottom));
-    }
-    
-    .color-background {
-        padding-left: max(20px, env(safe-area-inset-left));
-        padding-right: max(20px, env(safe-area-inset-right));
+@media (max-width: 768px) {
+    @supports (padding: max(0px)) {
+        body {
+            padding-left: max(0px, env(safe-area-inset-left));
+            padding-right: max(0px, env(safe-area-inset-right));
+        }
+        
+        #colorSelectionScreen,
+        .character-list-container,
+        .profile-container {
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+        }
+        
+        .color-background {
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
     }
 }
 

@@ -6,7 +6,10 @@
   "expressions": [
     "expression1.png"
   ],
-  "relatedCharacters": [],
+  "relatedCharacters": [
+    "Akeno",
+    "Hongfa"
+  ],
   "profile": {
     "gender": "女性",
     "age": "13歳",
