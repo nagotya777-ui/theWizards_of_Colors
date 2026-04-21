@@ -839,6 +839,18 @@ function rgbToHex(r, g, b) {
     }).join('');
 }
 
+// Multiply two colors together (like Photoshop multiply blend mode)
+function multiplyColors(hex1, hex2) {
+    const rgb1 = hexToRgb(hex1);
+    const rgb2 = hexToRgb(hex2);
+    
+    const r = Math.round((rgb1.r * rgb2.r) / 255);
+    const g = Math.round((rgb1.g * rgb2.g) / 255);
+    const b = Math.round((rgb1.b * rgb2.b) / 255);
+    
+    return rgbToHex(r, g, b);
+}
+
 // Get contrasting text color based on background color
 function getContrastTextColor(hexColor) {
     const hsl = hexToHSL(hexColor);
@@ -849,8 +861,15 @@ function getContrastTextColor(hexColor) {
     // Use lower threshold for yellow colors (they appear lighter)
     const threshold = isYellowish ? 50 : 70;
     
-    // If lightness is greater than threshold, use dark text; otherwise use light text
-    return hsl.l > threshold ? '#2c2c2c' : '#ffffff';
+    // If lightness is greater than threshold, use darkened version with charcoal multiply
+    if (hsl.l > threshold) {
+        const darkened = darkenColor(hexColor, 80);
+        // Multiply with charcoal gray (#36454F) to make it darker
+        return multiplyColors(darkened, '#999999');
+    } else {
+        // For dark backgrounds, use lightened version
+        return lightenColor(hexColor, 90);
+    }
 }
 
 // Convert HSL to Hex
