@@ -873,12 +873,12 @@ body {
     
     /* Gradient wrapper - vertical layout for mobile */
     .gradient-wrapper {
-        flex-direction: row;
+        flex-direction: column;
         width: 100%;
         max-width: 100%;
-        gap: 15px;
+        gap: 0;
         flex: 1;
-        min-height: 400px;
+        min-height: 0;
         overflow: visible;
     }
     
@@ -887,35 +887,26 @@ body {
     }
     
     .gradient-container {
-        width: 60px;
-        flex: 0 0 60px;
-        overflow-y: auto;
-        overflow-x: visible;
-        padding-bottom: 0;
-        padding-right: 10px;
-        min-height: 400px;
+        display: none; /* Hide gradient bar on mobile */
     }
     
     .gradient-bar {
-        width: 40px;
-        min-width: 40px;
-        height: 100%;
-        min-height: 100%;
-        border-radius: 20px;
+        display: none;
     }
     
     .color-pointers {
         flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
+        justify-content: flex-start;
+        align-items: stretch;
         margin-top: 0;
         margin-left: 0;
         min-width: auto;
-        width: auto;
+        width: 100%;
         flex: 1;
-        min-height: 400px;
+        min-height: 0;
         overflow-y: auto;
-        padding-right: 10px;
+        padding-right: 0;
+        gap: 0;
     }
     
     .color-pointer {
@@ -923,7 +914,9 @@ body {
         align-items: center;
         width: 100%;
         flex: 0 0 auto;
-        margin-bottom: 15px;
+        margin-bottom: 0;
+        padding: 12px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
     
     .pointer-line {
@@ -932,14 +925,18 @@ body {
     
     .pointer-label {
         margin-top: 0;
-        font-size: 0.95rem;
+        margin-left: 0;
+        font-size: 1rem;
         flex-direction: row;
-        gap: 8px;
+        gap: 12px;
+        align-items: center;
+        white-space: nowrap;
     }
     
     .color-symbol {
-        width: 20px;
-        height: 20px;
+        width: 28px;
+        height: 28px;
+        flex-shrink: 0;
     }
     
     
