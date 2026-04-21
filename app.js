@@ -1447,9 +1447,18 @@ function setupEventListeners() {
     });
     
     document.getElementById('backToColors').addEventListener('click', () => {
-        document.getElementById('characterListScreen').classList.remove('active');
-        // Always return to color selection screen
-        document.getElementById('colorSelectionScreen').classList.add('active');
+        // Scroll back to color selection screen smoothly
+        const colorSelectionScreen = document.getElementById('colorSelectionScreen');
+        if (colorSelectionScreen) {
+            // On mobile, scroll to top of page
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // On desktop, scroll to color selection screen
+                colorSelectionScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
     });
     
     document.getElementById('backToCharacters').addEventListener('click', () => {
