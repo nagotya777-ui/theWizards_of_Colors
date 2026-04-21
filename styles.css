@@ -873,10 +873,10 @@ body {
     
     /* Gradient wrapper - vertical layout for mobile */
     .gradient-wrapper {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
         max-width: 100%;
-        gap: 0;
+        gap: 10px;
         flex: 1;
         min-height: 0;
         overflow: visible;
@@ -887,11 +887,20 @@ body {
     }
     
     .gradient-container {
-        display: none; /* Hide gradient bar on mobile */
+        width: 50px;
+        flex: 0 0 50px;
+        overflow-y: auto;
+        overflow-x: visible;
+        padding: 0;
+        min-height: 0;
     }
     
     .gradient-bar {
-        display: none;
+        width: 40px;
+        min-width: 40px;
+        height: 100%;
+        min-height: 100%;
+        border-radius: 20px;
     }
     
     .color-pointers {
@@ -905,7 +914,7 @@ body {
         flex: 1;
         min-height: 0;
         overflow-y: auto;
-        padding-right: 0;
+        padding: 0;
         gap: 0;
     }
     
@@ -916,7 +925,17 @@ body {
         flex: 0 0 auto;
         margin-bottom: 0;
         padding: 12px 15px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        transition: background-color 0.2s ease;
+    }
+    
+    .color-pointer:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        transform: none;
+    }
+    
+    .color-pointer:active {
+        background-color: rgba(0, 0, 0, 0.05);
     }
     
     .pointer-line {
@@ -931,11 +950,12 @@ body {
         gap: 12px;
         align-items: center;
         white-space: nowrap;
+        width: 100%;
     }
     
     .color-symbol {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
         flex-shrink: 0;
     }
     
