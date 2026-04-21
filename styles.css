@@ -240,7 +240,7 @@ header h1 {
 
 .color-background {
     width: 20%;
-    min-height: 100vh;
+    height: 100%;
     position: relative;
     transition: background-color 0.5s ease;
     display: flex;
@@ -255,7 +255,6 @@ header h1 {
     flex-direction: column;
     justify-content: flex-start;
     padding: 90px 20px 40px 20px;
-    min-height: 100vh;
 }
 
 #areaColorListScreen .color-background {
@@ -263,7 +262,6 @@ header h1 {
     flex-direction: column;
     justify-content: flex-start;
     padding: 90px 20px 40px 20px;
-    min-height: 100vh;
 }
 
 /* Map container */
