@@ -408,6 +408,10 @@ function darkenColor(hex, percent = 15) {
     // Convert hex to HSL
     const hsl = hexToHSL(hex);
     
+    // Detect very light pastel colors (high lightness, low-to-medium saturation)
+    // These need special handling to avoid becoming too saturated when darkened
+    const isVeryLightPastel = hsl.l > 90 && hsl.s < 70;
+    
     // For yellow colors (hue 45-75), shift towards orange when darkening
     const isYellow = hsl.h >= 45 && hsl.h <= 75;
     let actualPercent = percent;
@@ -421,16 +425,22 @@ function darkenColor(hex, percent = 15) {
         actualPercent = percent * 0.7; // 70% of the original darkening
     }
     
-    // Reduce lightness proportionally to avoid going too dark
-    // For light colors, reduce by a percentage of current lightness
-    // This ensures the result stays in a reasonable range (not too close to black)
-    const minLightness = 25; // Minimum lightness to maintain color visibility
-    const reductionFactor = actualPercent / 100;
-    const reducedLightness = hsl.l * (1 - reductionFactor);
-    hsl.l = Math.max(minLightness, reducedLightness);
-    
-    // Slightly reduce saturation for more natural darkened colors
-    hsl.s = Math.max(0, hsl.s - (actualPercent * 0.15));
+    // For very light pastels, use absolute lightness target instead of percentage reduction
+    if (isVeryLightPastel && percent >= 60) {
+        // Target a medium lightness (around 55-60%) for map visibility
+        hsl.l = 57;
+        // Significantly reduce saturation for softer appearance
+        hsl.s = Math.max(15, hsl.s * 0.4);
+    } else {
+        // Standard darkening logic for other colors
+        const minLightness = 25;
+        const reductionFactor = actualPercent / 100;
+        const reducedLightness = hsl.l * (1 - reductionFactor);
+        hsl.l = Math.max(minLightness, reducedLightness);
+        
+        // Slightly reduce saturation for more natural darkened colors
+        hsl.s = Math.max(0, hsl.s - (actualPercent * 0.15));
+    }
     
     // Convert back to hex
     return hslToHex(hsl.h, hsl.s, hsl.l);
